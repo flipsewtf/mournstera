@@ -1,24 +1,49 @@
-# build output
+# ======================
+# Build output / generated
+# ======================
 dist/
-# generated types
 .astro/
+*.tsbuildinfo    # TypeScript incremental build info
 
-# dependencies
+# ======================
+# Dependencies
+# ======================
 node_modules/
 
-# logs
+# ======================
+# Logs
+# ======================
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-
-# environment variables
+# ======================
+# Environment files
+# ======================
 .env
 .env.production
 
-# macOS-specific files
-.DS_Store
+# ======================
+# Editor / IDE settings
+# ======================
+.idea/            # JetBrains IDEs
 
-# jetbrains setting folder
-.idea/
+# ======================
+# OS / system files
+# ======================
+.DS_Store         # macOS
+Thumbs.db         # Windows
+ehthumbs.db       # Windows
+
+# ======================
+# Prettier / formatting cache
+# ======================
+.prettiercache
+
+# ======================
+# Temporary / backup files
+# ======================
+*~
+*.bak
+*.swp
