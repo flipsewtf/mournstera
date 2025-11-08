@@ -11,6 +11,7 @@
         "format:write": "prettier --write ."
     },
     "dependencies": {
+        "@astrojs/rss": "^4.0.13",
         "astro": "^5.15.3"
     },
     "devDependencies": {
