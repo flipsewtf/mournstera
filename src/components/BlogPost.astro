@@ -2,4 +2,17 @@
 const { title, url, tags } = Astro.props;
 ---
 
-<li><a href={url}>{title}</a></li>
+<li>
+    <a href={url}>
+        <h2>{title}</h2>
+    </a>
+    {
+        tags && tags.length > 0 && (
+            <ul class="post-tags">
+                {tags.map((tag) => (
+                    <li class="tag">{tag}</li>
+                ))}
+            </ul>
+        )
+    }
+</li>

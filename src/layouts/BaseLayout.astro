@@ -1,17 +1,19 @@
 ---
+import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/global.css';
-const { pageTitle } = Astro.props;
+import '../assets/styles/global.css';
+import '../assets/styles/reset.css';
+const { pageTitle, pageDescription, pageImage } = Astro.props;
 ---
 
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>Mournstera | {pageTitle}</title>
+        <BaseHead
+            title={pageTitle}
+            description={pageDescription}
+            image={pageImage}
+        />
     </head>
     <body>
         <Header />
@@ -19,8 +21,5 @@ const { pageTitle } = Astro.props;
             <slot />
         </main>
         <Footer />
-        <script>
-            import '../scripts/menu.js';
-        </script>
     </body>
 </html>
