@@ -4,26 +4,10 @@
 
 <footer class="site-footer">
     <div class="site-footer-inner">
-        <div>
-            <a
-                href="https://listenbrainz.org/user/flipse"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <div id="now-playing">
-                    🎵
-                    <span class="track"></span>
-                </div>
-            </a>
-
-            <div id="currently">
-                <span class="status-emoji"></span>
-                <span class="status-text"></span>
-            </div>
+        <div id="currently" aria-live="polite">
+            <span class="status-text"></span>
+            <span class="status-emoji" aria-hidden="true"></span>
         </div>
-
-        <p>© 2026 Flipse</p>
+        <p>&copy; 2026 Flipse</p>
     </div>
 </footer>
-
-<script is:inline src="/scripts/status.js"></script>

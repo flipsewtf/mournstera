@@ -1,7 +1,7 @@
 //theme toggle
 
 (function () {
-    const btn = document.getElementById('themeToggle');
+    const btn = document.getElementById('theme-toggle');
     if (!btn) return;
 
     const root = document.documentElement;

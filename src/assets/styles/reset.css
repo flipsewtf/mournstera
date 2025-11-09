@@ -14,7 +14,9 @@ svg {
     stroke-width: 2;
 }
 html {
-    height: 100%;
+    font-size: 16px;
+}
+html:not([data-reduce-motion]) {
     scroll-behavior: smooth;
 }
 button,

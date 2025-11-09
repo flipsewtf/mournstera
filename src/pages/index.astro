@@ -1,9 +1,15 @@
 ---
-import Intro from '../components/intro.astro';
+import Intro from '../components/Intro.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'Welcome';
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} mainClass="flex-unset">
     <Intro />
 </BaseLayout>
+
+<style>
+    :global(main.flex-unset) {
+        flex: unset;
+    }
+</style>

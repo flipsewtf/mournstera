@@ -1,4 +1,4 @@
-// ----------------- TIME STATUS -----------------
+// status
 (function () {
     const container = document.getElementById('currently');
     if (!container) return;
@@ -39,36 +39,4 @@
 
     textEl.textContent = statusText;
     emojiEl.textContent = statusEmoji;
-})();
-
-// ----------------- SCROBBLE -----------------
-(function () {
-    const container = document.getElementById('now-playing');
-    if (!container) return;
-
-    const trackSpan = container.querySelector('.track');
-    if (!trackSpan) return;
-
-    async function fetchNowPlaying() {
-        try {
-            const response = await fetch(
-                'https://api.listenbrainz.org/1/user/flipse/listens?count=1'
-            );
-            const data = await response.json();
-
-            const latestListen = data.payload.listens[0];
-            if (latestListen && latestListen.track_metadata) {
-                const track = latestListen.track_metadata.track_name;
-                const artist = latestListen.track_metadata.artist_name;
-                trackSpan.textContent = `${track} — ${artist}`;
-            } else {
-                trackSpan.textContent = 'No recent tracks found.';
-            }
-        } catch (err) {
-            console.error('Failed to fetch ListenBrainz data:', err);
-        }
-    }
-
-    fetchNowPlaying();
-    setInterval(fetchNowPlaying, 30000);
 })();
