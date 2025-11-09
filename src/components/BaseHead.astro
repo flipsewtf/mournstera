@@ -8,7 +8,7 @@ export interface Props {
 const { title, description, image } = Astro.props;
 ---
 
-<script>
+<script is:inline>
     (function () {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia(
