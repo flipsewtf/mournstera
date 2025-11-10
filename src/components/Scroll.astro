@@ -1,0 +1,52 @@
+---
+import ArrowUp from './icons/ArrowUp.svg';
+---
+
+<button class="scroll-to-top" type="button" aria-label="Scroll to top">
+    <ArrowUp />
+</button>
+
+<style>
+    button.scroll-to-top {
+        display: inline-flex;
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        padding: 0.375rem;
+        border-radius: 0.375rem;
+        color: hsl(var(--bg-primary));
+        background: hsl(var(--text-primary));
+        cursor: default;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none;
+
+        &.visible {
+            cursor: pointer;
+            color: hsl(var(--bg-primary));
+            background-color: hsl(var(--text-primary));
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+</style>
+
+<script>
+    const html = document.documentElement;
+    const scrollButton = document.querySelector(
+        '.scroll-to-top'
+    ) as HTMLElement;
+
+    document.addEventListener('scroll', () => {
+        const isVisible = html.scrollTop > 50;
+        scrollButton.classList.toggle('visible', isVisible);
+        scrollButton.hidden = !isVisible;
+    });
+
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    });
+</script>

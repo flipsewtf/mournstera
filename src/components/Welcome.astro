@@ -1,14 +1,18 @@
 ---
-
+import { Image } from 'astro:assets';
+import deskImage from '../assets/images/desk.webp';
+import VinylSpinningSVG from './icons/SpinningVinyl.svg';
 ---
 
-<section class="intro">
-    <img
-        class="profile"
-        src="/images/me_intro.webp"
-        alt="Picture of Flipse"
+<section>
+    <Image
+        src={deskImage}
+        alt="My cozy desk space"
+        class="welcome-desk"
         loading="lazy"
         decoding="async"
+        width={1500}
+        height={2000}
     />
 
     <div class="intro-text">
@@ -47,25 +51,9 @@
 
         <p>I'm an early disability retiree, so all this is just for kicks!</p>
 
-        <div id="now-playing">
-            <div class="vinyl-wrap">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    ><circle cx="12" cy="12" r="10"></circle><path
-                        d="M6 12c0-1.7.7-3.2 1.8-4.2"></path><circle
-                        cx="12"
-                        cy="12"
-                        r="2"></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"
-                    ></path></svg
-                >
+        <div id="scrobble" aria-label="Latest scrobbled track">
+            <div class="vinyl-wrap" aria-hidden="true">
+                <VinylSpinningSVG />
             </div>
             <a
                 class="track"
@@ -79,6 +67,38 @@
 </section>
 
 <style>
+    /* ----- Section layout ----- */
+    section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    /* ----- Desktop image ----- */
+    img.welcome-desk {
+        width: 100%;
+        border-radius: var(--radius-md);
+        object-fit: cover;
+        display: block;
+        aspect-ratio: 3 / 2;
+    }
+
+    :global([data-theme='dark']) img.welcome-desk {
+        filter: brightness(0.85);
+    }
+
+    /* ----- Typography ----- */
+    h1 {
+        font-size: 2.6rem;
+    }
+
+    p {
+        line-height: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    /* Links inside paragraphs  */
     .intro-text p a {
         text-decoration: underline;
         color: hsl(var(--text-primary));
@@ -89,64 +109,15 @@
             text-decoration-color: hsl(var(--accent-primary));
         }
     }
-    section.intro {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        align-items: center;
-    }
 
-    img.profile {
-        width: 100%;
-        border-radius: 0.75rem;
-        object-fit: cover;
-        filter: var(--filter-img);
-        transition: filter 0.5s ease;
-        will-change: filter;
-        display: block;
-        aspect-ratio: 3 / 2;
-    }
-
-    :global([data-theme='dark']) img.profile {
-        filter: grayscale(100%) saturate(0.9);
-    }
-
-    :global([data-theme='dark']) img.profile {
-        filter: grayscale(100%) brightness(0.8);
-    }
-
-    img.profile:hover {
-        filter: saturate(1) brightness(1);
-    }
-
-    @media (min-width: 580px) {
-        section.intro {
-            grid-template-columns: 3fr 4fr;
-            gap: 4rem;
-        }
-
-        img.profile {
-            height: 100%;
-            max-height: 100%;
-            aspect-ratio: auto;
-        }
-    }
-
-    h1 {
-        font-size: 2.6rem;
-    }
-
-    p {
-        line-height: 1.5rem;
-        margin: 1.5rem 0;
-    }
-
-    #now-playing {
+    /* ----- Scrobble ----- */
+    #scrobble {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         gap: 0.4rem;
     }
+
     .track {
         font-family: var(--font-mono);
         font-size: 0.875rem;
@@ -155,38 +126,60 @@
     }
 
     .vinyl-wrap {
-        animation: spin 7s linear infinite;
+        animation: spin 8s linear infinite;
+        transform-origin: 50% 50%;
+        backface-visibility: hidden;
         display: flex;
         justify-content: center;
         align-items: center;
+        will-change: transform;
     }
+
+    #scrobble svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        stroke-width: 1.6;
+        filter: blur(0.05px);
+    }
+
+    #scrobble:hover .vinyl-wrap {
+        animation-play-state: paused;
+    }
+
+    /* ----- Animations ----- */
     @keyframes spin {
         from {
             transform: rotate(0deg);
         }
         to {
-            transform: rotate(360deg);
+            transform: rotate(360.1deg);
         }
     }
+
     @media (prefers-reduced-motion: reduce) {
         .vinyl-wrap {
             animation: none;
         }
     }
 
-    #now-playing svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        flex-shrink: 0;
-        stroke-width: 1.6;
-    }
-    #now-playing:hover .vinyl-wrap {
-        animation-play-state: paused;
+    /* ----- Responsive / Media Queries -----  */
+    @media (min-width: 425px) {
+        #scrobble {
+            flex-wrap: nowrap;
+        }
     }
 
-    @media (min-width: 425px) {
-        #now-playing {
-            flex-wrap: nowrap;
+    @media (min-width: 580px) {
+        section {
+            grid-template-columns: 3fr 4fr;
+            gap: 4rem;
+        }
+
+        img.welcome-desk {
+            height: 100%;
+            max-height: 100%;
+            aspect-ratio: auto;
         }
     }
 </style>
@@ -194,7 +187,7 @@
 <script>
     // Scrobble (Listenbrainz)
     (async () => {
-        const trackLink = document.querySelector('#now-playing .track');
+        const trackLink = document.querySelector('#scrobble .track');
         if (!trackLink) return;
 
         try {

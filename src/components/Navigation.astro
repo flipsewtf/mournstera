@@ -1,10 +1,43 @@
 ---
-
+import CactusIcon from './icons/Cactus.svg';
+import BagIcon from './icons/Bag.svg';
+import NotebookIcon from './icons/Notebook.svg';
 ---
 
-<div id="main-menu" class="nav-links">
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/blog/">Blog</a>
-    <a href="/tags/">Tags</a>
-</div>
+<nav>
+    <ul id="header-menu">
+        <li>
+            <a href="/about/"><CactusIcon /> About</a>
+        </li>
+        <li>
+            <a href="/bag/"><BagIcon /> Bag</a>
+        </li>
+        <li>
+            <a href="/blog/"><NotebookIcon /> Blog</a>
+        </li>
+    </ul>
+</nav>
+
+<style>
+    ul#header-menu {
+        display: flex;
+        align-items: center;
+        gap: 1.5625rem;
+
+        li {
+            display: flex;
+
+            a {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+
+                svg {
+                    width: 1.25rem;
+                    height: 1.25rem;
+                    color: hsl(var(--text-primary));
+                }
+            }
+        }
+    }
+</style>

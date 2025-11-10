@@ -5,9 +5,124 @@
 <footer class="site-footer">
     <div class="site-footer-inner">
         <div id="currently" aria-live="polite">
+            <span class="status-icon" aria-hidden="true"></span>
+            <span class="sr-only">Currently:</span>
             <span class="status-text"></span>
-            <span class="status-emoji" aria-hidden="true"></span>
         </div>
-        <p>&copy; 2026 Flipse</p>
+        <div id="footer-year"></div>
     </div>
 </footer>
+
+<style>
+    footer.site-footer {
+        width: 100%;
+        max-width: var(--main-width);
+        margin: 0 auto;
+        padding: 0.0625rem 2rem 0 2rem;
+
+        .site-footer-inner {
+            border-top: 0.0625rem solid hsl(var(--border-color));
+            padding: 1.2rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    #currently {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    span.status-text {
+        font-size: 0.75rem;
+        color: hsl(var(--text-secondary));
+    }
+    span.status-icon {
+        display: inline-flex;
+
+        svg {
+            width: 1.125rem;
+            height: 1.125rem;
+        }
+    }
+    #footer-year {
+        font-size: 0.8125rem;
+        color: hsl(var(--text-secondary));
+        font-weight: 500;
+    }
+</style>
+
+<script>
+    const launchYear = 2025;
+    const currentYear = new Date().getFullYear();
+    const yearText =
+        launchYear === currentYear
+            ? `${currentYear}`
+            : `${launchYear}–${currentYear}`;
+    document.getElementById('footer-year')!.textContent =
+        `${yearText} Mournstera`;
+</script>
+
+<script>
+    (function () {
+        const container = document.getElementById('currently');
+        if (!container) return;
+
+        const textEl = container.querySelector('.status-text');
+        const iconEl = container.querySelector('.status-icon');
+        if (!textEl || !iconEl) return;
+
+        // Current hour in Copenhagen
+        const currentHour = parseInt(
+            new Intl.DateTimeFormat([], {
+                timeZone: 'Europe/Copenhagen',
+                hour: 'numeric',
+                hour12: false,
+            }).format(new Date()),
+            10
+        );
+
+        // Define statuses with text + accessible SVG
+        const statuses = [
+            {
+                start: 0,
+                end: 6,
+                text: 'Sleeping',
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 12h6l-6 8h6"/><path d="M14 4h6l-6 8h6"/></svg>`,
+            },
+            {
+                start: 6,
+                end: 10,
+                text: 'Cozy morning',
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M4.083 5h10.834a1.08 1.08 0 0 1 1.083 1.077v8.615c0 2.38 -1.94 4.308 -4.333 4.308h-4.334c-2.393 0 -4.333 -1.929 -4.333 -4.308v-8.615a1.08 1.08 0 0 1 1.083 -1.077"></path><path d="M16 8h2.5c1.38 0 2.5 1.045 2.5 2.333v2.334c0 1.288 -1.12 2.333 -2.5 2.333h-2.5"></path></svg>`,
+            },
+            {
+                start: 10,
+                end: 19,
+                text: 'Tinkering',
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5"/></svg>`,
+            },
+            {
+                start: 19,
+                end: 22,
+                text: 'Chilling',
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5h3.5a5 5 0 0 1 0 10h-5.5l-4.015 4.227a2.3 2.3 0 0 1 -3.923 -2.035l1.634 -8.173a5 5 0 0 1 4.904 -4.019h3.4z"/><path d="M14 15l4.07 4.284a2.3 2.3 0 0 0 3.925 -2.023l-1.6 -8.232"/><path d="M8 9v2"/><path d="M7 10h2"/><path d="M14 10h2"/></svg>`,
+            },
+            {
+                start: 22,
+                end: 24,
+                text: 'Winding down',
+                svg: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4.05 13c-1.7 1.8-2.5 3.5-1.8 4.5 1.1 1.9 6.4 1 11.8-2s8.9-7.1 7.7-9c-.6-1-2.4-1.2-4.7-.7"/></svg>`,
+            },
+        ];
+
+        // Find the current status based on hour
+        const currentStatus =
+            statuses.find(
+                (s) => currentHour >= s.start && currentHour < s.end
+            ) || statuses[0];
+
+        // Update DOM
+        textEl.textContent = currentStatus.text;
+        iconEl.innerHTML = currentStatus.svg;
+    })();
+</script>

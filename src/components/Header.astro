@@ -5,9 +5,49 @@ import ThemeIcon from './ThemeIcon.astro';
 
 <header class="site-header">
     <div class="site-header-inner">
-        <nav>
+        <div class="header-left">
+            <a class="home" href="/" aria-label="Go to homepage"
+                >Mournstera<span>.</span></a
+            >
             <Navigation />
-        </nav>
+        </div>
         <ThemeIcon />
     </div>
 </header>
+
+<style>
+    /* HEADER */
+    header.site-header {
+        position: sticky;
+        top: 0;
+        border-bottom: 1px solid hsl(var(--border-color));
+        z-index: 1;
+        background: hsl(var(--bg-primary) / 0.94);
+        backdrop-filter: blur(8px);
+
+        .site-header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: var(--main-width);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+    }
+
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    a.home {
+        font-weight: 700;
+        font-size: 1.125rem;
+
+        span {
+            color: hsl(var(--text-primary));
+        }
+    }
+</style>
