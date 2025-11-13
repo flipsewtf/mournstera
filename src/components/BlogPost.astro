@@ -9,7 +9,7 @@ const { title, url, tags } = Astro.props;
     {
         tags && tags.length > 0 && (
             <ul class="post-tags">
-                {tags.map((tag) => (
+                {tags.map((tag: string) => (
                     <li class="tag">{tag}</li>
                 ))}
             </ul>

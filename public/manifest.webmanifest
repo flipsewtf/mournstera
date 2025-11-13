@@ -1,0 +1,9 @@
+{
+    "name": "Mournstera.me",
+    "short_name": "Mournstera",
+    "description": "A digital garden shed of tinkerer, Flipse.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#222222"
+}

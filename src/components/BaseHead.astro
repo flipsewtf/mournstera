@@ -2,52 +2,67 @@
 export interface Props {
     title: string;
     description?: string;
-    image?: string;
+    image?: string; // Optional OG image
 }
 
 const { title, description, image } = Astro.props;
+
+// Fallback Open Graph image if no page-specific image is provided
+const ogImage = image ? new URL(image, Astro.url) : '/social-default.png';
 ---
 
 <script is:inline>
+    // 9th level spell to make the theme appear correctly before the page screams at you.
     (function () {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia(
             '(prefers-color-scheme: dark)'
         ).matches;
         const theme = stored || (prefersDark ? 'dark' : 'light');
+
         document.documentElement.setAttribute('data-theme', theme);
+
+        document.documentElement.style.visibility = 'visible';
+
+        requestAnimationFrame(() => {
+            document.documentElement.dataset.ready = 'true';
+        });
     })();
 </script>
 
-<!-- Global metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
 <meta name="color-scheme" content="dark light" />
 <meta name="view-transition" content="same-origin" />
 
-<!-- Favicons -->
-<!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" /> -->
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"/> -->
+
+<link
+    rel="alternate"
+    type="application/rss+xml"
+    title="Mournstera RSS Feed"
+    href="/rss.xml"
+/>
+<link rel="manifest" href="/manifest.webmanifest" />
 
 <!-- Primary Meta Tags -->
 <title>Mournstera | {title}</title>
 <meta name="title" content={title} />
 {description && <meta name="description" content={description} />}
 
-<!-- Open Graph (Facebook, Discord, etc.) -->
+<!-- Open Graph (Facebook, Discord, Mastodon previews, etc.) -->
 <meta property="og:type" content="website" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
-{image && <meta property="og:image" content={new URL(image, Astro.url)} />}
+<meta property="og:image" content={ogImage} />
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={title} />
-{description && <meta name="twitter:description" content={description} />}
-{image && <meta name="twitter:image" content={new URL(image, Astro.url)} />}
-
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
