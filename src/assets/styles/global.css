@@ -1,7 +1,7 @@
 :root {
     --font-primary: 'Inter', -apple-system, system-ui, BlinkMacSystemFont, sans-serif;
     --font-mono: 'Roboto Mono', -apple-system, system-ui, BlinkMacSystemFont, monospace;
-    --main-width: 780px;
+    --main-width: 50rem;
     --space-sm: 0.9375rem; /* 15px */
     --space-md: 1.25rem; /* 20px */
     --space-lg: 1.875rem; /* 30px */
@@ -11,7 +11,8 @@
     --radius-lg: 0.75rem;
     --border: 0.0625rem;
     --line-height: 1.5;
-    --transition: 0s;
+    --transition: 0.2s ease;
+    --typo-margin: 1.25rem;
 }
 
 :root,
@@ -22,7 +23,7 @@ html[data-theme='light'] {
     --bg-primary: 0 0% 98%;
     --bg-secondary: 60 4% 96%;
     --accent-primary: 66 62% 35%;
-    --border-color: 66 4% 87%;
+    --border-color: 66 4% 80%;
 
     ::selection {
         background: hsl(var(--accent-primary));
@@ -35,7 +36,7 @@ html[data-theme='dark'] {
     --text-primary: 0 0% 98%;
     --text-secondary: 0 0% 68%;
     --bg-primary: 56 3% 9%;
-    --bg-secondary: 66 2% 12%;
+    --bg-secondary: 66 0% 16%;
     --accent-primary: 66 62% 35%;
     --border-color: 0 0% 30%;
 
@@ -179,5 +180,5 @@ main {
     flex: 1;
     max-width: var(--main-width);
     margin: auto;
-    padding: var(--space-xl) var(--space-md);
+    padding: var(--space-xl) var(--space-lg);
 }
