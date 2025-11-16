@@ -1,15 +1,46 @@
 ---
-
+import Bluesky from './icons/Bluesky.svg';
+import Threads from './icons/Threads.svg';
+import Github from './icons/Github.svg';
 ---
 
 <footer class="site-footer">
     <div class="site-footer-inner">
-        <div id="currently" aria-live="polite">
-            <span class="status-icon" aria-hidden="true"></span>
-            <span class="sr-only">Currently:</span>
-            <span class="status-text"></span>
-        </div>
-        <div id="footer-year">Mournstera 2026</div>
+        <nav aria-label="Footer navigation">
+            <ul id="footer-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about/">About</a></li>
+                <li><a href="/bag/">Bag</a></li>
+                <li><a href="/blog/">Blog</a></li>
+            </ul>
+        </nav>
+
+        <nav class="social" aria-label="Social links">
+            <a
+                href="https://bsky.app/profile/mournstera.dk"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow on Bluesky"
+            >
+                <Bluesky />
+            </a>
+            <a
+                href="https://www.threads.com/@flipse.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow on Threads"
+            >
+                <Threads />
+            </a>
+            <a
+                href="https://github.com/flipsewtf"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow on GitHub"
+            >
+                <Github />
+            </a>
+        </nav>
     </div>
 </footer>
 
@@ -19,36 +50,40 @@
         max-width: var(--main-width);
         margin: 0 auto;
         padding: 0 var(--space-lg);
-
-        .site-footer-inner {
-            border-top: var(--border) dashed hsl(var(--border-color));
-            padding: var(--space-lg) 0;
-            display: flex;
-            justify-content: space-between;
-        }
     }
-    #currently {
+
+    .site-footer-inner {
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-top: var(--border) solid var(--border-color);
+        padding: var(--space-lg) 0;
     }
-    span.status-text {
-        font-size: 0.8125rem;
-        color: hsl(var(--text-secondary));
-    }
-    span.status-icon {
-        display: inline-flex;
 
-        svg {
-            width: 1.125rem;
-            height: 1.125rem;
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: var(--space-sm);
+    }
+    ul#footer-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-weight: 500;
+
+        li {
+            display: inline-flex;
         }
     }
-    #footer-year {
-        font-size: 0.8125rem;
-        color: hsl(var(--text-secondary));
-        font-weight: 500;
+
+    nav.social {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    nav.social a {
+        padding: 0 0.25rem;
+        display: inline-flex;
     }
 </style>
-
-<script src="/scripts/status.js" defer></script>

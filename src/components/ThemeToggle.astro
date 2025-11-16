@@ -12,8 +12,8 @@ import ThemeMoon from './icons/ThemeMoon.svg';
     button.theme-toggle {
         display: inline-flex;
         border-radius: var(--radius-sm);
-        color: hsl(var(--bg-primary));
-        background-color: hsl(var(--text-primary));
+        color: var(--bg-primary);
+        background-color: var(--text-primary);
         position: relative;
         width: 1.875rem;
         height: 1.875rem;
@@ -22,7 +22,7 @@ import ThemeMoon from './icons/ThemeMoon.svg';
         flex: none;
     }
     button.theme-toggle:focus-visible {
-        outline: 3px solid hsl(var(--accent-primary));
+        outline: 3px solid var(--accent-primary);
         outline-offset: 3px;
     }
 
@@ -64,6 +64,10 @@ import ThemeMoon from './icons/ThemeMoon.svg';
     :global([data-theme='dark']) .moon {
         opacity: 1;
         transform: rotate(0deg) scale(1);
+    }
+
+    :global(html.no-transition *:not(button.theme-toggle svg)) {
+        transition: none !important;
     }
 </style>
 

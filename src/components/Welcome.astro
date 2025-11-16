@@ -4,7 +4,7 @@ import deskImage from '../assets/images/desk.webp';
 import VinylSpinningSVG from './icons/SpinningVinyl.svg';
 ---
 
-<section>
+<section aria-labelledby="welcome-heading">
     <Image
         src={deskImage}
         alt="My cozy desk space"
@@ -16,11 +16,11 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
     />
 
     <div class="intro-text">
-        <h1>
+        <h1 id="welcome-heading">
             Hi I'm <span class="flipse">
                 Flipse
-                <span class="sparkles">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <span class="sparkles" aria-hidden="true">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <defs>
                             <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffe15c"></stop>
@@ -33,7 +33,7 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
                             fill="url(#sparkleGradient)"></path>
                     </svg>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <defs>
                             <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffe15c"></stop>
@@ -46,7 +46,7 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
                             fill="url(#sparkleGradient)"></path>
                     </svg>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <defs>
                             <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#ffe15c"></stop>
@@ -71,12 +71,14 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
 
             <a
                 href="https://techcrunch.com/2024/02/22/tumblr-ceo-publicly-spars-with-trans-user-over-account-ban-revealing-private-account-names-in-the-process/"
+                aria-label="Read more on Tumblr CEO moderation and trans accounts controversy"
                 target="_blank"
                 rel="noopener noreferrer">now</a
             >
             it's time to set
             <a
                 href="https://changes.tumblr.com/post/797397804182044672/"
+                aria-label="Readm more about how Tumblr is rolling out ads blog sites with custom themes as well"
                 target="_blank"
                 rel="noopener noreferrer">sails</a
             >
@@ -84,24 +86,29 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         </p>
 
         <p>I'm an early disability retiree, so all this is just for kicks!</p>
-
-        <div id="scrobble" aria-label="Latest scrobbled track">
-            <div class="vinyl-wrap" aria-hidden="true">
+        <div id="status">
+            <div id="scrobble" aria-label="Latest scrobbled track">
                 <VinylSpinningSVG />
+                <a
+                    class="track"
+                    href="https://listenbrainz.org/user/flipse"
+                    aria-label="See my latest scrobbled songs on ListenBrainz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                </a>
             </div>
-            <a
-                class="track"
-                href="https://listenbrainz.org/user/flipse"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-            </a>
+            <div id="currently" aria-live="polite">
+                <span class="status-icon" aria-hidden="true"></span>
+                <span class="sr-only">Currently:</span>
+                <span class="status-text"></span>
+            </div>
         </div>
     </div>
 </section>
 
 <style>
-    /* ----- Section layout ----- */
+    /* ----- Section layout */
     section {
         display: grid;
         grid-template-columns: 1fr;
@@ -109,7 +116,7 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         align-items: center;
     }
 
-    /* ----- Desktop image ----- */
+    /* ----- Desktop image */
     img.welcome-desk {
         width: 100%;
         height: 100%;
@@ -119,14 +126,14 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         object-fit: cover;
         display: block;
         aspect-ratio: 6 / 5;
-        border: var(--border) solid hsl(var(--border-color));
+        border: var(--border) solid var(--border-color);
     }
 
     :global([data-theme='dark']) img.welcome-desk {
-        filter: brightness(0.88);
+        filter: brightness(0.9);
     }
 
-    /* Typography */
+    /* --- Typography */
     h1 {
         font-size: 1.5625rem;
     }
@@ -134,7 +141,7 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
     h2 {
         font-size: 1.0625rem;
         font-weight: 500;
-        margin: 1rem 0 var(--typo-margin) 0;
+        margin: var(--typo-margin) 0;
     }
 
     p {
@@ -142,18 +149,18 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         margin: var(--typo-margin) 0;
     }
 
-    /* Links inside paragraphs  */
+    /* --- Links inside paragraphs  */
     .intro-text p a {
         text-decoration: underline;
         text-underline-offset: 0.125rem;
 
         &:hover {
             text-decoration-style: wavy;
-            text-decoration-color: hsl(var(--text-primary));
+            text-decoration-color: var(--text-primary);
         }
     }
 
-    /*  sparkle */
+    /*  --- sparkle */
     .flipse {
         position: relative;
         display: inline-block;
@@ -182,7 +189,6 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         stroke-width: 0;
     }
 
-    /* unique positions & scales */
     .sparkles svg:nth-of-type(1) {
         --x: 15;
         --y: 0;
@@ -233,8 +239,28 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
             opacity: 0;
         }
     }
+    /* --- Status */
 
-    /*  ------------ Scrobble */
+    #status {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: calc(var(--typo-margin) / 2);
+
+        svg {
+            flex-shrink: 0;
+        }
+    }
+    #status::before {
+        content: '';
+        display: block;
+        height: var(--border);
+        width: 3rem;
+        background-color: transparent;
+        border-top: 1px solid var(--border-color);
+        margin-bottom: calc(1.5rem - calc(var(--typo-margin) / 2));
+    }
+    /* Scrobble */
     #scrobble {
         display: flex;
         flex-wrap: wrap;
@@ -242,51 +268,45 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         gap: 0.4rem;
     }
 
-    .track {
+    a.track {
         font-family: var(--font-mono);
         font-size: 0.875rem;
         display: inline-block;
-        line-height: 1.3;
+        line-height: 1.4;
+        color: var(--text-secondary);
+
+        &:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-underline-offset: 0.125rem;
+            text-decoration-color: var(--accent-primary);
+        }
     }
 
-    .vinyl-wrap {
-        animation: spin 8s linear infinite;
-        transform-origin: 50% 50%;
-        backface-visibility: hidden;
+    #currently {
         display: flex;
-        justify-content: center;
         align-items: center;
-        will-change: transform;
+        gap: 0.5rem;
+    }
+    span.status-text {
+        font-size: 0.875rem;
+        font-family: var(--font-mono);
+        color: var(--text-secondary);
+    }
+    span.status-icon {
+        display: inline-flex;
     }
 
-    #scrobble svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        flex-shrink: 0;
-        stroke-width: 1.6;
-        filter: blur(0.05px);
-    }
-
-    #scrobble:hover .vinyl-wrap {
-        animation-play-state: paused;
-    }
-
-    @keyframes spin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360.1deg);
-        }
-    }
-
+    /* ----- Media Queries */
     @media (prefers-reduced-motion: reduce) {
         .vinyl-wrap {
             animation: none;
         }
+        .sparkle-boop {
+            animation: none;
+            opacity: 0;
+        }
     }
-
-    /* ----- Responsive / Media Queries -----  */
     @media (min-width: 425px) {
         #scrobble {
             flex-wrap: nowrap;
@@ -302,11 +322,12 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         img.welcome-desk {
             max-width: 200px;
             border-radius: 9999px;
-            aspect-ratio: 8 / 16;
+            aspect-ratio: 7 / 15;
         }
     }
 </style>
 <script src="/scripts/scrobble.js" defer></script>
+<script src="/scripts/currently.js" defer></script>
 <script is:inline>
     const flipse = document.querySelector('.flipse');
     const sparkles = flipse.querySelector('.sparkles');
