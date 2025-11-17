@@ -4,6 +4,16 @@ const pageTitle = `What's in my bag?`;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <h2>What's in my bag?</h2>
-    <p>text here.</p>
+    <section>
+        <h1>What's in my bag?</h1>
+        <p>text here.</p>
+    </section>
 </BaseLayout>
+
+<style>
+    section {
+        max-width: var(--section-width);
+        width: 100%;
+        margin: 0 auto;
+    }
+</style>

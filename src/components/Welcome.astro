@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets';
-import deskImage from '../assets/images/desk.webp';
-import VinylSpinningSVG from './icons/SpinningVinyl.svg';
+import desktopImage from '../assets/images/desksetup.webp';
+import Vinyl from './icons/Vinyl.svg';
 ---
 
 <section aria-labelledby="welcome-heading">
     <Image
-        src={deskImage}
+        src={desktopImage}
         alt="My cozy desk space"
         class="welcome-desk"
         loading="eager"
@@ -87,7 +87,7 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
 
         <p>I'm an early disability retiree, so all this is just for kicks!</p>
         <div id="scrobble" aria-label="Latest scrobbled track">
-            <VinylSpinningSVG />
+            <Vinyl />
             <a
                 class="track"
                 href="https://listenbrainz.org/user/flipse"
@@ -120,25 +120,17 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         display: block;
         aspect-ratio: 6 / 5;
         border: var(--border) solid var(--border-color);
+        filter: saturate(0.92);
     }
 
     :global([data-theme='dark']) img.welcome-desk {
-        filter: brightness(0.9);
+        filter: brightness(0.95);
     }
 
     /* --- Typography */
-    h1 {
-        font-size: 1.5625rem;
-    }
-
     h2 {
         font-size: 1.0625rem;
         font-weight: 500;
-        margin: var(--typo-margin) 0;
-    }
-
-    p {
-        line-height: var(--line-height);
         margin: var(--typo-margin) 0;
     }
 
