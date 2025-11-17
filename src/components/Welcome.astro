@@ -86,23 +86,16 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
         </p>
 
         <p>I'm an early disability retiree, so all this is just for kicks!</p>
-        <div id="status">
-            <div id="scrobble" aria-label="Latest scrobbled track">
-                <VinylSpinningSVG />
-                <a
-                    class="track"
-                    href="https://listenbrainz.org/user/flipse"
-                    aria-label="See my latest scrobbled songs on ListenBrainz"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                </a>
-            </div>
-            <div id="currently" aria-live="polite">
-                <span class="status-icon" aria-hidden="true"></span>
-                <span class="sr-only">Currently:</span>
-                <span class="status-text"></span>
-            </div>
+        <div id="scrobble" aria-label="Latest scrobbled track">
+            <VinylSpinningSVG />
+            <a
+                class="track"
+                href="https://listenbrainz.org/user/flipse"
+                aria-label="See my latest scrobbled songs on ListenBrainz"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+            </a>
         </div>
     </div>
 </section>
@@ -239,62 +232,32 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
             opacity: 0;
         }
     }
-    /* --- Status */
 
-    #status {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: calc(var(--typo-margin) / 2);
-
-        svg {
-            flex-shrink: 0;
-        }
-    }
-    #status::before {
-        content: '';
-        display: block;
-        height: var(--border);
-        width: 3rem;
-        background-color: transparent;
-        border-top: 1px solid var(--border-color);
-        margin-bottom: calc(1.5rem - calc(var(--typo-margin) / 2));
-    }
-    /* Scrobble */
+    /* --- Scrobble */
     #scrobble {
         display: flex;
         flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 0.4rem;
+        align-items: center;
+        gap: 0.5rem;
+        var(--typo-margin) 0;
+
+        svg {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 
     a.track {
         font-family: var(--font-mono);
-        font-size: 0.875rem;
+        font-size: 0.8125rem;
         display: inline-block;
-        line-height: 1.4;
         color: var(--text-secondary);
+        line-height: 1.4;
 
         &:hover {
-            color: var(--text-primary);
-            text-decoration: underline;
-            text-underline-offset: 0.125rem;
-            text-decoration-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
-    }
-
-    #currently {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    span.status-text {
-        font-size: 0.875rem;
-        font-family: var(--font-mono);
-        color: var(--text-secondary);
-    }
-    span.status-icon {
-        display: inline-flex;
     }
 
     /* ----- Media Queries */
@@ -327,7 +290,6 @@ import VinylSpinningSVG from './icons/SpinningVinyl.svg';
     }
 </style>
 <script src="/scripts/scrobble.js" defer></script>
-<script src="/scripts/currently.js" defer></script>
 <script is:inline>
     const flipse = document.querySelector('.flipse');
     const sparkles = flipse.querySelector('.sparkles');

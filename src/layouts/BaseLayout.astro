@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Scroll from '../components/Scroll.astro';
+
 import '../assets/styles/global.css';
 const { pageTitle, pageDescription, pageImage, mainClass } = Astro.props;
 ---
@@ -17,6 +17,5 @@ const { pageTitle, pageDescription, pageImage, mainClass } = Astro.props;
             <slot />
         </main>
         <Footer />
-        <Scroll />
     </body>
 </html>
