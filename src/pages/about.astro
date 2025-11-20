@@ -1,12 +1,54 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'About Flipse';
+
+const birthDate = new Date('1988-03-04'); // replace with your birthday (YYYY-MM-DD)
+const today = new Date();
+
+let age = today.getFullYear() - birthDate.getFullYear();
+
+// Adjust if birthday hasn’t happened yet this year
+const hasHadBirthdayThisYear =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+
+if (!hasHadBirthdayThisYear) {
+    age -= 1;
+}
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <h2>About</h2>
+    <article>
+        <h2>Well hi there!</h2>
 
-    <p>Here are a few facts about me:</p>
+        <p class="quick-facts">
+            My name is Flipse (she/her), I'm {age} and autistic. My special subject is music + making lists,
+            so I thoroughly enjoyed discovering <a href="https://record.club/mournstera/">Record.Club</a>.
+            I Have bipolar disorder and cptsd with a pinch of OCD when times are hard. My sidequest of
+            getting 30 years of anxiety attacks under control, just ended in victory!
+        </p>
 
-    <p>My skills are:</p>
+        <p>I like concerts, watermelon, Doctor Who, and TTRPG.</p>
+
+        <h3>Early Web Days</h3>
+        <p>
+            I began my journey with b2/cafelog and "online diaries" (before the term <em>blog</em> was coined)
+            around 1999/2000, complete with a domain, webrings, and fanlistings.
+        </p>
+
+        <h3>Tumblr Era</h3>
+        <p>
+            From 2007 I didn't really touch any code, but I found Tumblr in 2009, and from 2012 when I
+            began releasing Tumblr themes while attempting to wrangle their quirks and <em>interesting</em
+            > choices of code. As of late 2025, I've walked away from that circus.
+        </p>
+
+        <h3>Current Adventures</h3>
+        <p>
+            Lately, I've been exploring elsewhere with Astro, Neocities, and general fun stuff on the web.
+            Currently untangling years of - let's be honest - questionable JavaScript habits courtesy of
+            Tumblr. I have only recently discovered Astro, so this site is very basic and very much my
+            future playground. I will write a more interesting About Me-page at some point.
+        </p>
+    </article>
 </BaseLayout>

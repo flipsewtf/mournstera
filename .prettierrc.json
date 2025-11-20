@@ -13,5 +13,5 @@
     "trailingComma": "es5",
     "semi": true,
     "bracketSpacing": true,
-    "printWidth": 105
+    "printWidth": 106
 }

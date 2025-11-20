@@ -71,7 +71,7 @@ import Vinyl from './icons/Vinyl.svg';
 
             <a
                 href="https://techcrunch.com/2024/02/22/tumblr-ceo-publicly-spars-with-trans-user-over-account-ban-revealing-private-account-names-in-the-process/"
-                aria-label="Read more on Tumblr CEO moderation and trans accounts controversy"
+                aria-label="Read more on Tumblr CEO moderation and trans accounts stalking"
                 target="_blank"
                 rel="noopener noreferrer">now</a
             >
@@ -103,6 +103,7 @@ import Vinyl from './icons/Vinyl.svg';
 <style>
     /* ----- Section layout */
     section {
+        max-inline-size: none;
         display: grid;
         grid-template-columns: 1fr;
         gap: 3rem;
@@ -113,36 +114,22 @@ import Vinyl from './icons/Vinyl.svg';
     img.welcome-desk {
         width: 100%;
         height: 100%;
-        max-height: 100%;
-        max-width: 100%;
         border-radius: var(--radius-md);
         object-fit: cover;
         display: block;
         aspect-ratio: 6 / 5;
-        border: var(--border) solid var(--border-color);
-        filter: saturate(0.92);
+        filter: saturate(0.92) brightness(1.15);
     }
 
     :global([data-theme='dark']) img.welcome-desk {
-        filter: brightness(0.95);
+        filter: none;
     }
 
     /* --- Typography */
     h2 {
         font-size: 1.0625rem;
         font-weight: 500;
-        margin: var(--typo-margin) 0;
-    }
-
-    /* --- Links inside paragraphs  */
-    .intro-text p a {
-        text-decoration: underline;
-        text-underline-offset: 0.125rem;
-
-        &:hover {
-            text-decoration-style: wavy;
-            text-decoration-color: var(--text-primary);
-        }
+        margin-block: var(--typo-margin);
     }
 
     /*  --- sparkle */
@@ -167,6 +154,8 @@ import Vinyl from './icons/Vinyl.svg';
         height: 1.75rem;
         transform: translate(-50%, -50%) scale(0);
         opacity: 0;
+        top: calc(var(--y) * 1%);
+        left: calc(var(--x) * 1%);
     }
 
     .flipse svg path {
@@ -178,24 +167,18 @@ import Vinyl from './icons/Vinyl.svg';
         --x: 15;
         --y: 0;
         --s: 1.15;
-        top: calc(var(--y) * 1%);
-        left: calc(var(--x) * 1%);
     }
 
     .sparkles svg:nth-of-type(2) {
         --x: 45;
         --y: 80;
         --s: 1;
-        top: calc(var(--y) * 1%);
-        left: calc(var(--x) * 1%);
     }
 
     .sparkles svg:nth-of-type(3) {
         --x: 100;
         --y: 30;
         --s: 0.75;
-        top: calc(var(--y) * 1%);
-        left: calc(var(--x) * 1%);
     }
 
     .sparkle-boop svg:nth-of-type(1) {
@@ -231,7 +214,6 @@ import Vinyl from './icons/Vinyl.svg';
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
-        var(--typo-margin) 0;
 
         svg {
             flex-shrink: 0;
@@ -244,11 +226,11 @@ import Vinyl from './icons/Vinyl.svg';
         font-family: var(--font-mono);
         font-size: 0.8125rem;
         display: inline-block;
-        color: var(--text-secondary);
+        color: var(--color-text);
         line-height: 1.4;
 
         &:hover {
-            color: var(--accent-primary);
+            color: var(--color-accent1);
         }
     }
 
@@ -282,15 +264,4 @@ import Vinyl from './icons/Vinyl.svg';
     }
 </style>
 <script src="/scripts/scrobble.js" defer></script>
-<script is:inline>
-    const flipse = document.querySelector('.flipse');
-    const sparkles = flipse.querySelector('.sparkles');
-
-    flipse.addEventListener('mouseenter', () => {
-        sparkles.classList.add('sparkle-boop');
-
-        setTimeout(() => {
-            sparkles.classList.remove('sparkle-boop');
-        }, 1200);
-    });
-</script>
+<script src="/scripts/sparkle.js" defer></script>

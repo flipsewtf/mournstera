@@ -7,13 +7,12 @@ import ThemeMoon from './icons/ThemeMoon.svg';
     <ThemeSun />
     <ThemeMoon />
 </button>
-
 <style>
     button.theme-toggle {
         display: inline-flex;
         border-radius: var(--radius-sm);
-        color: var(--bg-primary);
-        background-color: var(--text-primary);
+        color: var(--color-bg);
+        background-color: var(--color-text);
         position: relative;
         width: 1.875rem;
         height: 1.875rem;
@@ -21,8 +20,9 @@ import ThemeMoon from './icons/ThemeMoon.svg';
         justify-content: center;
         flex: none;
     }
+
     button.theme-toggle:focus-visible {
-        outline: 3px solid var(--accent-primary);
+        outline: 3px solid var(--color-accent1);
         outline-offset: 3px;
     }
 

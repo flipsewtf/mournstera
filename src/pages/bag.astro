@@ -1,19 +1,288 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = `What's in my bag?`;
+
+import BagLink from '../components/icons/BagLink.svg';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
     <section>
         <h1>What's in my bag?</h1>
-        <p>text here.</p>
+        <p>
+            I love me a cosy desk setup but I am poor, so I ball on a budget and the privilege of getting
+            nice gifts from family members.
+        </p>
+
+        <div class="item-list">
+            <article class="item" aria-labelledby="item-computer-title">
+                <h3 id="item-computer-title" class="item-title">Computer</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.omen.com/us/en/desktops/omen-25l.html"
+                    aria-describedby="item-computer-desc"
+                >
+                    <span class="item-sub">HP Omen 25L i5-12/16/2048/3070</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-computer-desc" class="item-desc">
+                    I'm no real gamer, but this was 50% off (2023) and I'm a happy camper. Having a white
+                    PC is real nice.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-desk-title">
+                <h3 id="item-desk-title" class="item-title">Desk</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.ikea.com/gb/en/p/mittzon-desk-walnut-veneer-white-s49528057/"
+                    aria-describedby="item-desk-desc"
+                >
+                    <span class="item-sub">IKEA Mitzon</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-desk-desc" class="item-desc">
+                    I had my worries about the wobbly legs but it's just not there and I'm very happy
+                    about how easy my cable management has become.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-headphones-title">
+                <h3 id="item-headphones-title" class="item-title">Headphones</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.jbl.com/on-ear-headphones/TUNE510BT-.html"
+                    aria-describedby="item-headphones-desc"
+                >
+                    <span class="item-sub">JBL Tune 510BT</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-headphones-desc" class="item-desc">
+                    I am very particular about my ears (hi autism!) and this was a "I'll buy proper stuff
+                    next month but this should do"-purchase, and it ended up being what I liked. Super
+                    standard, super cheap.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-keycaps-title">
+                <h3 id="item-keycaps-title" class="item-title">Keycaps</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.amazon.com/Sumgsn-Gradient-Mechanical-Keyboard-Switches/dp/B0BYJBRT6L?th=1"
+                    aria-describedby="item-keycaps-desc"
+                >
+                    <span class="item-sub">Sumgsn gradient green</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-keycaps-desc" class="item-desc">
+                    They were pretty. A few years in, they're not displaying any wear at all.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-keyboard-title">
+                <h3 id="item-keyboard-title" class="item-title">Keyboard</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
+                    aria-describedby="item-keyboard-desc"
+                >
+                    <span class="item-sub">AJAZZ AK820 75%</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-keyboard-desc" class="item-desc">
+                    I just needed a cheap mechanical keyboard to play with. Definitely a great beginner.
+                    Will be investing in something better with time.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-monitor-title">
+                <h3 id="item-monitor-title" class="item-title">Monitor</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.amazon.co.uk/Lenovo-D32q-20-31-5-FreeSync-Monitor/dp/B085ZXS65Y"
+                    aria-describedby="item-monitor-desc"
+                >
+                    <span class="item-sub">Lenovo D32q-20</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-monitor-desc" class="item-desc">
+                    Look, it was on 65% sale. The VESA mount placement is really silly. I can live with
+                    it.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-stand-title">
+                <h3 id="item-stand-title" class="item-title">Monitor stand</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.ikea.com/gb/en/p/sigfinn-monitor-stand-fixed-height-bamboo-veneer-20362929/"
+                    aria-describedby="item-stand-desc"
+                >
+                    <span class="item-sub">Ikea Sigfinn</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-stand-desc" class="item-desc">
+                    I am working towards getting a monitor arm, but this'll do.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-mouse-title">
+                <h3 id="item-mouse-title" class="item-title">Mouse</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.logitech.com/en-eu/products/mice/lift-vertical-ergonomic-mouse.html"
+                    aria-describedby="item-mouse-desc"
+                >
+                    <span class="item-sub">Logitech Vertical Ergonomic Lift</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-mouse-desc" class="item-desc">
+                    I <em>cannot</em> live without this. Best purchase I've made.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-tablet-title">
+                <h3 id="item-tablet-title" class="item-title">Tablet</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.samsung.com/uk/tablets/galaxy-tab-s/galaxy-tab-s9-plus-5g-graphite-256gb-sm-x816bzaaeub/"
+                    aria-describedby="item-tablet-desc"
+                >
+                    <span class="item-sub">Samsung Galaxy Tab S9+</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-tablet-desc" class="item-desc">
+                    I haven't owned a TV since 2009, so this is also my tiny TV in bed. I do my journaling
+                    and organising my calendar here. Bullet journal method user since 2014.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-phone-title">
+                <h3 id="item-phone-title" class="item-title">Phone</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.samsung.com/uk/smartphones/galaxy-s25/"
+                    aria-describedby="item-phone-desc"
+                >
+                    <span class="item-sub">Samsung Galaxy S25</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-phone-desc" class="item-desc">
+                    I'm not loyal to any android brand - it was 80% off on a Black friday deal. I took it.
+                    I'm not into big phones, my hypermobile fingers does not handle them well. This fits
+                    perfectly.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-switches-title">
+                <h3 id="item-switches-title" class="item-title">Switches</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
+                    aria-describedby="item-switches-desc"
+                >
+                    <span class="item-sub">Tactile HP Yellow Switch</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-switches-desc" class="item-desc">
+                    I am not a tactile person. I am apparently a linear person, so this is not for me in
+                    the long run.
+                </p>
+            </article>
+
+            <article class="item" aria-labelledby="item-speaker-title">
+                <h3 id="item-speaker-title" class="item-title">Speaker</h3>
+
+                <a
+                    target="_blank"
+                    href="https://www.ultimateears.com/en-hk/wireless-speakers/wonderboom-4.html"
+                    aria-describedby="item-speaker-desc"
+                >
+                    <span class="item-sub">Ultimate Ears WONDERBOOM 2</span>
+                    <BagLink />
+                </a>
+
+                <p id="item-speaker-desc" class="item-desc">
+                    I got this as a promo gift some time ago, I still do not have any speakers for my desk
+                    setup so this'll do. I'm also a vinyl record lover, so it's not getting used too much.
+                </p>
+            </article>
+        </div>
     </section>
 </BaseLayout>
 
 <style>
-    section {
-        max-width: var(--section-width);
-        width: 100%;
-        margin: 0 auto;
+    .item-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-5);
+        margin-top: 4.5rem;
+    }
+
+    article.item {
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-of-type)::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: var(--border-thin);
+            margin-top: var(--space-5);
+            background-image: repeating-linear-gradient(
+                to right,
+                var(--color-border) 0 4px,
+                transparent 4px 6px
+            );
+        }
+
+        p.item-desc {
+            margin: var(--space-0) 0 0 0;
+            font-size: 0.875rem;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-0);
+            font-family: var(--font-mono);
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            line-height: var(--line-height);
+
+            &:hover {
+                color: var(--color-accent2);
+            }
+        }
+
+        svg {
+            stroke: var(--color-text-muted);
+        }
+    }
+
+    h3 {
+        font-size: 1.0625rem;
+        margin: 0;
     }
 </style>

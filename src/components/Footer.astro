@@ -2,10 +2,12 @@
 import Bluesky from './icons/Bluesky.svg';
 import Threads from './icons/Threads.svg';
 import Github from './icons/Github.svg';
+import Recordclub from './icons/Recordclub.svg';
+import Rss from './icons/Rss.svg';
 ---
 
-<footer class="site-footer">
-    <div class="site-footer-inner">
+<footer>
+    <div class="footer-inner">
         <nav aria-label="Footer navigation">
             <ul id="footer-menu">
                 <li><a href="/">Home</a></li>
@@ -33,6 +35,14 @@ import Github from './icons/Github.svg';
                 <Threads />
             </a>
             <a
+                href="https://record.club/mournstera"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow on Record.club"
+            >
+                <Recordclub />
+            </a>
+            <a
                 href="https://github.com/flipsewtf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -40,25 +50,45 @@ import Github from './icons/Github.svg';
             >
                 <Github />
             </a>
+            <a
+                class="rss"
+                href="/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Subscribe via RSS"
+            >
+                <Rss />
+            </a>
         </nav>
+    </div>
+    <div id="copyright">
+        © <span id="year-range"></span> Flipse. All rights reserved.
     </div>
 </footer>
 
 <style>
-    footer.site-footer {
+    a {
+        color: var(--color-text-muted);
+
+        &:hover {
+            color: var(--color-accent1);
+        }
+    }
+
+    footer {
         width: 100%;
         max-width: var(--main-width);
         margin: 0 auto;
-        padding: 0 var(--space-lg);
+        padding: 0 var(--space-5) var(--space-5);
     }
 
-    .site-footer-inner {
+    .footer-inner {
         display: flex;
-        gap: var(--space-md);
+        gap: var(--space-3);
         justify-content: space-between;
         align-items: flex-start;
-        border-top: var(--border) solid var(--border-color);
-        padding: var(--space-lg) 0;
+        border-top: var(--border-thin) solid var(--color-border);
+        padding-top: var(--space-5);
         flex-wrap: wrap;
     }
 
@@ -66,12 +96,13 @@ import Github from './icons/Github.svg';
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        gap: var(--space-sm);
+        gap: var(--space-2);
     }
+
     ul#footer-menu {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.75rem;
+        gap: var(--space-2);
         font-weight: 500;
 
         li {
@@ -85,7 +116,45 @@ import Github from './icons/Github.svg';
     }
 
     nav.social a {
-        padding: 0 0.25rem;
+        padding: 0 calc(var(--space-1) / 2);
         display: inline-flex;
+        align-items: center;
+
+        &:hover {
+            color: var(--color-accent2);
+        }
+    }
+
+    nav.social a.rss {
+        border-radius: 0.1875rem;
+        background-color: var(--color-text-muted);
+        color: var(--color-bg);
+        padding: 0.1875rem;
+        display: inline-flex;
+        margin-left: var(--space-2);
+
+        svg {
+            height: 0.875rem;
+            width: 0.875rem;
+            stroke-width: 2.5;
+        }
+
+        &:hover {
+            background-color: var(--color-accent2);
+            color: var(--color-bg);
+        }
+    }
+
+    #copyright {
+        margin-top: var(--space-3);
+        font-size: 0.8125rem;
+        color: var(--color-text-muted);
     }
 </style>
+
+<script>
+    const startYear = 2025;
+    const currentYear = new Date().getFullYear();
+    const yearText = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
+    document.getElementById('year-range')!.textContent = yearText;
+</script>
