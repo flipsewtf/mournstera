@@ -8,14 +8,15 @@ import Rss from './icons/Rss.svg';
 
 <footer>
     <div class="footer-inner">
-        <nav aria-label="Footer navigation">
-            <ul id="footer-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about/">About</a></li>
-                <li><a href="/bag/">Bag</a></li>
-                <li><a href="/blog/">Blog</a></li>
-            </ul>
-        </nav>
+        <a
+            class="rss"
+            href="/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Subscribe via RSS"
+        >
+            <Rss /> Join my adventures <span class="sr-only">and subscribe on RSS</span>
+        </a>
 
         <nav class="social" aria-label="Social links">
             <a
@@ -50,19 +51,7 @@ import Rss from './icons/Rss.svg';
             >
                 <Github />
             </a>
-            <a
-                class="rss"
-                href="/rss.xml"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe via RSS"
-            >
-                <Rss />
-            </a>
         </nav>
-    </div>
-    <div id="copyright">
-        © <span id="year-range"></span> Flipse. All rights reserved.
     </div>
 </footer>
 
@@ -77,18 +66,24 @@ import Rss from './icons/Rss.svg';
 
     footer {
         width: 100%;
-        max-width: var(--main-width);
-        margin: 0 auto;
-        padding: 0 var(--space-5) var(--space-5);
+        padding: var(--space-5);
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--color-border) 0 7px,
+            transparent 7px 10px
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 1px;
+        background-position: top left;
     }
 
     .footer-inner {
+        margin: 0 auto;
+        max-width: var(--layout-width-lg);
         display: flex;
         gap: var(--space-3);
         justify-content: space-between;
         align-items: flex-start;
-        border-top: var(--border-thin) solid var(--color-border);
-        padding-top: var(--space-5);
         flex-wrap: wrap;
     }
 
@@ -113,6 +108,7 @@ import Rss from './icons/Rss.svg';
     nav.social {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
     }
 
     nav.social a {
@@ -125,36 +121,27 @@ import Rss from './icons/Rss.svg';
         }
     }
 
-    nav.social a.rss {
-        border-radius: 0.1875rem;
-        background-color: var(--color-text-muted);
-        color: var(--color-bg);
-        padding: 0.1875rem;
-        display: inline-flex;
-        margin-left: var(--space-2);
+    a.rss {
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
 
         svg {
-            height: 0.875rem;
-            width: 0.875rem;
+            border-radius: 0.25rem;
+            background-color: var(--color-text-muted);
+            color: var(--color-bg);
+            padding: 0.25rem;
             stroke-width: 2.5;
+            width: 1.5rem;
+            height: 1.5rem;
         }
 
         &:hover {
-            background-color: var(--color-accent2);
-            color: var(--color-bg);
+            color: var(--color-accent1);
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: var(--color-text);
+            text-decoration-thickness: var(--border-thin);
         }
     }
-
-    #copyright {
-        margin-top: var(--space-3);
-        font-size: 0.8125rem;
-        color: var(--color-text-muted);
-    }
 </style>
-
-<script>
-    const startYear = 2025;
-    const currentYear = new Date().getFullYear();
-    const yearText = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
-    document.getElementById('year-range')!.textContent = yearText;
-</script>

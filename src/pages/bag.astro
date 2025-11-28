@@ -9,8 +9,8 @@ import BagLink from '../components/icons/BagLink.svg';
     <section>
         <h1>What's in my bag?</h1>
         <p>
-            I love me a cosy desk setup but I am poor, so I ball on a budget and the privilege of getting
-            nice gifts from family members.
+            I love me a cosy desk setup but I am poor, so I ball on a budget and the privilege of
+            getting nice gifts from family members.
         </p>
 
         <div class="item-list">
@@ -27,8 +27,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-computer-desc" class="item-desc">
-                    I'm no real gamer, but this was 50% off (2023) and I'm a happy camper. Having a white
-                    PC is real nice.
+                    I'm no real gamer, but this was 50% off (2023) and I'm a happy camper. Having
+                    a white PC is real nice.
                 </p>
             </article>
 
@@ -45,8 +45,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-desk-desc" class="item-desc">
-                    I had my worries about the wobbly legs but it's just not there and I'm very happy
-                    about how easy my cable management has become.
+                    I had my worries about the wobbly legs but it's just not there and I'm very
+                    happy about how easy my cable management has become.
                 </p>
             </article>
 
@@ -63,9 +63,9 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-headphones-desc" class="item-desc">
-                    I am very particular about my ears (hi autism!) and this was a "I'll buy proper stuff
-                    next month but this should do"-purchase, and it ended up being what I liked. Super
-                    standard, super cheap.
+                    I am very particular about my ears (hi autism!) and this was a "I'll buy
+                    proper stuff next month but this should do"-purchase, and it ended up being
+                    what I liked. Super standard, super cheap.
                 </p>
             </article>
 
@@ -99,8 +99,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-keyboard-desc" class="item-desc">
-                    I just needed a cheap mechanical keyboard to play with. Definitely a great beginner.
-                    Will be investing in something better with time.
+                    I just needed a cheap mechanical keyboard to play with. Definitely a great
+                    beginner. Will be investing in something better with time.
                 </p>
             </article>
 
@@ -117,8 +117,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-monitor-desc" class="item-desc">
-                    Look, it was on 65% sale. The VESA mount placement is really silly. I can live with
-                    it.
+                    Look, it was on 65% sale. The VESA mount placement is really silly. I can
+                    live with it.
                 </p>
             </article>
 
@@ -169,8 +169,9 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-tablet-desc" class="item-desc">
-                    I haven't owned a TV since 2009, so this is also my tiny TV in bed. I do my journaling
-                    and organising my calendar here. Bullet journal method user since 2014.
+                    I haven't owned a TV since 2009, so this is also my tiny TV in bed. I do my
+                    journaling and organising my calendar here. Bullet journal method user since
+                    2014.
                 </p>
             </article>
 
@@ -187,9 +188,9 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-phone-desc" class="item-desc">
-                    I'm not loyal to any android brand - it was 80% off on a Black friday deal. I took it.
-                    I'm not into big phones, my hypermobile fingers does not handle them well. This fits
-                    perfectly.
+                    I'm not loyal to any android brand - it was 80% off on a Black friday deal. I
+                    took it. I'm not into big phones, my hypermobile fingers does not handle them
+                    well. This fits perfectly.
                 </p>
             </article>
 
@@ -206,8 +207,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-switches-desc" class="item-desc">
-                    I am not a tactile person. I am apparently a linear person, so this is not for me in
-                    the long run.
+                    I am not a tactile person. I am apparently a linear person, so this is not
+                    for me in the long run.
                 </p>
             </article>
 
@@ -224,8 +225,9 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-speaker-desc" class="item-desc">
-                    I got this as a promo gift some time ago, I still do not have any speakers for my desk
-                    setup so this'll do. I'm also a vinyl record lover, so it's not getting used too much.
+                    I got this as a promo gift some time ago, I still do not have any speakers
+                    for my desk setup so this'll do. I'm also a vinyl record lover, so it's not
+                    getting used too much.
                 </p>
             </article>
         </div>
@@ -243,19 +245,10 @@ import BagLink from '../components/icons/BagLink.svg';
     article.item {
         display: flex;
         flex-direction: column;
-
-        &:not(:last-of-type)::after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: var(--border-thin);
-            margin-top: var(--space-5);
-            background-image: repeating-linear-gradient(
-                to right,
-                var(--color-border) 0 4px,
-                transparent 4px 6px
-            );
-        }
+        background-color: var(--color-bg-alt);
+        padding: var(--space-4);
+        border: var(--border-thin) solid var(--color-border);
+        border-radius: var(--radius-sm);
 
         p.item-desc {
             margin: var(--space-0) 0 0 0;
@@ -281,6 +274,9 @@ import BagLink from '../components/icons/BagLink.svg';
         }
     }
 
+    h1 {
+        margin-top: 0;
+    }
     h3 {
         font-size: 1.0625rem;
         margin: 0;

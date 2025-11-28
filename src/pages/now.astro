@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const pageTitle = 'Currently';
+
+import Vinyl from '../components/icons/Vinyl.svg';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <section class="update-tab">
+        <ul id="header-menu" aria-label="Currently">
+            <li>Watching: Critical Role C3 + C4</li>
+            <li>Playing: Harvest Town</li>
+        </ul>
+
+        <div id="scrobble" aria-label="Latest scrobbled track">
+            <Vinyl />
+            <a
+                class="track"
+                href="https://listenbrainz.org/user/flipse"
+                aria-label="See my latest scrobbled songs on ListenBrainz"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+            </a>
+        </div>
+    </section>
+</BaseLayout>
+<style>
+    /* --- Scrobble */
+    #scrobble {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+
+        svg {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+
+    a.track {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        display: inline-block;
+        color: var(--color-text);
+        line-height: 1.4;
+
+        &:hover {
+            color: var(--color-accent1);
+        }
+    }
+</style>
+<script src="/scripts/scrobble.js" defer></script>

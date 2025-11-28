@@ -1,39 +1,16 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-
-const current = Astro.url.pathname;
-const isActive = (path: string) => current === path;
+import MegaMenu from './MegaMenu.astro';
+import Bolt from './icons/Bolt.svg';
 ---
 
-<header>
-    <div class="header-inner">
-        <a class="home" href="/" aria-label="Go to homepage">Mournstera<span>.</span></a>
+<header class="top">
+    <a class="home" href="/">M<span>.</span> <span class="sr-only">Go to homepage</span></a>
 
-        <div class="header-right">
-            <nav aria-label="Main navigation">
-                <ul id="header-menu">
-                    <li>
-                        <a class="mobile" href="/" aria-current={isActive('/') ? 'page' : undefined}
-                            >Home</a
-                        >
-                    </li>
-
-                    <li>
-                        <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>About</a
-                        >
-                    </li>
-
-                    <li>
-                        <a href="/bag/" aria-current={isActive('/bag/') ? 'page' : undefined}>Bag</a>
-                    </li>
-
-                    <li>
-                        <a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a>
-                    </li>
-                </ul>
-            </nav>
-            <ThemeToggle />
-        </div>
+    <div class="header-right" role="navigation" aria-label="Header controls">
+        <MegaMenu />
+        <a class="now-link" href="/now" aria-label="Currently"><Bolt /></a>
+        <ThemeToggle />
     </div>
 </header>
 
@@ -49,22 +26,24 @@ const isActive = (path: string) => current === path;
         z-index: 200;
         background-color: var(--color-header);
         backdrop-filter: blur(12px);
-        border-bottom: var(--border-thin) solid var(--color-border);
-    }
-
-    .header-inner {
-        max-width: var(--main-width);
-        margin: 0 auto;
-        padding: var(--space-3) var(--space-5);
+        padding: var(--space-1) var(--space-3);
         display: flex;
-        align-items: center;
+        gap: var(--space-3);
         justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.15s ease;
     }
 
+    header.scrolled {
+        border-bottom-color: var(--color-border);
+    }
+    a.now-link {
+        display: inline-flex;
+    }
     a.home {
-        display: none;
         font-weight: 700;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
 
         span {
             color: var(--color-text);
@@ -74,35 +53,23 @@ const isActive = (path: string) => current === path;
     .header-right {
         display: flex;
         align-items: center;
-        gap: var(--space-5);
-        justify-content: space-between;
-        width: 100%;
+        gap: var(--space-1);
+        justify-content: flex-end;
     }
 
-    ul#header-menu {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-3);
-        font-weight: 600;
-
-        li {
-            display: inline-flex;
-        }
-    }
-
-    @media (min-width: 620px) {
+    @media (min-width: 800px) {
         a.mobile {
             display: none;
         }
-        a.home {
-            display: block;
-        }
-        ul#header-menu {
-            flex-wrap: wrap;
-        }
-        .header-right {
-            justify-content: flex-end;
-            width: auto;
-        }
     }
 </style>
+
+<script>
+    const header = document.querySelector('header');
+
+    if (header) {
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 10);
+        });
+    }
+</script>

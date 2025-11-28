@@ -1,0 +1,147 @@
+---
+import Chevron from './icons/Chevron.svg';
+const current = Astro.url.pathname;
+const isActive = (path: string) => current === path;
+---
+
+<button class="menu-toggle" aria-expanded="false" aria-controls="mega" data-menu-btn>
+    Explore <Chevron />
+</button>
+
+<div class="megamenu" id="mega" data-megamenu>
+    <nav aria-label="Main navigation">
+        <ul id="header-menu">
+            <li>
+                <a class="mobile" href="/" aria-current={isActive('/') ? 'page' : undefined}
+                    >Home</a
+                >
+            </li>
+
+            <li>
+                <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}
+                    >About</a
+                >
+            </li>
+
+            <li>
+                <a href="/bag/" aria-current={isActive('/bag/') ? 'page' : undefined}>Bag</a>
+            </li>
+
+            <li>
+                <a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<style>
+    button.menu-toggle {
+        display: flex;
+        gap: var(--space-0);
+        align-items: center;
+
+        svg {
+            transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.3, 1);
+        }
+        &.open svg {
+            transform: rotateX(180deg);
+        }
+    }
+
+    .megamenu {
+        opacity: 1;
+        transform: rotateX(0) scale(1);
+        transition:
+            opacity 0.28s cubic-bezier(0.25, 0.8, 0.3, 1),
+            transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
+        display: flex;
+        margin-top: var(--space-2);
+        background: var(--color-bg-alt);
+        border: var(--border-thin) solid var(--color-border);
+        border-radius: var(--radius-md);
+        z-index: 1;
+        position: absolute;
+        transform-origin: top right;
+        padding: var(--space-3);
+        min-width: 31.25rem;
+        top: 100%;
+    }
+
+    .megamenu:not(.open) {
+        opacity: 0;
+        transform: rotateX(-15deg) scale(0.9);
+        pointer-events: none;
+    }
+
+    ul#header-menu {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-3);
+        font-weight: 600;
+
+        li {
+            display: inline-flex;
+        }
+    }
+
+    @media (width < 540px) {
+        .megamenu {
+            width: 100%;
+            min-width: auto;
+            margin: 0;
+            right: 0;
+            border-radius: 0;
+            border-right: 0;
+            border-left: 0;
+            min-height: 100%;
+        }
+
+        ul#header-menu {
+            display: flex;
+            gap: var(--space-3);
+            font-weight: 600;
+            flex-direction: column;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.querySelector('[data-menu-btn]');
+        const menu = document.querySelector('[data-megamenu]');
+
+        if (!btn || !menu) return;
+
+        function openMenu() {
+            menu.classList.add('open');
+            btn.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+        }
+
+        function closeMenu() {
+            menu.classList.remove('open');
+            btn.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        }
+
+        function toggleMenu(e) {
+            e.stopPropagation();
+            menu.classList.contains('open') ? closeMenu() : openMenu();
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        // Close if click outside menu/button
+        document.addEventListener('click', (e) => {
+            if (!menu.classList.contains('open')) return;
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close on Escape
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+    });
+</script>

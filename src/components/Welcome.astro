@@ -1,135 +1,92 @@
 ---
-import { Image } from 'astro:assets';
-import desktopImage from '../assets/images/desksetup.webp';
-import Vinyl from './icons/Vinyl.svg';
+
 ---
 
-<section aria-labelledby="welcome-heading">
-    <Image
-        src={desktopImage}
-        alt="My cozy desk space"
-        class="welcome-desk"
-        loading="eager"
-        decoding="async"
-        width={900}
-        height={1200}
-    />
+<section>
+    <h1>
+        Hi I'm <span class="flipse">
+            Flipse
+            <span class="sparkles" aria-hidden="true">
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe15c"></stop>
+                            <stop offset="100%" stop-color="#f88f2c"></stop>
+                        </linearGradient>
+                    </defs>
 
-    <div class="intro-text">
-        <h1 id="welcome-heading">
-            Hi I'm <span class="flipse">
-                Flipse
-                <span class="sparkles" aria-hidden="true">
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <defs>
-                            <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffe15c"></stop>
-                                <stop offset="100%" stop-color="#f88f2c"></stop>
-                            </linearGradient>
-                        </defs>
+                    <path
+                        d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                        fill="url(#sparkleGradient)"></path>
+                </svg>
 
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient)"></path>
-                    </svg>
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe15c"></stop>
+                            <stop offset="100%" stop-color="#f88f2c"></stop>
+                        </linearGradient>
+                    </defs>
 
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <defs>
-                            <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffe15c"></stop>
-                                <stop offset="100%" stop-color="#f88f2c"></stop>
-                            </linearGradient>
-                        </defs>
+                    <path
+                        d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                        fill="url(#sparkleGradient)"></path>
+                </svg>
 
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient)"></path>
-                    </svg>
+                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <defs>
+                        <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffe15c"></stop>
+                            <stop offset="100%" stop-color="#f88f2c"></stop>
+                        </linearGradient>
+                    </defs>
 
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <defs>
-                            <linearGradient id="sparkleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#ffe15c"></stop>
-                                <stop offset="100%" stop-color="#f88f2c"></stop>
-                            </linearGradient>
-                        </defs>
-
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient)"></path>
-                    </svg>
-                </span>
+                    <path
+                        d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                        fill="url(#sparkleGradient)"></path>
+                </svg>
             </span>
-        </h1>
+        </span>!
+    </h1>
 
-        <h2>— a very excited tinkerer.</h2>
+    <h2>— a very excited tinkerer.</h2>
 
-        <p>
-            I have worked on Tumblr
-            <a href="https://mournstera.tumblr.com/" target="_blank" rel="noopener noreferrer">themes</a>
-            for 15 years, but
+    <p>
+        I have worked on Tumblr
+        <a href="https://mournstera.tumblr.com/" target="_blank" rel="noopener noreferrer"
+            >themes</a
+        >
+        for 15 years, but
 
-            <a
-                href="https://techcrunch.com/2024/02/22/tumblr-ceo-publicly-spars-with-trans-user-over-account-ban-revealing-private-account-names-in-the-process/"
-                aria-label="Read more on Tumblr CEO moderation and trans accounts stalking"
-                target="_blank"
-                rel="noopener noreferrer">now</a
-            >
-            it's time to set
-            <a
-                href="https://changes.tumblr.com/post/797397804182044672/"
-                aria-label="Readm more about how Tumblr is rolling out ads blog sites with custom themes as well"
-                target="_blank"
-                rel="noopener noreferrer">sails</a
-            >
-            elsewhere. I started my first blog in 2000; we return to the old ship, learning better code.
-        </p>
+        <a
+            href="https://techcrunch.com/2024/02/22/tumblr-ceo-publicly-spars-with-trans-user-over-account-ban-revealing-private-account-names-in-the-process/"
+            aria-label="Read more on Tumblr CEO moderation and trans accounts stalking"
+            target="_blank"
+            rel="noopener noreferrer">now</a
+        >
+        it's time to set
+        <a
+            href="https://changes.tumblr.com/post/797397804182044672/"
+            aria-label="Readm more about how Tumblr is rolling out ads blog sites with custom themes as well"
+            target="_blank"
+            rel="noopener noreferrer">sails</a
+        >
+        elsewhere. I started my first blog in 2000; we return to the old ship, learning better code.
+    </p>
 
-        <p>I'm an early disability retiree, so all this is just for kicks!</p>
-        <div id="scrobble" aria-label="Latest scrobbled track">
-            <Vinyl />
-            <a
-                class="track"
-                href="https://listenbrainz.org/user/flipse"
-                aria-label="See my latest scrobbled songs on ListenBrainz"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-            </a>
-        </div>
-    </div>
+    <p>
+        I'm here dipping my toes into the indieweb. I'm an early disability retiree, so all this
+        is just for kicks!
+    </p>
 </section>
 
 <style>
-    /* ----- Section layout */
     section {
-        max-inline-size: none;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        align-items: center;
+        max-width: 32rem;
     }
-
-    /* ----- Desktop image */
-    img.welcome-desk {
-        width: 100%;
-        height: 100%;
-        border-radius: var(--radius-md);
-        object-fit: cover;
-        display: block;
-        aspect-ratio: 6 / 5;
-        filter: saturate(0.92) brightness(1.15);
-    }
-
-    :global([data-theme='dark']) img.welcome-desk {
-        filter: none;
-    }
-
-    /* --- Typography */
     h2 {
         font-size: 1.0625rem;
         font-weight: 500;
-        margin-block: var(--typo-margin);
     }
 
     /*  --- sparkle */
@@ -145,7 +102,7 @@ import Vinyl from './icons/Vinyl.svg';
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: none; /* don't block text */
+        pointer-events: none; /* hey don't block text */
     }
 
     .sparkles svg {
@@ -208,37 +165,8 @@ import Vinyl from './icons/Vinyl.svg';
         }
     }
 
-    /* --- Scrobble */
-    #scrobble {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
-
-        svg {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-    }
-
-    a.track {
-        font-family: var(--font-mono);
-        font-size: 0.8125rem;
-        display: inline-block;
-        color: var(--color-text);
-        line-height: 1.4;
-
-        &:hover {
-            color: var(--color-accent1);
-        }
-    }
-
     /* ----- Media Queries */
     @media (prefers-reduced-motion: reduce) {
-        .vinyl-wrap {
-            animation: none;
-        }
         .sparkle-boop {
             animation: none;
             opacity: 0;
@@ -251,17 +179,11 @@ import Vinyl from './icons/Vinyl.svg';
     }
 
     @media (min-width: 570px) {
-        section {
-            grid-template-columns: auto 1fr;
-            gap: 3rem;
-        }
-
         img.welcome-desk {
-            max-width: 200px;
             border-radius: 9999px;
             aspect-ratio: 7 / 15;
         }
     }
 </style>
-<script src="/scripts/scrobble.js" defer></script>
+
 <script src="/scripts/sparkle.js" defer></script>
