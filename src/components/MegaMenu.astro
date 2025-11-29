@@ -5,32 +5,27 @@ const isActive = (path: string) => current === path;
 ---
 
 <button class="menu-toggle" aria-expanded="false" aria-controls="mega" data-menu-btn>
-    Explore <Chevron />
+    Explore <span class="header-icon"><Chevron /></span>
 </button>
 
 <div class="megamenu" id="mega" data-megamenu>
-    <nav aria-label="Main navigation">
-        <ul id="header-menu">
-            <li>
-                <a class="mobile" href="/" aria-current={isActive('/') ? 'page' : undefined}
-                    >Home</a
-                >
-            </li>
-
-            <li>
-                <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}
-                    >About</a
-                >
-            </li>
-
-            <li>
-                <a href="/bag/" aria-current={isActive('/bag/') ? 'page' : undefined}>Bag</a>
-            </li>
-
-            <li>
-                <a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a>
-            </li>
-        </ul>
+    <nav role="menubar" aria-hidden="true" aria-label="Main navigation">
+        <a
+            href="/about/"
+            role="menuitem"
+            aria-current={isActive('/about/') ? 'page' : undefined}
+        >
+            <h3>About</h3>
+            <p class="desc">Let me indulge you in a story</p>
+        </a>
+        <a href="/bag/" role="menuitem" aria-current={isActive('/bag/') ? 'page' : undefined}>
+            <h3>Bag</h3>
+            <p class="desc">Desk setup and other main uses</p>
+        </a>
+        <a href="/blog/" role="menuitem" aria-current={isActive('/blog/') ? 'page' : undefined}>
+            <h3>Blog</h3>
+            <p class="desc">More or less coherent and long-form thoughts</p>
+        </a>
     </nav>
 </div>
 
@@ -39,32 +34,34 @@ const isActive = (path: string) => current === path;
         display: flex;
         gap: var(--space-0);
         align-items: center;
-
-        svg {
-            transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.3, 1);
-        }
-        &.open svg {
-            transform: rotateX(180deg);
-        }
     }
 
+    button.menu-toggle svg {
+        transition: transform 0.15s cubic-bezier(0.25, 0.8, 0.3, 1);
+    }
+
+    button.menu-toggle:active svg {
+        transform: scaleX(0.7);
+    }
+
+    /* Mobile-first: base styles */
     .megamenu {
+        width: 100%;
+        max-width: 100%;
+        height: calc(100dvh - var(--header-height));
+        padding: var(--space-3);
+        right: 0;
+        background: var(--color-bg);
+        z-index: 1;
+        position: absolute;
+        top: var(--header-height);
+
+        transform-origin: top right;
         opacity: 1;
         transform: rotateX(0) scale(1);
         transition:
             opacity 0.28s cubic-bezier(0.25, 0.8, 0.3, 1),
             transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
-        display: flex;
-        margin-top: var(--space-2);
-        background: var(--color-bg-alt);
-        border: var(--border-thin) solid var(--color-border);
-        border-radius: var(--radius-md);
-        z-index: 1;
-        position: absolute;
-        transform-origin: top right;
-        padding: var(--space-3);
-        min-width: 31.25rem;
-        top: 100%;
     }
 
     .megamenu:not(.open) {
@@ -73,75 +70,79 @@ const isActive = (path: string) => current === path;
         pointer-events: none;
     }
 
-    ul#header-menu {
-        display: flex;
-        flex-wrap: wrap;
+    nav {
+        display: grid;
+        grid-template-columns: 1fr;
         gap: var(--space-3);
-        font-weight: 600;
+        width: 100%;
+        align-items: start;
+    }
 
-        li {
-            display: inline-flex;
+    nav h3,
+    nav p {
+        margin: 0;
+    }
+
+    nav a {
+        text-align: right;
+        border-radius: 0;
+        border: none;
+        color: var(--color-text);
+    }
+
+    nav p.desc {
+        display: none;
+    }
+
+    /* Desktop overrides */
+    @media (min-width: 560px) {
+        .megamenu {
+            border-radius: var(--radius-md);
+            max-width: 31.25rem;
+            height: auto;
+            margin-top: var(--space-3);
+            right: var(--space-3);
+            border: var(--border-thin) solid var(--color-border);
+        }
+
+        nav {
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-0);
+        }
+
+        nav a {
+            padding: var(--space-2);
+            border-radius: var(--radius-sm);
+            border: var(--border-thin) solid transparent;
+            text-align: left;
+        }
+
+        nav a:hover {
+            border-color: var(--color-accent1);
+            background-color: var(--color-bg);
+        }
+
+        nav p.desc {
+            display: block;
         }
     }
 
-    @media (width < 540px) {
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
         .megamenu {
-            width: 100%;
-            min-width: auto;
-            margin: 0;
-            right: 0;
-            border-radius: 0;
-            border-right: 0;
-            border-left: 0;
-            min-height: 100%;
+            transition: opacity 0.001s linear;
+            transform: none;
         }
 
-        ul#header-menu {
-            display: flex;
-            gap: var(--space-3);
-            font-weight: 600;
-            flex-direction: column;
+        .megamenu:not(.open) {
+            opacity: 0;
+            transform: none;
+        }
+
+        button.menu-toggle:active svg {
+            transform: none;
         }
     }
 </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const btn = document.querySelector('[data-menu-btn]');
-        const menu = document.querySelector('[data-megamenu]');
-
-        if (!btn || !menu) return;
-
-        function openMenu() {
-            menu.classList.add('open');
-            btn.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-        }
-
-        function closeMenu() {
-            menu.classList.remove('open');
-            btn.classList.remove('open');
-            btn.setAttribute('aria-expanded', 'false');
-        }
-
-        function toggleMenu(e) {
-            e.stopPropagation();
-            menu.classList.contains('open') ? closeMenu() : openMenu();
-        }
-
-        btn.addEventListener('click', toggleMenu);
-
-        // Close if click outside menu/button
-        document.addEventListener('click', (e) => {
-            if (!menu.classList.contains('open')) return;
-            if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                closeMenu();
-            }
-        });
-
-        // Close on Escape
-        document.addEventListener('keyup', (e) => {
-            if (e.key === 'Escape') closeMenu();
-        });
-    });
-</script>
+<script src="/scripts/megamenu.js" defer></script>

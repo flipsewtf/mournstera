@@ -4,7 +4,7 @@ import ThemeMoon from './icons/ThemeMoon.svg';
 ---
 
 <button
-    class="theme-toggle actions"
+    class="theme-toggle header-icon"
     type="button"
     aria-label="Toggle theme"
     aria-pressed="false"
@@ -12,25 +12,8 @@ import ThemeMoon from './icons/ThemeMoon.svg';
     <ThemeSun />
     <ThemeMoon />
 </button>
+
 <style>
-    button.theme-toggle {
-        display: inline-flex;
-        border-radius: var(--radius-full);
-        color: var(--color-text);
-
-        position: relative;
-        width: 1.375rem;
-        height: 1.375rem;
-        align-items: center;
-        justify-content: center;
-        flex: none;
-    }
-
-    button.theme-toggle:focus-visible {
-        outline: 3px solid var(--color-accent1);
-        outline-offset: 3px;
-    }
-
     .sun,
     .moon {
         position: absolute;
@@ -42,8 +25,8 @@ import ThemeMoon from './icons/ThemeMoon.svg';
         html[data-ready='true'] .sun,
         html[data-ready='true'] .moon {
             transition:
-                opacity 0.15s ease,
-                transform 0.25s cubic-bezier(0.8, -0.5, 0.2, 1.4);
+                opacity 0.2s ease,
+                transform 0.3s cubic-bezier(0.8, -0.5, 0.2, 1.4);
         }
     }
 

@@ -9,18 +9,15 @@ import Bolt from './icons/Bolt.svg';
 
     <div class="header-right" role="navigation" aria-label="Header controls">
         <MegaMenu />
-        <a class="now-link" href="/now" aria-label="Currently"><Bolt /></a>
+        <a class="now-link header-icon" href="/now" aria-label="Currently"><Bolt /></a>
         <ThemeToggle />
     </div>
 </header>
 
 <style>
-    a {
-        color: var(--color-text);
-    }
-
     header {
         width: 100%;
+        height: var(--header-height);
         position: sticky;
         top: 0;
         z-index: 200;
@@ -30,18 +27,13 @@ import Bolt from './icons/Bolt.svg';
         display: flex;
         gap: var(--space-3);
         justify-content: space-between;
-        align-items: flex-start;
-        border-bottom: 1px solid transparent;
+        align-items: center;
+        border-bottom: 1px solid var(--color-border);
         transition: border-color 0.15s ease;
     }
 
-    header.scrolled {
-        border-bottom-color: var(--color-border);
-    }
-    a.now-link {
-        display: inline-flex;
-    }
     a.home {
+        color: var(--color-text);
         font-weight: 700;
         font-size: 1.5rem;
 
@@ -53,13 +45,38 @@ import Bolt from './icons/Bolt.svg';
     .header-right {
         display: flex;
         align-items: center;
-        gap: var(--space-1);
+        gap: var(--space-0);
         justify-content: flex-end;
     }
 
-    @media (min-width: 800px) {
-        a.mobile {
-            display: none;
+    :global(.header-icon) {
+        display: inline-flex;
+        position: relative;
+        width: 2.125rem;
+        height: 2.125rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--radius-sm);
+        color: var(--color-text);
+
+        svg {
+            width: 1.375rem;
+            height: 1.375rem;
+        }
+    }
+
+    :global(.header-icon:hover, button.menu-toggle:hover .header-icon) {
+        background-color: var(--color-bg-alt);
+        color: var(--color-text-alt);
+    }
+
+    @media (min-width: 560px) {
+        header {
+            border-bottom: 1px solid transparent;
+        }
+
+        header.scrolled {
+            border-bottom-color: var(--color-border);
         }
     }
 </style>

@@ -4,6 +4,7 @@
     --layout-width-sm: calc(35rem + var(--layout-padding) * 2); /* 560px / 590px */
     --layout-width-lg: calc(50rem + var(--layout-padding) * 2); /* 800px - 860px */
     --layout-padding: 1.875rem; /* 30px */
+    --header-height: 4rem; /* 64px */
     --space-0: 0.5rem; /* 8px */
     --space-1: 0.75rem; /* 12px */
     --space-2: 0.9375rem; /* 15px */
@@ -39,7 +40,7 @@ html[data-theme='light'] {
     --color-text-muted: hsl(0 0 47%);
     --color-bg: hsl(0 0% 98%);
     --color-bg-alt: hsl(0 0% 94%);
-    --color-header: hsla(0, 0%, 98%, 0.68);
+    --color-header: hsla(0, 0%, 98%, 0.88);
     --color-border: hsl(0 0% 85%);
     --color-accent1: hsl(66 58% 40%);
     --color-accent2: hsl(13 59% 55%);
@@ -55,8 +56,8 @@ html[data-theme='dark'] {
     --color-text: hsl(0 0% 98%);
     --color-text-muted: hsl(0 0% 65%);
     --color-bg: hsl(0 0% 5%);
-    --color-bg-alt: hsl(0 0% 16%);
-    --color-header: hsla(0, 0%, 5%, 0.68);
+    --color-bg-alt: hsl(0 0% 13%);
+    --color-header: hsla(0, 0%, 5%, 0.88);
     --color-border: hsl(0 0% 30%);
     --color-accent1: hsl(66 44% 45%);
     --color-accent2: hsl(13 74% 61%);
@@ -121,8 +122,8 @@ html[data-ready='true'] {
 svg {
     stroke: currentColor;
     stroke-width: 1.75;
-    width: 1.375rem;
-    height: 1.375rem;
+    width: 1.5rem;
+    height: 1.5rem;
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -176,7 +177,7 @@ body {
     scrollbar-gutter: stable;
     text-rendering: optimizeLegibility;
     overflow-wrap: break-word;
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
