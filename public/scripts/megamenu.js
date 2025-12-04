@@ -1,18 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     const btn = document.querySelector('[data-menu-btn]');
     const menu = document.querySelector('[data-megamenu]');
+    const body = document.body;
 
     if (!btn || !menu) return;
 
-    // Initially inert
+    // initially inert
     menu.inert = true;
     menu.setAttribute('aria-hidden', 'true');
 
     function openMenu() {
-        menu.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
+        // console issue w/ aria-hidden. remove aria-hidden BEFORE focusing
+        menu.setAttribute('aria-hidden', 'false');
         menu.inert = false;
 
+        menu.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        body.classList.add('noscroll');
+
+        // focus is now safe
         const firstLink = menu.querySelector('a');
         if (firstLink) firstLink.focus();
     }
@@ -20,7 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function closeMenu() {
         menu.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
+
+        // only after closing, hide menu
         menu.inert = true;
+        menu.setAttribute('aria-hidden', 'true');
+
+        body.classList.remove('noscroll');
     }
 
     btn.addEventListener('click', (e) => {

@@ -13,9 +13,11 @@ import BagLink from '../components/icons/BagLink.svg';
             getting nice gifts from family members.
         </p>
 
+        <div class="divider"></div>
+
         <div class="item-list">
             <article class="item" aria-labelledby="item-computer-title">
-                <h3 id="item-computer-title" class="item-title">Computer</h3>
+                <h4 id="item-computer-title" class="item-title">Computer</h4>
 
                 <a
                     target="_blank"
@@ -33,7 +35,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-desk-title">
-                <h3 id="item-desk-title" class="item-title">Desk</h3>
+                <h4 id="item-desk-title" class="item-title">Desk</h4>
 
                 <a
                     target="_blank"
@@ -51,7 +53,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-headphones-title">
-                <h3 id="item-headphones-title" class="item-title">Headphones</h3>
+                <h4 id="item-headphones-title" class="item-title">Headphones</h4>
 
                 <a
                     target="_blank"
@@ -70,7 +72,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-keycaps-title">
-                <h3 id="item-keycaps-title" class="item-title">Keycaps</h3>
+                <h4 id="item-keycaps-title" class="item-title">Keycaps</h4>
 
                 <a
                     target="_blank"
@@ -87,7 +89,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-keyboard-title">
-                <h3 id="item-keyboard-title" class="item-title">Keyboard</h3>
+                <h4 id="item-keyboard-title" class="item-title">Keyboard</h4>
 
                 <a
                     target="_blank"
@@ -105,7 +107,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-monitor-title">
-                <h3 id="item-monitor-title" class="item-title">Monitor</h3>
+                <h4 id="item-monitor-title" class="item-title">Monitor</h4>
 
                 <a
                     target="_blank"
@@ -123,7 +125,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-stand-title">
-                <h3 id="item-stand-title" class="item-title">Monitor stand</h3>
+                <h4 id="item-stand-title" class="item-title">Monitor stand</h4>
 
                 <a
                     target="_blank"
@@ -140,7 +142,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-mouse-title">
-                <h3 id="item-mouse-title" class="item-title">Mouse</h3>
+                <h4 id="item-mouse-title" class="item-title">Mouse</h4>
 
                 <a
                     target="_blank"
@@ -157,7 +159,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-tablet-title">
-                <h3 id="item-tablet-title" class="item-title">Tablet</h3>
+                <h4 id="item-tablet-title" class="item-title">Tablet</h4>
 
                 <a
                     target="_blank"
@@ -176,7 +178,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-phone-title">
-                <h3 id="item-phone-title" class="item-title">Phone</h3>
+                <h4 id="item-phone-title" class="item-title">Phone</h4>
 
                 <a
                     target="_blank"
@@ -195,7 +197,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-switches-title">
-                <h3 id="item-switches-title" class="item-title">Switches</h3>
+                <h4 id="item-switches-title" class="item-title">Switches</h4>
 
                 <a
                     target="_blank"
@@ -213,7 +215,7 @@ import BagLink from '../components/icons/BagLink.svg';
             </article>
 
             <article class="item" aria-labelledby="item-speaker-title">
-                <h3 id="item-speaker-title" class="item-title">Speaker</h3>
+                <h4 id="item-speaker-title" class="item-title">Speaker</h4>
 
                 <a
                     target="_blank"
@@ -235,50 +237,31 @@ import BagLink from '../components/icons/BagLink.svg';
 </BaseLayout>
 
 <style>
-    .item-list {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-5);
-        margin-top: 4.5rem;
+    article {
+        margin-bottom: var(--space-7);
     }
 
-    article.item {
-        display: flex;
-        flex-direction: column;
-        background-color: var(--color-bg-alt);
-        padding: var(--space-4);
-        border: var(--border-thin) solid var(--color-border);
-        border-radius: var(--radius-sm);
-
-        p.item-desc {
-            margin: var(--space-0) 0 0 0;
-            font-size: 0.875rem;
-        }
-
-        a {
-            display: flex;
-            align-items: center;
-            gap: var(--space-0);
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            color: var(--color-text-muted);
-            line-height: var(--line-height);
-
-            &:hover {
-                color: var(--color-accent2);
-            }
-        }
-
-        svg {
-            stroke: var(--color-text-muted);
-        }
-    }
-
-    h1 {
+    h4 {
         margin-top: 0;
     }
-    h3 {
-        font-size: 1.0625rem;
-        margin: 0;
+
+    p {
+        margin: var(--space-0) 0 0 0;
+    }
+
+    a {
+        font-family: var(--font-mono);
+        font-size: var(--p-sm);
+    }
+    a:hover {
+        color: var(--link-hover);
+        text-decoration: underline;
+        text-underline-offset: 0.3em;
+        text-decoration-thickness: var(--border-medium);
+    }
+
+    svg {
+        color: var(--accent-icons);
+        vertical-align: middle;
     }
 </style>

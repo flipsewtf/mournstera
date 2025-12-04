@@ -26,25 +26,23 @@ import Vinyl from '../components/icons/Vinyl.svg';
     </section>
 </BaseLayout>
 <style>
+    svg {
+        flex-shrink: 0;
+        color: var(--accent-icons);
+    }
     /* --- Scrobble */
     #scrobble {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
-
-        svg {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 1.5rem;
-        }
     }
 
     a.track {
         font-family: var(--font-mono);
-        font-size: 0.8125rem;
+        font-size: var(--p-sm);
         display: inline-block;
-        color: var(--color-text);
+        color: var(--text-secondary);
         line-height: 1.4;
 
         &:hover {

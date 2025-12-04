@@ -15,7 +15,9 @@ import Rss from './icons/Rss.svg';
             rel="noopener noreferrer"
             aria-label="Subscribe via RSS"
         >
-            <Rss /> Join my adventures <span class="sr-only">and subscribe on RSS</span>
+            <div class="svg-wrap"><Rss /></div>Join my adventures <span class="sr-only"
+                >and subscribe on RSS</span
+            >
         </a>
 
         <nav class="social" aria-label="Social links">
@@ -57,29 +59,30 @@ import Rss from './icons/Rss.svg';
 
 <style>
     a {
-        color: var(--color-text-muted);
+        color: var(--text-primary);
+    }
 
-        &:hover {
-            color: var(--color-accent1);
-        }
+    a:hover {
+        color: var(--link-hover);
     }
 
     footer {
         width: 100%;
-        padding: var(--space-5);
+        margin: 0 auto;
+        max-width: var(--layout-width);
+        padding-inline: var(--layout-padding);
+    }
+
+    .footer-inner {
+        padding-block: var(--space-5);
         background-image: repeating-linear-gradient(
             to right,
-            var(--color-border) 0 7px,
+            var(--border-secondary) 0 7px,
             transparent 7px 10px
         );
         background-repeat: no-repeat;
         background-size: 100% 1px;
         background-position: top left;
-    }
-
-    .footer-inner {
-        margin: 0 auto;
-        max-width: var(--layout-width-lg);
         display: flex;
         gap: var(--space-3);
         justify-content: space-between;
@@ -87,61 +90,43 @@ import Rss from './icons/Rss.svg';
         flex-wrap: wrap;
     }
 
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        gap: var(--space-2);
-    }
-
-    ul#footer-menu {
-        display: flex;
-        flex-wrap: wrap;
-        gap: var(--space-2);
-        font-weight: 500;
-
-        li {
-            display: inline-flex;
-        }
-    }
-
     nav.social {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        gap: var(--space-0);
     }
 
     nav.social a {
-        padding: 0 calc(var(--space-1) / 2);
+        padding: var(--2px);
         display: inline-flex;
         align-items: center;
-
-        &:hover {
-            color: var(--color-accent2);
-        }
     }
 
     a.rss {
         display: flex;
         align-items: center;
         gap: var(--space-1);
+        font-family: var(--font-mono);
+        font-size: var(--p-sm);
+        font-weight: 500;
+    }
 
-        svg {
-            border-radius: 0.25rem;
-            background-color: var(--color-text-muted);
-            color: var(--color-bg);
-            padding: 0.25rem;
-            stroke-width: 2.5;
-            width: 1.5rem;
-            height: 1.5rem;
-        }
-
-        &:hover {
-            color: var(--color-accent1);
-            text-decoration: underline;
-            text-decoration-style: wavy;
-            text-decoration-color: var(--color-text);
-            text-decoration-thickness: var(--border-thin);
-        }
+    a.rss:hover {
+        text-decoration: underline;
+        text-underline-offset: var(--underline-offset);
+        text-decoration-thickness: var(--2px);
+    }
+    a.rss .svg-wrap {
+        border-radius: var(--3px);
+        background-color: var(--bg-alt);
+        color: var(--text-primary);
+        padding: 0.25rem;
+        display: inline-flex;
+    }
+    a.rss svg {
+        stroke-width: 2.5;
+        height: 1.125rem;
+        width: 1.125rem;
     }
 </style>

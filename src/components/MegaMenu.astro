@@ -5,25 +5,25 @@ const isActive = (path: string) => current === path;
 ---
 
 <button class="menu-toggle" aria-expanded="false" aria-controls="mega" data-menu-btn>
-    Explore <span class="header-icon"><Chevron /></span>
+    Explore <Chevron />
 </button>
 
 <div class="megamenu" id="mega" data-megamenu>
-    <nav role="menubar" aria-hidden="true" aria-label="Main navigation">
+    <nav role="menubar" aria-label="Main navigation">
         <a
             href="/about/"
             role="menuitem"
             aria-current={isActive('/about/') ? 'page' : undefined}
         >
-            <h3>About</h3>
-            <p class="desc">Let me indulge you in a story</p>
+            <h4>About</h4>
+            <p class="desc">Let me indulge and tell you a story</p>
         </a>
         <a href="/bag/" role="menuitem" aria-current={isActive('/bag/') ? 'page' : undefined}>
-            <h3>Bag</h3>
-            <p class="desc">Desk setup and other main uses</p>
+            <h4>Bag</h4>
+            <p class="desc">Desk setup and other main daily uses</p>
         </a>
         <a href="/blog/" role="menuitem" aria-current={isActive('/blog/') ? 'page' : undefined}>
-            <h3>Blog</h3>
+            <h4>Blog</h4>
             <p class="desc">More or less coherent and long-form thoughts</p>
         </a>
     </nav>
@@ -32,12 +32,25 @@ const isActive = (path: string) => current === path;
 <style>
     button.menu-toggle {
         display: flex;
-        gap: var(--space-0);
+        gap: 0.25rem;
         align-items: center;
+        color: var(--text-secondary);
+        margin-right: var(--space-1);
+        font-family: var(--font-heading);
+        font-weight: 500;
     }
 
     button.menu-toggle svg {
-        transition: transform 0.15s cubic-bezier(0.25, 0.8, 0.3, 1);
+        color: currentColor;
+        stroke-width: 6;
+        fill: currentColor;
+        width: var(--space-2);
+        height: var(--space-2);
+        transition: transform 0.09s cubic-bezier(0.25, 0.8, 0.3, 1);
+    }
+
+    button.menu-toggle:hover svg {
+        color: var(--accent-primary);
     }
 
     button.menu-toggle:active svg {
@@ -51,11 +64,10 @@ const isActive = (path: string) => current === path;
         height: calc(100dvh - var(--header-height));
         padding: var(--space-3);
         right: 0;
-        background: var(--color-bg);
+        background: var(--bg-primary);
         z-index: 1;
         position: absolute;
         top: var(--header-height);
-
         transform-origin: top right;
         opacity: 1;
         transform: rotateX(0) scale(1);
@@ -66,8 +78,15 @@ const isActive = (path: string) => current === path;
 
     .megamenu:not(.open) {
         opacity: 0;
-        transform: rotateX(-15deg) scale(0.9);
         pointer-events: none;
+    }
+
+    /* 536px width of mega menu + 2*space, on desktop */
+    @media (max-width: 561px) {
+        body.noscroll {
+            overflow: hidden;
+            touch-action: none;
+        }
     }
 
     nav {
@@ -78,7 +97,7 @@ const isActive = (path: string) => current === path;
         align-items: start;
     }
 
-    nav h3,
+    nav h4,
     nav p {
         margin: 0;
     }
@@ -87,7 +106,7 @@ const isActive = (path: string) => current === path;
         text-align: right;
         border-radius: 0;
         border: none;
-        color: var(--color-text);
+        color: var(--text-primary);
     }
 
     nav p.desc {
@@ -95,14 +114,25 @@ const isActive = (path: string) => current === path;
     }
 
     /* Desktop overrides */
+    /* 536px width of mega menu + 2* var(--layout-padding)/32px, on desktop */
     @media (min-width: 560px) {
         .megamenu {
             border-radius: var(--radius-md);
-            max-width: 31.25rem;
+            width: 31rem;
             height: auto;
-            margin-top: var(--space-3);
-            right: var(--space-3);
-            border: var(--border-thin) solid var(--color-border);
+            margin-top: -0.0625rem;
+            right: auto;
+            background: var(--bg-secondary);
+            border: var(--1px) solid var(--border-primary);
+            transition: border-radius var(--transition-md);
+        }
+
+        :global(header.top.scrolled .megamenu) {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+        }
+
+        .megamenu:not(.open) {
+            transform: rotateX(-15deg) scale(0.9);
         }
 
         nav {
@@ -113,17 +143,22 @@ const isActive = (path: string) => current === path;
         nav a {
             padding: var(--space-2);
             border-radius: var(--radius-sm);
-            border: var(--border-thin) solid transparent;
+            border: var(--1px) solid transparent;
             text-align: left;
         }
 
         nav a:hover {
-            border-color: var(--color-accent1);
-            background-color: var(--color-bg);
+            border-color: var(--border-primary);
+            background-color: var(--bg-alt);
+        }
+
+        nav a:hover h4 {
+            color: var(--link-hover);
         }
 
         nav p.desc {
             display: block;
+            font-size: var(--p-sm);
         }
     }
 

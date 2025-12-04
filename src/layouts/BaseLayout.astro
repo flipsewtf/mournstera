@@ -14,7 +14,9 @@ const { pageTitle, pageDescription, pageImage, mainClass } = Astro.props;
     <body>
         <Header />
         <main class={mainClass}>
-            <slot />
+            <section>
+                <slot />
+            </section>
         </main>
         <Footer />
     </body>
