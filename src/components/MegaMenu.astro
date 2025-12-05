@@ -26,10 +26,21 @@ const isActive = (path: string) => current === path;
             <h4>Blog</h4>
             <p class="desc">More or less coherent and long-form thoughts</p>
         </a>
+        <a
+            href="/site-info/"
+            role="menuitem"
+            aria-current={isActive('/site-info/') ? 'page' : undefined}
+        >
+            <h4>Site info</h4>
+            <p class="desc">Info about this site and some transparency</p>
+        </a>
     </nav>
 </div>
 
 <style>
+    a:hover {
+        text-decoration: none;
+    }
     button.menu-toggle {
         display: flex;
         gap: 0.25rem;
@@ -41,11 +52,7 @@ const isActive = (path: string) => current === path;
     }
 
     button.menu-toggle svg {
-        color: currentColor;
-        stroke-width: 6;
-        fill: currentColor;
-        width: var(--space-2);
-        height: var(--space-2);
+        stroke-width: 2.2;
         transition: transform 0.09s cubic-bezier(0.25, 0.8, 0.3, 1);
     }
 
@@ -64,7 +71,7 @@ const isActive = (path: string) => current === path;
         height: calc(100dvh - var(--header-height));
         padding: var(--space-3);
         right: 0;
-        background: var(--bg-primary);
+        background: var(--bg-secondary);
         z-index: 1;
         position: absolute;
         top: var(--header-height);
@@ -92,11 +99,11 @@ const isActive = (path: string) => current === path;
     nav {
         display: grid;
         grid-template-columns: 1fr;
-        gap: var(--space-3);
-        width: 100%;
-        align-items: start;
+        gap: var(--space-4);
     }
-
+    h4 {
+        font-size: 1.4rem;
+    }
     nav h4,
     nav p {
         margin: 0;
@@ -122,9 +129,11 @@ const isActive = (path: string) => current === path;
             height: auto;
             margin-top: -0.0625rem;
             right: auto;
-            background: var(--bg-secondary);
             border: var(--1px) solid var(--border-primary);
-            transition: border-radius var(--transition-md);
+            transition:
+                border-radius var(--transition-md),
+                opacity 0.28s cubic-bezier(0.25, 0.8, 0.3, 1),
+                transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
         }
 
         :global(header.top.scrolled .megamenu) {
@@ -148,12 +157,15 @@ const isActive = (path: string) => current === path;
         }
 
         nav a:hover {
-            border-color: var(--border-primary);
+            border-color: var(--border-secondary);
             background-color: var(--bg-alt);
         }
-
+        h4 {
+            font-weight: 600;
+            font-size: var(--h4);
+        }
         nav a:hover h4 {
-            color: var(--link-hover);
+            color: var(--accent-primary);
         }
 
         nav p.desc {

@@ -21,7 +21,7 @@ import Bolt from './icons/Bolt.svg';
         color: var(--text-secondary);
     }
     a:hover {
-        color: var(--link-hover);
+        color: var(--accent-primary);
     }
     header {
         width: 100%;
@@ -41,7 +41,7 @@ import Bolt from './icons/Bolt.svg';
         width: 100%;
         max-width: var(--layout-width);
         margin: 0 auto;
-        padding: 0 var(--layout-padding);
+        padding: var(--space-2) var(--layout-padding);
         display: flex;
         gap: var(--space-3);
         justify-content: space-between;
@@ -51,25 +51,25 @@ import Bolt from './icons/Bolt.svg';
     a.home {
         overflow: hidden;
         font-weight: 600;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-family: var(--font-heading);
-        background-color: var(--text-secondary);
-        color: var(--bg-primary);
         border-radius: var(--radius-sm);
         display: flex;
-        height: 1.625rem;
-        width: 1.625rem;
+        height: 2rem;
+        width: 2rem;
         align-items: center;
         justify-content: center;
+        letter-spacing: 0;
     }
     a.home:hover {
-        background-color: var(--link-hover);
+        color: var(--bg-primary);
+        background-color: var(--accent-primary);
     }
 
     .header-right {
         display: flex;
         align-items: center;
-        gap: var(--space-0);
+        gap: var(--space-1);
         justify-content: flex-end;
     }
 
@@ -94,7 +94,7 @@ import Bolt from './icons/Bolt.svg';
 
     if (header) {
         window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 10);
+            header.classList.toggle('scrolled', window.scrollY > 50);
         });
     }
 </script>

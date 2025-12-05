@@ -2,52 +2,137 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'Currently';
 
-import Vinyl from '../components/icons/Vinyl.svg';
+import NowBooks from '../components/icons/NowBooks.svg';
+import NowDice from '../components/icons/NowDice.svg';
+import NowTv from '../components/icons/NowTv.svg';
+import NowVinyl from '../components/icons/NowVinyl.svg';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <section class="update-tab">
-        <ul id="header-menu" aria-label="Currently">
-            <li>Watching: Critical Role C3 + C4</li>
-            <li>Playing: Harvest Town</li>
-        </ul>
+    <h1>What I'm currently doing</h1>
 
-        <div id="scrobble" aria-label="Latest scrobbled track">
-            <Vinyl />
+    <p>Here's what I have been up to lately.</p>
+
+    <p>
+        The only traditional TV I watch is Doctor Who. After my TV dying on me in 2009 and me not
+        bothering replacing it, I will occasionally binge something every other year (like 2
+        seasons of Below Deck, Silent Witness or a new scifi show), but I prefer dnd podcasts and
+        youtube series.
+    </p>
+
+    <p class="last-updated">
+        Last updated:
+        <time datetime="2025-12-05">5 December 2025</time>
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="item">
+        <div class="item-title">
+            <NowVinyl />
+            <h3>Music</h3>
+        </div>
+        <div id="scrobble" class="item-desc">
+            <p>
+                You can find my current rotation/obsessions on my Record.club <a
+                    href="https://record.club/mournstera"
+                    aria-label="See my latest scrobbled songs on ListenBrainz"
+                    target="_blank"
+                    rel="noopener noreferrer">profile</a
+                >. I update stuff on there on the regular basis.
+            </p>
+
+            <p>Here's my latest scrobbled song on ListenBrainz:</p>
             <a
                 class="track"
                 href="https://listenbrainz.org/user/flipse"
-                aria-label="See my latest scrobbled songs on ListenBrainz"
+                aria-label="See my latest scrobbled songs on my ListenBrainz profile"
                 target="_blank"
                 rel="noopener noreferrer"
             >
             </a>
         </div>
-    </section>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            <NowTv />
+            <h3>Watching</h3>
+        </div>
+        <div class="item-desc">
+            <p>
+                I am on episode 61 of <a
+                    href="https://critrole.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Go to Critical Role's website">Critical Role</a
+                >'s Campaign 3. I'm <i>also</i> attempting to keep up with Campaign 4.
+            </p>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            <NowDice />
+            <h3>Playing</h3>
+        </div>
+        <div class="item-desc">
+            <p>
+                I'm currently not playing anything. <em>But!</em> A tabletop games cafe is opening
+                in my small town, and I'm real excited.
+            </p>
+        </div>
+    </div>
+
+    <div class="item">
+        <div class="item-title">
+            <NowBooks />
+            <h3>Learning</h3>
+        </div>
+        <div class="item-desc">
+            <p>
+                I'm mid-way through MIT OpenCourseWare's <a
+                    href="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="MIT OpenCourseWare Library">Quantum Physics I</a
+                >.
+            </p>
+        </div>
+    </div>
 </BaseLayout>
 <style>
+    .last-updated {
+        font-family: var(--font-mono);
+        font-size: var(--p-sm);
+    }
+    .item:not(:last-of-type) {
+        margin-bottom: var(--space-8);
+    }
+    .item-title {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    .item-desc p:first-child {
+        margin-top: var(--spacing-sm);
+    }
+
+    h3 {
+        margin: 0;
+    }
     svg {
         flex-shrink: 0;
-        color: var(--accent-icons);
+        color: var(--text-secondary);
+        width: 1.5rem;
+        height: 1.5rem;
     }
-    /* --- Scrobble */
-    #scrobble {
+    .now-container {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
-    }
-
-    a.track {
-        font-family: var(--font-mono);
-        font-size: var(--p-sm);
-        display: inline-block;
-        color: var(--text-secondary);
-        line-height: 1.4;
-
-        &:hover {
-            color: var(--color-accent1);
-        }
     }
 </style>
 <script src="/scripts/scrobble.js" defer></script>

@@ -2,12 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'About Flipse';
 
-const birthDate = new Date('1988-03-04'); // replace with your birthday (YYYY-MM-DD)
+const birthDate = new Date('1988-03-04'); // replace with my birthday (YYYY-MM-DD)
 const today = new Date();
 
 let age = today.getFullYear() - birthDate.getFullYear();
 
-// Adjust if birthday hasn’t happened yet this year
+// adjust if birthday hasn’t happened yet this year
 const hasHadBirthdayThisYear =
     today.getMonth() > birthDate.getMonth() ||
     (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
@@ -19,31 +19,33 @@ if (!hasHadBirthdayThisYear) {
 
 <BaseLayout pageTitle={pageTitle}>
     <article>
-        <h1 class="title-test">About Flipse</h1>
+        <h1>About Flipse</h1>
 
-        <h2>whatever h2</h2>
-
-        <p class="quick-facts">
+        <p>
             My name is Flipse (she/her), I'm {age} and autistic. My special subject is music + making
             lists with data, so I thoroughly enjoyed discovering <a
                 href="https://record.club/mournstera/">Record.Club</a
-            > recently. I have a handful of diagnoses including bipolar, which alongside my late-diagnosed
-            autism directs most of my life, hence why I'm an early disability retiree.
+            > recently. I have a good handful of diagnoses including bipolar, which, alongside my
+            late-diagnosed autism, is the film director of most of my life, hence why I'm an early
+            disability retiree.
         </p>
 
         <p>I do love concerts, watermelon, Doctor Who, and TTRPG.</p>
 
         <h3>Early Web Days</h3>
         <p>
-            I began my journey with b2/cafelog and "online diaries" (before the term <em>blog</em
-            > was coined) around 1999/2000, complete with a domain, webrings, and fanlistings.
+            I clicked on "view source" on a website as many others did in 1999, and later found
+            b2/cafelog and <em>online diaries</em>. As a christmas, my parents got their 12 year
+            old her own domain, webhost - you know, a totally normal gift for a kid who made her
+            own database of license plates (began that one in 1993), and film she had watched
+            (IMDB wasn't good enough).
         </p>
 
         <h3>Tumblr Era</h3>
         <p>
-            I found Tumblr in 2009, and began releasing Tumblr themes around 2012 while
-            attempting to wrangle their <em>interesting</em> choices of code. As of late 2025, I decided
-            that Tumblr was neither my circus nor my monkeys.
+            I was offline for a few years, but found Tumblr in 2009, and began releasing my own
+            Tumblr themes around 2012, while attempting to wrangle their <em>interesting</em> choices
+            of code. In late 2025, I decided that Tumblr was neither my circus nor my monkeys.
         </p>
 
         <p>
@@ -62,9 +64,9 @@ if (!hasHadBirthdayThisYear) {
 
         <h3>Current Adventures</h3>
         <p>
-            Currently untangling years of - let's be honest - questionable JavaScript habits
-            courtesy of Tumblr. I have only recently discovered Astro, so this site is very basic
-            and very much my future playground!
+            I'm untangling years of - let's be real for a second - <em>questionable</em> JavaScript
+            habits courtesy of Tumblr. I have only recently discovered Astro, so this site is very
+            basic and very much my future playground!
         </p>
     </article>
 </BaseLayout>
