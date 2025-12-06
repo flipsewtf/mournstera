@@ -3,8 +3,12 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-import '../assets/styles/global.css';
-const { pageTitle, pageDescription, pageImage, mainClass } = Astro.props;
+const {
+    pageTitle = 'Mournstera',
+    pageDescription = 'Personal site.',
+    pageImage = '/social-default.png',
+    mainClass = '',
+} = Astro.props;
 ---
 
 <html lang="en" data-theme="light">
@@ -15,6 +19,7 @@ const { pageTitle, pageDescription, pageImage, mainClass } = Astro.props;
         <Header />
         <main class={mainClass}>
             <section>
+                {pageTitle && <h1>{pageTitle}</h1>}
                 <slot />
             </section>
         </main>

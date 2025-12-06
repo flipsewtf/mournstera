@@ -1,6 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'About this site';
+const pageTitle = `Site info`;
+const pageDescription = `tba!!`;
 ---
 
-<BaseLayout pageTitle={pageTitle}> tba!</BaseLayout>
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+    <h1></h1>
+
+    <p>{pageDescription}</p>
+</BaseLayout>

@@ -1,17 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = `What's in my bag?`;
-
 import BagLink from '../components/icons/BagLink.svg';
+
+import { Image } from 'astro:assets';
+import Desksetup from '../assets/images/desksetup.webp';
+
+const pageTitle = `What's in my bag?`;
+const pageDescription = `A list of the gear I currently use for my workspace.`;
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
     <section>
-        <h1>What's in my bag?</h1>
         <p>
-            I love me a cosy desk setup but I am poor, so I ball on a budget and the privilege of
-            getting nice gifts from family members.
+            {pageDescription} I love a cosy workspace, but I do indeed ball on a budget and the privilege
+            of nice gifts from family members and friends <span role="img" aria-label="heart"
+                >❤️</span
+            >
         </p>
+
+        <Image src={Desksetup} alt="My cozy desk space" class="desk" />
 
         <div class="divider"></div>
 
@@ -29,8 +36,7 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-computer-desc" class="item-desc">
-                    I'm no real gamer, but this was 50% off (2023) and I'm a happy camper. Having
-                    a white PC is real nice.
+                    Having a white PC is real nice. I'm a happy camper.
                 </p>
             </article>
 
@@ -47,8 +53,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-desk-desc" class="item-desc">
-                    I had my worries about potentially wobbly legs, but it's just not there and
-                    I'm very happy about how easy my cable management has become.
+                    I had my worries about potentially wobbly legs, but there's no issues. I'm
+                    very happy about how easy my cable management has become.
                 </p>
             </article>
 
@@ -65,9 +71,10 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-headphones-desc" class="item-desc">
-                    I am very particular about my ears (hi autism!) and this was a "I'll buy
-                    proper stuff next month but this should do"-purchase, and it ended up being
-                    what I liked. Super standard, super cheap.
+                    I am very particular about my ears (hi autism!) and this was an <i
+                        >"I'll buy proper stuff next month but this should do"</i
+                    >
+                    purchase, and it ended up working out.
                 </p>
             </article>
 
@@ -101,8 +108,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-keyboard-desc" class="item-desc">
-                    I just needed a cheap mechanical keyboard to play with. Definitely a great
-                    beginner. Will be investing in something better with time.
+                    I just needed a cheap mechanical keyboard to play with. A great beginner
+                    purchase, but I Will be investing in something better at some point.
                 </p>
             </article>
 
@@ -119,8 +126,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-monitor-desc" class="item-desc">
-                    Look, it was on 65% sale. The VESA mount placement is really silly. I can
-                    live with it.
+                    Look, it was on a 65% sale. The VESA mount placement is silly. I can live
+                    with it.
                 </p>
             </article>
 
@@ -154,7 +161,7 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-mouse-desc" class="item-desc">
-                    I <em>cannot</em> live without this. Best purchase I've made.
+                    I <em>cannot</em> live without this. Best purchase I've ever made.
                 </p>
             </article>
 
@@ -171,9 +178,8 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-phone-desc" class="item-desc">
-                    I'm not loyal to any android brand - it was 80% off on a Black friday deal. I
-                    took it. I'm not into big phones, my hypermobile fingers does not handle them
-                    well. This fits perfectly.
+                    I'm not loyal to any android brand - it was 80% off on a Black friday sale.
+                    Because of my hypermobile fingers, I don't do big phones anyways.
                 </p>
             </article>
 
@@ -190,9 +196,14 @@ import BagLink from '../components/icons/BagLink.svg';
                 </a>
 
                 <p id="item-tablet-desc" class="item-desc">
-                    I haven't owned a TV since 2009, so this is also my tiny TV in bed. I do my
-                    journaling and organising my calendar here. Bullet journal method user since
-                    2014.
+                    I have practised the <a
+                        href="https://bulletjournal.com/blogs/faq/what-is-the-bullet-journal-method"
+                        aria-label="See Bulletjournal.com's FAQ and video (opens in new tab)"
+                        target="_blank"
+                        rel="noopener noreferrer">bullet journal method</a
+                    > since 2013 but went "digital" in 2023 with a hybrid tablet format that benefits
+                    my life specifically. It is a vital product of how far I've come with managing
+                    my bipolar disorder. I also use it as a tiny TV in bed. Great tablet.
                 </p>
             </article>
 
@@ -241,21 +252,31 @@ import BagLink from '../components/icons/BagLink.svg';
         margin-bottom: var(--space-7);
     }
 
-    h4 {
+    article h4 {
         margin-top: 0;
     }
 
-    p {
+    article p {
         margin: var(--space-0) 0 0 0;
     }
 
-    a {
+    article a {
         font-family: var(--font-mono);
         font-size: var(--p-sm);
     }
 
-    svg {
+    article svg {
         color: var(--accent-secondary);
         vertical-align: middle;
+    }
+    img.desk {
+        border-radius: var(--radius-md);
+        display: block;
+        object-fit: cover;
+        aspect-ratio: 7 / 9;
+        filter: grayscale(1) contrast(0.94);
+    }
+    img.desk:hover {
+        filter: none;
     }
 </style>

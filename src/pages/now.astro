@@ -1,97 +1,82 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'Currently';
 
 import NowBooks from '../components/icons/NowBooks.svg';
 import NowDice from '../components/icons/NowDice.svg';
 import NowTv from '../components/icons/NowTv.svg';
 import NowVinyl from '../components/icons/NowVinyl.svg';
+
+const pageTitle = `Currently`;
+const pageDescription = `Here's what I have been up as of late.`;
+const lastUpdated = '2025-12-06'; // YYYY-MM-DD
+const critroleEp = '63';
+const LearningRightnow = 'five';
+const listenRightnow = `At the moment I'm loving Penny & Sparrow's album 'lefty'.`;
+const playingRightnow = `I'm currently not playing anything. A tabletop games cafe is opening
+                in my small town in January which I'm really excited about.`;
+
+// Convert once to a readable string
+const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+});
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <h1>What I'm currently doing</h1>
-
-    <p>Here's what I have been up to lately.</p>
-
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
     <p>
-        The only traditional TV I watch is Doctor Who. After my TV dying on me in 2009 and me not
-        bothering replacing it, I will occasionally binge something every other year (like 2
-        seasons of Below Deck, Silent Witness or a new scifi show), but I prefer dnd podcasts and
-        youtube series.
+        {pageDescription}
+    </p><p>
+        I want to preface this by saying that after my TV died on me in 2009 and me not bothering
+        replacing it, I will occasionally binge something every other year (like 2 seasons of
+        Below Deck, Silent Witness or a new sci-fi show), but besides Doctor Who, I don't keep up
+        with a lot of traditional TV formats or film.
     </p>
 
     <p class="last-updated">
         Last updated:
-        <time datetime="2025-12-05">5 December 2025</time>
+        <time datetime={lastUpdated} aria-label={`Last updated on ${lastUpdatedReadable}`}>
+            {lastUpdatedReadable}
+        </time>
     </p>
 
     <div class="divider"></div>
 
-    <div class="item">
+    <article class="item" aria-labelledby="listening-title">
         <div class="item-title">
             <NowVinyl />
-            <h3>Music</h3>
+            <h3 id="listening-title">Listening</h3>
         </div>
         <div id="scrobble" class="item-desc">
             <p>
-                You can find my current rotation/obsessions on my Record.club <a
+                You can always find rotation/current obsessions on my Record.club
+                <a
                     href="https://record.club/mournstera"
-                    aria-label="See my latest scrobbled songs on ListenBrainz"
+                    aria-label="See my Record.club profile (opens in new tab)"
                     target="_blank"
                     rel="noopener noreferrer">profile</a
-                >. I update stuff on there on the regular basis.
+                >.
+                {listenRightnow}
             </p>
-
-            <p>Here's my latest scrobbled song on ListenBrainz:</p>
+            <p>Here's my latest scrobbled song:</p>
             <a
                 class="track"
                 href="https://listenbrainz.org/user/flipse"
-                aria-label="See my latest scrobbled songs on my ListenBrainz profile"
+                aria-label="See my latest scrobbled songs on my ListenBrainz profile (opens in new tab)"
                 target="_blank"
-                rel="noopener noreferrer"
-            >
-            </a>
+                rel="noopener noreferrer"></a>
         </div>
-    </div>
+    </article>
 
-    <div class="item">
-        <div class="item-title">
-            <NowTv />
-            <h3>Watching</h3>
-        </div>
-        <div class="item-desc">
-            <p>
-                I am on episode 61 of <a
-                    href="https://critrole.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Go to Critical Role's website">Critical Role</a
-                >'s Campaign 3. I'm <i>also</i> attempting to keep up with Campaign 4.
-            </p>
-        </div>
-    </div>
-
-    <div class="item">
-        <div class="item-title">
-            <NowDice />
-            <h3>Playing</h3>
-        </div>
-        <div class="item-desc">
-            <p>
-                I'm currently not playing anything. <em>But!</em> A tabletop games cafe is opening
-                in my small town, and I'm real excited.
-            </p>
-        </div>
-    </div>
-
-    <div class="item">
+    <article class="item" aria-labelledby="learning-title">
         <div class="item-title">
             <NowBooks />
-            <h3>Learning</h3>
+            <h3 id="learning-title">Learning</h3>
         </div>
         <div class="item-desc">
             <p>
-                I'm mid-way through MIT OpenCourseWare's <a
+                I've got {LearningRightnow} lectures left of MIT OpenCourseWare's
+                <a
                     href="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -99,7 +84,37 @@ import NowVinyl from '../components/icons/NowVinyl.svg';
                 >.
             </p>
         </div>
-    </div>
+    </article>
+
+    <article class="item" aria-labelledby="watching-title">
+        <div class="item-title">
+            <NowTv />
+            <h3 id="watching-title">Watching</h3>
+        </div>
+        <div class="item-desc">
+            <p>
+                I am on episode {critroleEp} of
+                <a
+                    href="https://critrole.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Go to Critical Role's website">Critical Role</a
+                >'s Campaign 3. (I'm <i>also</i> attempting to keep up with Campaign 4.)
+            </p>
+        </div>
+    </article>
+
+    <article class="item" aria-labelledby="playing-title">
+        <div class="item-title">
+            <NowDice />
+            <h3 id="playing-title">Playing</h3>
+        </div>
+        <div class="item-desc">
+            <p>
+                {playingRightnow}
+            </p>
+        </div>
+    </article>
 </BaseLayout>
 <style>
     .last-updated {
@@ -133,6 +148,11 @@ import NowVinyl from '../components/icons/NowVinyl.svg';
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
+    }
+    @media (min-width: 430px) {
+        .item-desc {
+            margin-left: calc(var(--space-2) + 1.5rem);
+        }
     }
 </style>
 <script src="/scripts/scrobble.js" defer></script>

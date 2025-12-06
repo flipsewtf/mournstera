@@ -1,5 +1,6 @@
 ---
 import Chevron from './icons/Chevron.svg';
+
 const current = Astro.url.pathname;
 const isActive = (path: string) => current === path;
 ---
@@ -69,18 +70,12 @@ const isActive = (path: string) => current === path;
         width: 100%;
         max-width: 100%;
         height: calc(100dvh - var(--header-height));
-        padding: var(--space-3);
         right: 0;
-        background: var(--bg-secondary);
         z-index: 1;
         position: absolute;
         top: var(--header-height);
-        transform-origin: top right;
         opacity: 1;
-        transform: rotateX(0) scale(1);
-        transition:
-            opacity 0.28s cubic-bezier(0.25, 0.8, 0.3, 1),
-            transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
+        transition: opacity 0.28s var(--cubic-snappy);
     }
 
     .megamenu:not(.open) {
@@ -89,7 +84,7 @@ const isActive = (path: string) => current === path;
     }
 
     /* 536px width of mega menu + 2*space, on desktop */
-    @media (max-width: 561px) {
+    @media (max-width: 559px) {
         body.noscroll {
             overflow: hidden;
             touch-action: none;
@@ -97,9 +92,13 @@ const isActive = (path: string) => current === path;
     }
 
     nav {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
+        padding: var(--space-3);
+        background: var(--bg-secondary);
+        display: flex;
+        gap: var(--space-3);
+        height: 100%;
+        flex-direction: column;
+        align-items: flex-end;
     }
     h4 {
         font-size: 1.4rem;
@@ -110,9 +109,6 @@ const isActive = (path: string) => current === path;
     }
 
     nav a {
-        text-align: right;
-        border-radius: 0;
-        border: none;
         color: var(--text-primary);
     }
 
@@ -124,36 +120,40 @@ const isActive = (path: string) => current === path;
     /* 536px width of mega menu + 2* var(--layout-padding)/32px, on desktop */
     @media (min-width: 560px) {
         .megamenu {
-            border-radius: var(--radius-md);
             width: 31rem;
             height: auto;
             margin-top: -0.0625rem;
             right: auto;
-            border: var(--1px) solid var(--border-primary);
-            transition:
-                border-radius var(--transition-md),
-                opacity 0.28s cubic-bezier(0.25, 0.8, 0.3, 1),
-                transform 0.28s cubic-bezier(0.25, 0.8, 0.3, 1);
-        }
-
-        :global(header.top.scrolled .megamenu) {
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
-        }
-
-        .megamenu:not(.open) {
-            transform: rotateX(-15deg) scale(0.9);
         }
 
         nav {
+            display: grid;
+            height: auto;
             grid-template-columns: repeat(2, 1fr);
             gap: var(--space-0);
+            border-radius: var(--radius-md);
+            border: var(--1px) solid var(--border-primary);
+            opacity: 1;
+            transform: rotateX(0) scale(1);
+            transform-origin: top right;
+            transition:
+                border-radius 0.28s var(--cubic-snappy),
+                transform 0.28s var(--cubic-snappy);
+        }
+        .megamenu:not(.open) nav {
+            transform: rotateX(-15deg) scale(0.9);
+        }
+
+        :global(header.top.scrolled nav) {
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
         }
 
         nav a {
             padding: var(--space-2);
             border-radius: var(--radius-sm);
-            border: var(--1px) solid transparent;
-            text-align: left;
+            border: var(--1px) solid var(--bg-secondary);
+            will-change: transform;
+            transform: translateZ(0);
         }
 
         nav a:hover {

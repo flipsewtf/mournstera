@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = 'About Flipse';
+const pageDescription = `A litle about me and what I do.`;
 
 const birthDate = new Date('1988-03-04'); // replace with my birthday (YYYY-MM-DD)
 const today = new Date();
@@ -17,10 +18,8 @@ if (!hasHadBirthdayThisYear) {
 }
 ---
 
-<BaseLayout pageTitle={pageTitle}>
+<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
     <article>
-        <h1>About Flipse</h1>
-
         <p>
             My name is Flipse (she/her), I'm {age} and autistic. My special subject is music + making
             lists with data, so I thoroughly enjoyed discovering <a
