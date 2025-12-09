@@ -1,9 +1,13 @@
 ---
 import Welcome from '../components/Welcome.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'Welcome';
 ---
 
 <BaseLayout pageTitle={null}>
     <Welcome />
 </BaseLayout>
+<style is:global>
+    main {
+        flex: unset;
+    }
+</style>

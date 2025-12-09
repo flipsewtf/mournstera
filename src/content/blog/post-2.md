@@ -1,6 +1,6 @@
 ---
 title: My Second Blog Post
-pubDate: 2022-07-02
+pubDate: 2025-12-08
 author: Astro Learner
 description: "After learning some Astro, I couldn't stop!"
 image:

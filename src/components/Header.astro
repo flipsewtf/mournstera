@@ -6,7 +6,9 @@ import Bolt from './icons/Bolt.svg';
 
 <header class="top">
     <div class="header-inner">
-        <a class="home" href="/">M<span class="sr-only">Go to homepage</span></a>
+        <a class="home" href="/"
+            >M<span class="mobile">ournstera</span><span class="sr-only">Go to homepage</span></a
+        >
 
         <div class="header-right" role="navigation" aria-label="Header controls">
             <MegaMenu />
@@ -17,8 +19,12 @@ import Bolt from './icons/Bolt.svg';
 </header>
 
 <style>
+    .mobile {
+        display: none;
+    }
     a {
         color: var(--text-secondary);
+        text-decoration: none;
     }
     a:hover {
         color: var(--accent-primary);
@@ -31,7 +37,7 @@ import Bolt from './icons/Bolt.svg';
         background-color: var(--bg-header);
         backdrop-filter: blur(9px);
         border-bottom: 1px solid var(--border-primary);
-        transition: border-color 0.28s var(--cubic-snappy);
+        transition: border-color var(--cubic-smooth);
         height: var(--header-height);
         display: flex;
         align-items: center;
@@ -46,24 +52,12 @@ import Bolt from './icons/Bolt.svg';
         gap: var(--space-3);
         justify-content: space-between;
         align-items: center;
+        height: var(--header-height);
     }
 
     a.home {
-        overflow: hidden;
         font-weight: 600;
-        font-size: 1.5rem;
-        font-family: var(--font-heading);
-        border-radius: var(--radius-sm);
-        display: flex;
-        height: 2rem;
-        width: 2rem;
-        align-items: center;
-        justify-content: center;
-        letter-spacing: 0;
-    }
-    a.home:hover {
-        color: var(--bg-primary);
-        background-color: var(--accent-primary);
+        font-size: 1.25rem;
     }
 
     .header-right {
@@ -78,13 +72,16 @@ import Bolt from './icons/Bolt.svg';
         padding: var(--2px);
     }
 
-    @media (min-width: 560px) {
+    @media (min-width: 704px) {
         header {
             border-bottom: 1px solid transparent;
         }
 
         header.scrolled {
             border-bottom-color: var(--border-primary);
+        }
+        .mobile {
+            display: inline;
         }
     }
 </style>

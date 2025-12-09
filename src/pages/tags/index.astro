@@ -7,6 +7,18 @@ const pageTitle = 'Tag Index';
 ---
 
 <BaseLayout pageTitle={pageTitle}>
+    blog tags
+    <div class="tags">
+        {
+            tags.map((tag) => (
+                <p class="tag">
+                    <a href={`/tags/${tag}`}>{tag}</a>
+                </p>
+            ))
+        }
+    </div>
+
+    garden tags
     <div class="tags">
         {
             tags.map((tag) => (

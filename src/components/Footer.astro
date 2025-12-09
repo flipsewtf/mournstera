@@ -7,45 +7,50 @@ import Rss from './icons/Rss.svg';
 
 <footer>
     <div class="footer-inner">
-        <a
-            class="rss"
-            href="/rss.xml"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Subscribe via RSS"
-        >
-            <div class="svg-wrap"><Rss /></div>Join my adventures <span class="sr-only"
-                >and subscribe on RSS</span
+        <div class="footer-icons">
+            <a
+                class="rss"
+                href="/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Subscribe via RSS"
             >
-        </a>
+                <Rss /><span class="sr-only">Subscribe on RSS</span>
+            </a>
+            <nav class="social" aria-label="Social links">
+                <a
+                    href="https://bsky.app/profile/mournstera.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow on Bluesky"
+                >
+                    <Bluesky />
+                </a>
+                <a
+                    class="insta"
+                    href="https://www.instagram.com/mournstera/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow on Instagram"
+                >
+                    <Instagram />
+                </a>
+                <a
+                    href="https://github.com/flipsewtf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow on GitHub"
+                >
+                    <Github />
+                </a>
+            </nav>
+        </div>
 
-        <nav class="social" aria-label="Social links">
-            <a
-                href="https://bsky.app/profile/mournstera.me"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on Bluesky"
-            >
-                <Bluesky />
+        <div class="info-other">
+            <a href="/site-info/" aria-label="Read about build, transparancy and policy"
+                >info
             </a>
-            <a
-                class="insta"
-                href="https://www.instagram.com/mournstera/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on Instagram"
-            >
-                <Instagram />
-            </a>
-            <a
-                href="https://github.com/flipsewtf"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow on GitHub"
-            >
-                <Github />
-            </a>
-        </nav>
+        </div>
     </div>
 </footer>
 
@@ -53,28 +58,32 @@ import Rss from './icons/Rss.svg';
     a {
         color: var(--text-primary);
     }
+    a:hover {
+        color: var(--accent-primary);
+    }
 
     footer {
         width: 100%;
-        margin: 0 auto;
-        max-width: var(--layout-width);
         padding-inline: var(--layout-padding);
+        border-top: var(--1px) solid var(--border-primary);
     }
 
     .footer-inner {
         padding-block: var(--space-5);
-        background-image: repeating-linear-gradient(
-            to right,
-            var(--border-primary) 0 7px,
-            transparent 7px 10px
-        );
-        background-repeat: no-repeat;
-        background-size: 100% 1px;
-        background-position: top left;
         display: flex;
-        gap: var(--space-3);
+        gap: var(--space-4);
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: var(--layout-width);
+        margin: 0 auto;
+    }
+
+    .footer-icons {
+        display: flex;
+        gap: var(--space-4);
+        justify-content: flex-start;
+        align-items: center;
         flex-wrap: wrap;
     }
 
@@ -102,22 +111,26 @@ import Rss from './icons/Rss.svg';
     a.rss {
         display: flex;
         align-items: center;
-        gap: var(--space-1);
-        font-family: var(--font-mono);
-        font-size: var(--p-sm);
-        font-weight: 500;
-    }
-
-    a.rss .svg-wrap {
+        gap: var(--space-0);
         border-radius: var(--3px);
         background-color: var(--bg-alt);
         color: var(--text-primary);
-        padding: 0.25rem;
+        padding: var(--3px);
         display: inline-flex;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    a.rss:hover {
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
     }
     a.rss svg {
-        stroke-width: 2.5;
-        height: 1.125rem;
-        width: 1.125rem;
+        stroke-width: 2.75;
+        height: 100%;
+        width: 100%;
+    }
+    .info-other {
+        font-size: var(--p-sm);
+        font-weight: 500;
     }
 </style>

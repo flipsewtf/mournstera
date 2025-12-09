@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogPost from '../components/BlogPost.astro';
+
+const allGarden = (await getCollection('garden')).sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const pageTitle = 'Garden';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <p>This is where I will post about my garden adventures.</p>
+    <ul>
+        {
+            allGarden.map((post) => (
+                <BlogPost
+                    url={`/garden/${post.id}/`}
+                    title={post.data.title}
+                    tags={post.data.tags}
+                />
+            ))
+        }
+    </ul>
+    <a href="/tags/">Tags index page</a>
+</BaseLayout>

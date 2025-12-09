@@ -33,7 +33,7 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
         with a lot of traditional TV formats or film.
     </p>
 
-    <p class="last-updated">
+    <p class="mono-sm">
         Last updated:
         <time datetime={lastUpdated} aria-label={`Last updated on ${lastUpdatedReadable}`}>
             {lastUpdatedReadable}
@@ -58,7 +58,7 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
                 >.
                 {listenRightnow}
             </p>
-            <p>Here's my latest scrobbled song:</p>
+            <p>Here's my latest scrobbled song via ListenBrainz:</p>
             <a
                 class="track"
                 href="https://listenbrainz.org/user/flipse"

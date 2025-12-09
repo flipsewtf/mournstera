@@ -3,12 +3,7 @@ import ThemeSun from './icons/ThemeSun.svg';
 import ThemeMoon from './icons/ThemeMoon.svg';
 ---
 
-<button
-    class="theme-toggle header-icon"
-    type="button"
-    aria-label="Toggle theme"
-    aria-pressed="false"
->
+<button class="theme-toggle" type="button" aria-label="Toggle theme" aria-pressed="false">
     <ThemeSun />
     <ThemeMoon />
 </button>
@@ -22,6 +17,7 @@ import ThemeMoon from './icons/ThemeMoon.svg';
         justify-content: center;
         width: calc(var(--space-3) + var(--2px) * 2);
         height: calc(var(--space-3) + var(--2px) * 2);
+        transition: color var(--cubic-smooth);
     }
     button.theme-toggle:hover {
         color: var(--accent-primary);

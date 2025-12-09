@@ -1,18 +1,72 @@
 ---
-const { title, url, tags } = Astro.props;
+import DateClock from './icons/DateClock.svg';
+const { url, title, description, pubDate } = Astro.props;
 ---
 
 <li>
-    <a href={url}>
-        <h2>{title}</h2>
-    </a>
-    {
-        tags && tags.length > 0 && (
-            <ul class="post-tags">
-                {tags.map((tag: string) => (
-                    <li class="tag">{tag}</li>
-                ))}
-            </ul>
-        )
-    }
+    <article class="blog-post-list">
+        <a href={url}>
+            <h2>{title}</h2>
+        </a>
+        {description && <p class="post-description">{description}</p>}
+        <div class="date-wrap">
+            <DateClock />
+
+            {
+                pubDate && (
+                    <time datetime={pubDate.toISOString()} class="post-date">
+                        {pubDate.toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                        })}
+                    </time>
+                )
+            }
+        </div>
+    </article>
 </li>
+<style>
+    li:not(:last-of-type) {
+        margin-bottom: var(--space-7);
+    }
+    li {
+        display: flex;
+    }
+    li::before {
+        content: '';
+        display: block;
+        width: var(--4px);
+        height: auto;
+        background-color: var(--border-secondary);
+        border-radius: var(--3px);
+        margin-right: var(--space-5);
+        flex: none;
+    }
+
+    a {
+        display: inline-block;
+        font-size: var(--h2);
+    }
+    h2 {
+        display: inline;
+        font-size: inherit;
+    }
+    p {
+        margin: 0;
+    }
+    .date-wrap {
+        display: flex;
+        gap: var(--space-0);
+        font-size: var(--p-sm);
+        font-weight: 500;
+        margin-top: var(--space-0);
+        align-items: center;
+    }
+    svg {
+        width: 1rem;
+        height: 1rem;
+        stroke-width: 2.25;
+        color: var(--accent-secondary);
+    }
+</style>

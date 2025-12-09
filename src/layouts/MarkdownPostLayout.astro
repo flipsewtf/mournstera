@@ -4,21 +4,28 @@ const { frontmatter } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-    <h1>{frontmatter.title}</h1>
     <p>{frontmatter.pubDate.toLocaleDateString()}</p>
     <p><em>{frontmatter.description}</em></p>
-    <p>Written by: {frontmatter.author}</p>
-    <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
 
-    <div class="tags">
-        {
-            frontmatter.tags.map((tag: string) => (
-                <p class="tag">
-                    <a href={`/tags/${tag}`}>{tag}</a>
-                </p>
-            ))
-        }
-    </div>
+    <!-- Only render image if it exists -->
+    {
+        frontmatter.image?.url && (
+            <img src={frontmatter.image.url} alt={frontmatter.image.alt ?? ''} />
+        )
+    }
+
+    <!-- Only render tags if they exist -->
+    {
+        frontmatter.tags?.length > 0 && (
+            <div class="tags">
+                {frontmatter.tags.map((tag: string) => (
+                    <p class="tag">
+                        <a href={`/tags/${tag}`}>{tag}</a>
+                    </p>
+                ))}
+            </div>
+        )
+    }
 
     <slot />
 </BaseLayout>
