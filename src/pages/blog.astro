@@ -2,36 +2,32 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
+import BlogSidebar from '../components/BlogSidebar.astro';
+import '../assets/styles/blog.css';
 
 const allPosts = (await getCollection('blog')).sort(
     (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
 );
 
-// all unique tags for nav
-const tags = ['all', ...[...new Set(allPosts.map((post) => post.data.tags).flat())]];
+const tags = [
+    'all',
+    ...Array.from(new Set(allPosts.map((p) => p.data.tags).flat())).sort((a, b) =>
+        a.localeCompare(b, 'en', { sensitivity: 'base' })
+    ),
+];
 
 const pageTitle = 'Blog';
-const pageDescription = `More or less coherent, long-form thoughts`;
+const pageDescription = 'More or less coherent, long-form thoughts';
 ---
 
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <nav aria-label="Blog tags">
-        <ul class="tag-list">
-            {
-                tags.map((tag) => (
-                    <li>
-                        <a
-                            href={tag === 'all' ? '/blog/' : `/tags/${tag}`}
-                            class={tag === 'all' ? 'active' : null}
-                            aria-current={tag === 'all' ? 'page' : undefined}
-                        >
-                            {tag}
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+    <BlogSidebar
+        slot="sidebar"
+        tags={tags}
+        currentTag="all"
+        basePath="/blog"
+        className="tag-list blog"
+    />
 
     <ul class="post-list">
         {
@@ -46,33 +42,3 @@ const pageDescription = `More or less coherent, long-form thoughts`;
         }
     </ul>
 </BaseLayout>
-<style>
-    ul.tag-list {
-        display: flex;
-        gap: var(--space-2);
-        flex-wrap: wrap;
-        margin-bottom: var(--space-9);
-    }
-    ul.tag-list li {
-        display: flex;
-    }
-    ul.tag-list a {
-        font-weight: 500;
-        padding: var(--space-0) var(--space-1);
-        color: var(--accent-secondary);
-        background-color: var(--bg-accent);
-        border: var(--1px) solid var(--accent-primary);
-        text-decoration: none;
-        border-radius: var(--radius-mn);
-    }
-    ul.tag-list a:hover {
-        border-color: var(--accent-secondary);
-        color: var(--bg-secondary);
-        background-color: var(--accent-secondary);
-    }
-    ul.tag-list a.active {
-        border-color: var(--border-secondary);
-        color: var(--accent-secondary);
-        background-color: var(--bg-secondary);
-    }
-</style>

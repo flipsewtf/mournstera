@@ -1,0 +1,29 @@
+---
+interface Props {
+    tags: string[];
+    currentTag: string;
+    basePath: string;
+    className?: string;
+}
+const { tags, currentTag, basePath, className = '' }: Props = Astro.props;
+---
+
+<div class="sidebar-inner">
+    <nav aria-label="Blog tags">
+        <ul class={className}>
+            {
+                tags.map((tag) => (
+                    <li>
+                        <a
+                            href={tag === 'all' ? basePath : `${basePath}/tags/${tag}`}
+                            class={tag === currentTag ? 'active' : null}
+                            aria-current={tag === currentTag ? 'page' : undefined}
+                        >
+                            {tag}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</div>

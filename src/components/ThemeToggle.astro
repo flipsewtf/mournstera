@@ -10,7 +10,7 @@ import ThemeMoon from './icons/ThemeMoon.svg';
 
 <style>
     button.theme-toggle {
-        color: var(--text-secondary);
+        color: var(--text-alt); /* updated from --text-secondary */
         display: inline-flex;
         position: relative;
         align-items: center;
@@ -19,9 +19,11 @@ import ThemeMoon from './icons/ThemeMoon.svg';
         height: calc(var(--space-3) + var(--2px) * 2);
         transition: color var(--cubic-smooth);
     }
+
     button.theme-toggle:hover {
-        color: var(--accent-primary);
+        color: var(--peach-accent); /* updated from --accent-peach */
     }
+
     .sun,
     .moon {
         position: absolute;

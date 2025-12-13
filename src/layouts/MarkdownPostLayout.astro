@@ -1,31 +1,54 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import '../assets/styles/blog.css';
+
 const { frontmatter } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-    <p>{frontmatter.pubDate.toLocaleDateString()}</p>
-    <p><em>{frontmatter.description}</em></p>
+<BaseLayout pageTitle={frontmatter.title} isPost={true}>
+    <article class="post-entry">
+        <h1>{frontmatter.title}</h1>
 
-    <!-- Only render image if it exists -->
-    {
-        frontmatter.image?.url && (
-            <img src={frontmatter.image.url} alt={frontmatter.image.alt ?? ''} />
-        )
-    }
+        <p><em>{frontmatter.description}</em></p>
 
-    <!-- Only render tags if they exist -->
-    {
-        frontmatter.tags?.length > 0 && (
-            <div class="tags">
-                {frontmatter.tags.map((tag: string) => (
-                    <p class="tag">
-                        <a href={`/tags/${tag}`}>{tag}</a>
-                    </p>
-                ))}
-            </div>
-        )
-    }
+        <span class="sr-only">Published on </span>
+        <time
+            datetime={frontmatter.pubDate.toISOString()}
+            aria-label={`Published on ${frontmatter.pubDate.toLocaleDateString('en-GB', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+            })}`}
+        >
+            {
+                frontmatter.pubDate.toLocaleDateString('en-GB', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                })
+            }
+        </time>
 
-    <slot />
+        {
+            frontmatter.tags?.length > 0 && (
+                <ul class="tags" aria-label="Tags for this post">
+                    {frontmatter.tags.map((tag: string) => (
+                        <li>
+                            <a href={`/blog/tags/${tag}`}>{tag}</a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+
+        {
+            frontmatter.image?.url && (
+                <img src={frontmatter.image.url} alt={frontmatter.image.alt ?? ''} />
+            )
+        }
+
+        <slot />
+    </article>
 </BaseLayout>

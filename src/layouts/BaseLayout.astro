@@ -8,6 +8,7 @@ const {
     pageDescription = 'Personal site.',
     pageImage = '/social-default.png',
     mainClass = '',
+    isPost = false, // auto-hide outer h1 if true
 } = Astro.props;
 ---
 
@@ -17,12 +18,22 @@ const {
     </head>
     <body>
         <Header />
+
         <main class={mainClass}>
+            {!isPost && pageTitle && <h1>{pageTitle}</h1>}
+
             <section>
-                {pageTitle && <h1>{pageTitle}</h1>}
                 <slot />
             </section>
+            {
+                Astro.slots.sidebar && (
+                    <aside class="sidebar">
+                        <slot name="sidebar" />
+                    </aside>
+                )
+            }
         </main>
+
         <Footer />
     </body>
 </html>

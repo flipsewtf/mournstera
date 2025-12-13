@@ -10,7 +10,7 @@ import Bolt from './icons/Bolt.svg';
             >M<span class="mobile">ournstera</span><span class="sr-only">Go to homepage</span></a
         >
 
-        <div class="header-right" role="navigation" aria-label="Header controls">
+        <div class="header-right" role="group" aria-label="Header controls">
             <MegaMenu />
             <a class="now-link header-icon" href="/now" aria-label="Currently"><Bolt /></a>
             <ThemeToggle />
@@ -22,13 +22,15 @@ import Bolt from './icons/Bolt.svg';
     .mobile {
         display: none;
     }
+
     a {
-        color: var(--text-secondary);
+        color: var(--text-alt); /* updated from --text-secondary */
         text-decoration: none;
     }
     a:hover {
-        color: var(--accent-primary);
+        color: var(--purple-accent); /* updated from --accent-purple */
     }
+
     header {
         width: 100%;
         position: sticky;
@@ -36,7 +38,7 @@ import Bolt from './icons/Bolt.svg';
         z-index: 200;
         background-color: var(--bg-header);
         backdrop-filter: blur(9px);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: var(--1px) solid var(--border); /* updated from --border-purple */
         transition: border-color var(--cubic-smooth);
         height: var(--header-height);
         display: flex;
@@ -74,11 +76,11 @@ import Bolt from './icons/Bolt.svg';
 
     @media (min-width: 704px) {
         header {
-            border-bottom: 1px solid transparent;
+            border-bottom: var(--1px) solid transparent;
         }
 
         header.scrolled {
-            border-bottom-color: var(--border-primary);
+            border-bottom-color: var(--border); /* updated from --border-purple */
         }
         .mobile {
             display: inline;
@@ -91,7 +93,7 @@ import Bolt from './icons/Bolt.svg';
 
     if (header) {
         window.addEventListener('scroll', () => {
-            header.classList.toggle('scrolled', window.scrollY > 50);
+            header.classList.toggle('scrolled', window.scrollY > 20);
         });
     }
 </script>

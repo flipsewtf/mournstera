@@ -1,15 +1,15 @@
 ---
-title: 'My First Blog Post'
+title: 'Markdown References'
 pubDate: 2025-12-06
-description: 'This is the first post of my new Astro blog.'
+description: 'To remind myself of stuff I will forget 3 minutes after using it.'
 author: 'Flipse'
 # image:
 #     url: '/images/blog/bush.webp'
 #     alt: 'A photo of me.'
-tags: ['astro', 'blogging', 'rando']
+tags: ['references', 'markdown']
 ---
 
-Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.
+Here is a a bunch of examples of Markdown syntax because I can't ever remember stuff. It is directly copied from [Astro's github](https://github.com/withastro/astro/blob/main/examples/blog/src/content/blog/markdown-style-guide.md).
 
 ## Headings
 
@@ -78,6 +78,10 @@ The blockquote element represents content that is quoted from another source, op
 > — <cite>Rob Pike[^1]</cite>
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
+
+The World Surfing League[^2] started using better judging systems.
+
+[^2]: this is a 2nd example of footnotes.
 
 ## Tables
 

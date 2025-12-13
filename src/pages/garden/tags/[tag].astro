@@ -1,0 +1,60 @@
+---
+// garden tag
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogPost from '../../../components/BlogPost.astro';
+import GardenSidebar from '../../../components/GardenSidebar.astro';
+import '../../../assets/styles/blog.css';
+
+export async function getStaticPaths() {
+    const allGarden = await getCollection('garden'); // fetch garden posts here
+
+    const uniqueTags = [...new Set(allGarden.map((post) => post.data.tags).flat())];
+
+    return uniqueTags.map((tag) => {
+        const filteredPosts = allGarden.filter((post) => post.data.tags.includes(tag));
+        return {
+            params: { tag },
+            props: { posts: filteredPosts },
+        };
+    });
+}
+
+// current tag and posts from props
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+// all unique tags for nav (for nav links)
+const allGarden = await getCollection('garden');
+const tags = [
+    'all',
+    ...Array.from(new Set(allGarden.map((p) => p.data.tags).flat())).sort((a, b) =>
+        a.localeCompare(b, 'en', { sensitivity: 'base' })
+    ),
+];
+
+const pageTitle = 'Garden';
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <GardenSidebar
+        slot="sidebar"
+        tags={tags}
+        currentTag={tag}
+        basePath="/garden"
+        className="tag-list garden"
+    />
+
+    <ul class="post-list">
+        {
+            posts.map((post) => (
+                <BlogPost
+                    url={`/garden/${post.id}/`}
+                    title={post.data.title}
+                    description={post.data.description}
+                    pubDate={post.data.pubDate}
+                />
+            ))
+        }
+    </ul>
+</BaseLayout>

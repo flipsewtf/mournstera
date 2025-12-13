@@ -13,7 +13,7 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/social-default.pn
 ---
 
 <script is:inline>
-    // 9th level spell to make the theme appear correctly before the page screams at you.
+    // 2nd level spell to make the theme appear correctly before the page screams at you.
     (function () {
         const stored = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -54,6 +54,6 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/social-default.pn
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
     rel="stylesheet"
 />

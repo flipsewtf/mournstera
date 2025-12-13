@@ -262,18 +262,21 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
 
     article a {
         font-family: var(--font-mono);
-        font-size: var(--p-sm);
+        display: flex;
+        align-items: center;
+        gap: var(--space-1);
+        font-weight: 600;
     }
 
     article svg {
-        color: var(--accent-secondary);
+        color: var(--peach-accent);
         vertical-align: middle;
     }
     img.desk {
         border-radius: var(--radius-md);
         display: block;
         object-fit: cover;
-        aspect-ratio: 7 / 9;
+        aspect-ratio: 7 / 8;
         filter: grayscale(1) contrast(0.94);
     }
     img.desk:hover {

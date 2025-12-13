@@ -1,16 +1,16 @@
 ---
-import DateClock from './icons/DateClock.svg';
+import Sprout from './icons/Sprout.svg';
 const { url, title, description, pubDate } = Astro.props;
 ---
 
-<li class="blog-list">
+<li class="garden-list">
     <article class="post-list">
         <a href={url}>
             <h2>{title}</h2>
         </a>
         {description && <p class="post-description">{description}</p>}
         <div class="date-wrap">
-            <DateClock />
+            <Sprout />
 
             {
                 pubDate && (

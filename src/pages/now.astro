@@ -8,12 +8,12 @@ import NowVinyl from '../components/icons/NowVinyl.svg';
 
 const pageTitle = `Currently`;
 const pageDescription = `Here's what I have been up as of late.`;
-const lastUpdated = '2025-12-06'; // YYYY-MM-DD
+
+const lastUpdated = '2025-12-13'; // YYYY-MM-DD
 const critroleEp = '63';
 const LearningRightnow = 'five';
 const listenRightnow = `At the moment I'm loving Penny & Sparrow's album 'lefty'.`;
-const playingRightnow = `I'm currently not playing anything. A tabletop games cafe is opening
-                in my small town in January which I'm really excited about.`;
+const playingRightnow = `I'm currently not playing anything.`;
 
 // Convert once to a readable string
 const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
@@ -26,7 +26,8 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
     <p>
         {pageDescription}
-    </p><p>
+    </p>
+    <p>
         I want to preface this by saying that after my TV died on me in 2009 and me not bothering
         replacing it, I will occasionally binge something every other year (like 2 seasons of
         Below Deck, Silent Witness or a new sci-fi show), but besides Doctor Who, I don't keep up
@@ -59,12 +60,14 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
                 {listenRightnow}
             </p>
             <p>Here's my latest scrobbled song via ListenBrainz:</p>
-            <a
-                class="track"
-                href="https://listenbrainz.org/user/flipse"
-                aria-label="See my latest scrobbled songs on my ListenBrainz profile (opens in new tab)"
-                target="_blank"
-                rel="noopener noreferrer"></a>
+            <p>
+                <a
+                    class="track"
+                    href="https://listenbrainz.org/user/flipse"
+                    aria-label="See my latest scrobbled songs on my ListenBrainz profile (opens in new tab)"
+                    target="_blank"
+                    rel="noopener noreferrer"></a>
+            </p>
         </div>
     </article>
 
@@ -117,13 +120,10 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
     </article>
 </BaseLayout>
 <style>
-    .last-updated {
-        font-family: var(--font-mono);
-        font-size: var(--p-sm);
-    }
     .item:not(:last-of-type) {
         margin-bottom: var(--space-8);
     }
+
     .item-title {
         display: flex;
         align-items: center;
@@ -131,23 +131,18 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
     }
 
     .item-desc p:first-child {
-        margin-top: var(--spacing-sm);
+        margin-top: var(--text-margin-sm);
     }
 
     h3 {
         margin: 0;
     }
+
     svg {
         flex-shrink: 0;
-        color: var(--text-secondary);
+
         width: 1.5rem;
         height: 1.5rem;
-    }
-    .now-container {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 0.5rem;
     }
     @media (min-width: 430px) {
         .item-desc {

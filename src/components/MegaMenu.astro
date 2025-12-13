@@ -35,19 +35,21 @@ const isActive = (path: string) => current === path;
 
 <style>
     a {
-        color: var(--text-primary);
+        color: var(--text); /* updated from --text-primary */
         text-decoration: none;
-        transition: color var(--cubic-smooth) border-color var(--cubic-smooth);
+        transition:
+            color var(--cubic-smooth),
+            border-color var(--cubic-smooth);
     }
     a:hover {
-        color: var(--accent-primary);
+        color: var(--purple-accent); /* updated from --accent-purple */
     }
 
     button.menu-toggle {
         display: flex;
-        gap: var(--4px);
+        gap: var(--2px); /* updated from --4px to use your spacing scale */
         align-items: center;
-        color: var(--text-secondary);
+        color: var(--text-alt); /* updated from --text-secondary */
         margin-right: var(--space-1);
         font-weight: 600;
     }
@@ -60,7 +62,7 @@ const isActive = (path: string) => current === path;
     }
 
     button.menu-toggle:hover svg {
-        color: var(--accent-primary);
+        color: var(--purple-accent); /* updated from --accent-purple */
     }
 
     button.menu-toggle:active svg {
@@ -94,13 +96,14 @@ const isActive = (path: string) => current === path;
 
     nav {
         padding: var(--space-3);
-        background: var(--bg-secondary);
+        background: var(--bg-alt); /* updated from --bg-secondary */
         display: flex;
         gap: var(--space-3);
         height: 100%;
         flex-direction: column;
         align-items: flex-end;
     }
+
     h4 {
         font-size: 1.4rem;
         margin: 0;
@@ -111,7 +114,6 @@ const isActive = (path: string) => current === path;
     }
 
     /* Desktop overrides */
-    /* 536px width of mega menu + 2* var(--layout-padding)/32px, on desktop */
     @media (min-width: 704px) {
         .megamenu {
             width: 40rem;
@@ -122,14 +124,13 @@ const isActive = (path: string) => current === path;
 
         nav {
             display: grid;
-
             grid-template-columns: repeat(3, 1fr);
             align-items: stretch;
             gap: var(--4px);
             height: auto;
             padding: var(--space-1);
             border-radius: var(--radius-md);
-            border: var(--1px) solid var(--border-primary);
+            border: var(--1px) solid var(--border);
             opacity: 1;
             transform: rotateX(0) scale(1);
             transform-origin: top right;
@@ -137,6 +138,7 @@ const isActive = (path: string) => current === path;
                 border-radius var(--cubic-smooth),
                 transform var(--cubic-snappy);
         }
+
         .megamenu:not(.open) nav {
             transform: rotateX(-15deg) scale(0.9);
         }
@@ -148,24 +150,24 @@ const isActive = (path: string) => current === path;
         nav a {
             padding: var(--space-1);
             will-change: transform;
-            transform: translateZ(0);
         }
 
         h4 {
             font-size: var(--h4);
             font-weight: 700;
         }
+
         nav a:hover h4 {
-            color: var(--accent-primary);
+            color: var(--purple-accent);
         }
 
         nav p.desc {
             display: block;
-            color: var(--text-primary);
-            font-size: var(--p-sm);
+            color: var(--text); /* updated from --text-primary */
+            font-size: var(--text-sm); /* updated from --p-sm */
             line-height: var(--line-height-sub);
             margin: 0;
-            margin-top: var(--5px);
+            margin-top: var(--1px); /* updated from --5px */
         }
     }
 
