@@ -14,7 +14,7 @@ const {
 const tagBase = section === 'garden' ? '/garden/tags' : '/blog/tags';
 ---
 
-<BaseLayout pageTitle={frontmatter.title} isPost={true}>
+<BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description} isPost={true}>
     <nav aria-label="Post navigation">
         <a href={backHref} class="go-back">
             <ArrowLeft />
