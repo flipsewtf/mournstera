@@ -1,8 +1,5 @@
 ---
-import Bluesky from './icons/Bluesky.svg';
-import Instagram from './icons/Instagram.svg';
-import Github from './icons/Github.svg';
-import Rss from './icons/Rss.svg';
+import { Bluesky, Instagram, Github, Rss } from '../components/icons';
 ---
 
 <footer>
@@ -13,8 +10,7 @@ import Rss from './icons/Rss.svg';
                 href="/rss.xml"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Subscribe via RSS"
-            >
+                aria-label="Subscribe via RSS">
                 <Rss />
             </a>
             <nav class="social" aria-label="Social links">
@@ -22,8 +18,7 @@ import Rss from './icons/Rss.svg';
                     href="https://bsky.app/profile/mournstera.me"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Follow on Bluesky"
-                >
+                    aria-label="Follow on Bluesky">
                     <Bluesky />
                 </a>
                 <a
@@ -31,38 +26,36 @@ import Rss from './icons/Rss.svg';
                     href="https://www.instagram.com/mournstera/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Follow on Instagram"
-                >
+                    aria-label="Follow on Instagram">
                     <Instagram />
                 </a>
                 <a
                     href="https://github.com/flipsewtf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Follow on GitHub"
-                >
+                    aria-label="Follow on GitHub">
                     <Github />
                 </a>
             </nav>
         </div>
 
-        <div class="info-other">
-            <a href="/colophon" aria-label="Read about build, credits and policy">colophon </a>
+        <div class="made-info">
+            <span role="img" aria-label="love heart">♡</span> Made in Denmark.
         </div>
     </div>
 </footer>
 
 <style>
     a {
-        color: var(--text); /* updated from --text-primary */
+        color: var(--text);
     }
     a:hover {
-        color: var(--peach-accent); /* updated from --accent-peach */
+        color: var(--peach-accent);
     }
 
     footer {
         width: 100%;
-        background-color: var(--bg-alt); /* using your new bg-alt instead of bg-secondary */
+        background-color: var(--bg-alt);
     }
 
     .footer-inner {
@@ -88,21 +81,21 @@ import Rss from './icons/Rss.svg';
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        gap: var(--space-0);
     }
 
     nav.social a {
-        padding: var(--2px);
+        padding: var(--px6);
         display: inline-flex;
         align-items: center;
+        justify-content: center;
     }
 
     nav.social a.insta {
-        padding: var(--1px);
+        padding: var(--px5);
     }
     nav.social a.insta svg {
-        width: 1.5rem;
-        height: 1.5rem;
+        width: 1.625rem;
+        height: 1.655rem;
     }
 
     a.rss {
@@ -110,16 +103,15 @@ import Rss from './icons/Rss.svg';
         align-items: center;
         justify-content: center;
         gap: var(--space-0);
-        border-radius: var(--3px);
-        background-color: var(--bg-alt);
-        color: var(--text); /* updated from --text-primary */
-        padding: var(--3px);
-        width: 1.5rem;
-        height: 1.5rem;
+        border-radius: var(--radius-sm);
+        color: var(--text);
+        padding: var(--px6);
+        width: 2rem;
+        height: 2rem;
     }
     a.rss:hover {
-        background-color: var(--purple-accent); /* updated from --accent-purple */
-        color: var(--bg); /* updated from --bg-primary */
+        background-color: var(--purple-accent);
+        color: var(--bg);
     }
     a.rss svg {
         stroke-width: 2.75;
@@ -127,8 +119,16 @@ import Rss from './icons/Rss.svg';
         height: 100%;
     }
 
-    .info-other {
-        font-size: var(--text-sm); /* updated from --p-sm */
+    .made-info {
+        font-size: var(--text-sm);
         font-weight: 500;
+        display: flex;
+        gap: var(--px4);
+        align-items: center;
+
+        span {
+            display: inline-flex;
+            font-weight: 800;
+        }
     }
 </style>

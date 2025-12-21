@@ -1,13 +1,316 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { ArrowLeft } from '../components/icons';
+import { getCollection } from 'astro:content';
+
+const latestPosts = (await getCollection('blog'))
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+
+    .slice(0, 2);
+
+const pageTitle = `Welcome`;
 ---
 
-<BaseLayout isPost={true}>
-    <Welcome />
+<BaseLayout isPost={true} pageTitle={pageTitle} mainClass="homepage">
+    <section class="hero" slot="upper-section">
+        <h1>Hello, I'm Flipse</h1>
+
+        <h2>
+            I am a <span class="sparkle-wrap">
+                tinkerer
+                <span class="sparkles" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <defs>
+                            <linearGradient
+                                id="sparkleGradient-1"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%">
+                                <stop offset="0%" stop-color="#ffe986"></stop>
+                                <stop offset="100%" stop-color="#ef7808"></stop>
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                            fill="url(#sparkleGradient-1)"></path>
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <defs>
+                            <linearGradient
+                                id="sparkleGradient-2"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%">
+                                <stop offset="0%" stop-color="#ffe986"></stop>
+                                <stop offset="100%" stop-color="#ef7808"></stop>
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                            fill="url(#sparkleGradient-2)"></path>
+                    </svg>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                        <defs>
+                            <linearGradient
+                                id="sparkleGradient-3"
+                                x1="0%"
+                                y1="0%"
+                                x2="100%"
+                                y2="100%">
+                                <stop offset="0%" stop-color="#ffe986"></stop>
+                                <stop offset="100%" stop-color="#ef7808"></stop>
+                            </linearGradient>
+                        </defs>
+
+                        <path
+                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
+                            fill="url(#sparkleGradient-3)"></path>
+                    </svg>
+                </span>
+            </span>.
+        </h2>
+
+        <p>
+            I worked on <a
+                href="https://mournstera.tumblr.com/"
+                target="_blank"
+                rel="noopener noreferrer">Tumblr themes</a
+            > for 15 years, but it was time to set sail elsewhere. I started my first blog in 2000 and
+            now return to the old ship, with better code, of course.
+        </p>
+
+        <p>As an early disability retiree, this is all just for kicks!</p>
+    </section>
+
+    <section class="latest-container">
+        <div class="latest-title">
+            <h2>Latest posts</h2>
+            <a href="/blog">Blog <ArrowLeft /></a>
+        </div>
+
+        <div class="latest-posts">
+            {
+                latestPosts.map((post) => (
+                    <article class="latest">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                            {post.data.pubDate.toLocaleDateString('da-DK', {
+                                day: 'numeric',
+                                month: 'numeric',
+                                year: 'numeric',
+                            })}
+                        </time>
+                        <a href={`/blog/${post.id}/`}>
+                            <h3>{post.data.title}</h3>
+                        </a>
+
+                        <p class="latest-desc">{post.data.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+    </section>
+
+    <style>
+        :global(main.homepage) {
+            flex: unset;
+        }
+        :global(.layout-container.has-upper) {
+            /* display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1; */
+        }
+        section.hero {
+            max-width: var(--section-width);
+        }
+        h1 {
+            font-size: var(--text-md);
+            font-family: var(--font-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--text);
+        }
+        h2 {
+            font-size: var(--h1);
+            font-family: var(--font-heading);
+            margin: var(--space-0) 0 var(--text-margin-md) 0;
+        }
+        /*  --- sparkle */
+        .sparkle-wrap {
+            position: relative;
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* hey don't block text */
+        }
+
+        .sparkles svg {
+            position: absolute;
+            width: 2rem;
+            height: 2rem;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            top: calc(var(--y) * 1%);
+            left: calc(var(--x) * 1%);
+        }
+
+        .sparkle-wrap svg path {
+            stroke: transparent;
+            stroke-width: 0;
+        }
+
+        .sparkles svg:nth-of-type(1) {
+            --x: 15;
+            --y: 0;
+            --s: 1.15;
+        }
+
+        .sparkles svg:nth-of-type(2) {
+            --x: 45;
+            --y: 80;
+            --s: 1;
+        }
+
+        .sparkles svg:nth-of-type(3) {
+            --x: 90;
+            --y: 30;
+            --s: 0.75;
+        }
+
+        .sparkle-boop svg:nth-of-type(1) {
+            animation: sparkle 0.95s 0s both;
+        }
+        .sparkle-boop svg:nth-of-type(2) {
+            animation: sparkle 0.95s 0.15s both;
+        }
+        .sparkle-boop svg:nth-of-type(3) {
+            animation: sparkle 0.95s 0.3s both;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(var(--s, 1));
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* ----- Media Queries */
+        @media (prefers-reduced-motion: reduce) {
+            .sparkles {
+                display: none;
+            }
+        }
+
+        section.latest-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: start;
+            gap: var(--space-5);
+            background-image: repeating-linear-gradient(
+                to right,
+                var(--border) 0 4px,
+                transparent 4px 6px
+            );
+            background-repeat: repeat-x;
+            background-size: auto 1px;
+            background-position: top left;
+
+            margin-top: var(--space-9);
+            padding-top: var(--space-6);
+        }
+        .latest-posts {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-5);
+        }
+        .latest-title {
+            a {
+                margin-top: var(--space-1);
+                display: inline-flex;
+                align-items: center;
+                gap: var(--space-0);
+
+                svg {
+                    stroke-width: 2.55;
+                    color: var(--purple-accent);
+                    margin-inline: 0 var(--px6);
+                    transition: transform var(--cubic-smooth);
+                    width: var(--text-md);
+                    height: var(--text-md);
+                    transform: rotateY(180deg);
+                }
+            }
+            h2 {
+                font-size: var(--text-sm);
+                font-family: var(--font-primary);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                font-weight: 700;
+                color: var(--text);
+                margin: 0;
+            }
+        }
+        article.latest {
+            display: flex;
+            flex-direction: column;
+            a {
+                color: var(--text-alt);
+                display: inline-block;
+
+                &:hover {
+                    color: var(--peach-accent);
+                }
+
+                h3 {
+                    font-size: var(--h4);
+                    display: inline;
+                    margin: 0;
+                    color: inherit;
+                }
+            }
+
+            time {
+                font-family: var(--font-mono);
+                font-size: var(--text-sm);
+                margin-bottom: var(--space-0);
+            }
+            p.latest-desc {
+                font-style: italic;
+                margin: var(--px6) 0 0 0;
+                line-height: var(--line-height-sub);
+            }
+        }
+        @media (min-width: 768px) {
+            section.latest-container {
+                grid-template-columns: 1fr 5fr;
+            }
+            .latest-posts {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+    </style>
+
+    <script src="/scripts/sparkle.js" defer></script>
 </BaseLayout>
-<style>
-    :global(main) {
-        flex: unset;
-    }
-</style>

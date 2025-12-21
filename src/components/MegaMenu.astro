@@ -1,72 +1,96 @@
 ---
-import Chevron from './icons/Chevron.svg';
+import { Chevron } from '../components/icons';
 
 const current = Astro.url.pathname;
 const isActive = (path: string) => current === path;
 ---
 
-<button class="menu-toggle" aria-expanded="false" aria-controls="mega" data-menu-btn>
-    Explore <Chevron />
+<button
+    class="menu-toggle"
+    aria-expanded="false"
+    aria-controls="mega"
+    aria-haspopup="menu"
+    data-menu-btn>
+    Menu
 </button>
 
 <div class="megamenu" id="mega" data-megamenu>
     <nav aria-label="Main navigation">
-        <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}>
+        <a
+            class="mobile"
+            href="/about/"
+            aria-current={isActive('/about/') ? 'page' : undefined}
+            aria-describedby="about-desc">
             <h4>About</h4>
-            <p class="desc">Let me indulge and tell you about myself.</p>
+            <p class="desc" id="about-desc">A peek into who I am and most of the whys.</p>
         </a>
 
-        <a href="/blog/" aria-current={isActive('/blog/') ? 'page' : undefined}>
+        <a
+            href="/blog/"
+            aria-current={isActive('/blog/') ? 'page' : undefined}
+            aria-describedby="blog-desc">
             <h4>Blog</h4>
-            <p class="desc">More or less coherent thought-out posts.</p>
+            <p class="desc" id="blog-desc">More-or-less coherent thought-out posts.</p>
         </a>
 
-        <a href="/garden/" aria-current={isActive('/garden/') ? 'page' : undefined}>
+        <a
+            href="/garden/"
+            aria-current={isActive('/garden/') ? 'page' : undefined}
+            aria-describedby="garden-desc">
             <h4>Garden</h4>
-            <p class="desc">My garden of thoughts, musings, ideas, and wonder.</p>
+            <p class="desc" id="garden-desc">Notes, ideas, musings, thoughts in progress.</p>
         </a>
 
-        <a href="/bag/" aria-current={isActive('/bag/') ? 'page' : undefined}>
-            <h4>Bag</h4>
-            <p class="desc">A list of the gear I currently use for my workspace.</p>
+        <a
+            href="/kit/"
+            aria-current={isActive('/kit/') ? 'page' : undefined}
+            aria-describedby="kit-desc">
+            <h4>Kit</h4>
+            <p class="desc" id="kit-desc">A list of the gear I use for my cozy workspace.</p>
+        </a>
+        <a
+            href="/colophon/"
+            aria-current={isActive('/colophon/') ? 'page' : undefined}
+            aria-describedby="kit-colophon">
+            <h4>Colophon</h4>
+            <p class="desc" id="kit-colophon">Read about build, credits and policy.</p>
         </a>
     </nav>
 </div>
 
 <style>
     a {
-        color: var(--text); /* updated from --text-primary */
+        color: var(--text);
         text-decoration: none;
-        transition:
-            color var(--cubic-smooth),
-            border-color var(--cubic-smooth);
     }
     a:hover {
-        color: var(--purple-accent); /* updated from --accent-purple */
+        color: var(--purple-accent);
     }
 
     button.menu-toggle {
         display: flex;
-        gap: var(--2px); /* updated from --4px to use your spacing scale */
+        gap: var(--px2);
         align-items: center;
-        color: var(--text-alt); /* updated from --text-secondary */
-        margin-right: var(--space-1);
+        color: var(--text-alt);
         font-weight: 600;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: var(--underline-offset);
+        text-decoration-thickness: var(--underline-thickness);
+        transition:
+            color var(--cubic-smooth),
+            text-decoration-color var(--cubic-smooth);
     }
 
-    button.menu-toggle svg {
-        width: 1.125rem;
-        height: 1.125rem;
-        stroke-width: 3;
-        transition: transform 0.09s cubic-bezier(0.25, 0.8, 0.3, 1);
+    button.menu-toggle:hover {
+        color: var(--purple-accent);
     }
 
-    button.menu-toggle:hover svg {
-        color: var(--purple-accent); /* updated from --accent-purple */
-    }
-
-    button.menu-toggle:active svg {
-        transform: scaleX(0.7);
+    button.menu-toggle.pressed {
+        text-decoration: underline;
+        text-decoration-color: var(--purple-accent);
+        text-underline-offset: var(--underline-offset);
+        text-decoration-thickness: var(--underline-thickness);
     }
 
     /* Mobile-first: base styles */
@@ -87,104 +111,123 @@ const isActive = (path: string) => current === path;
         pointer-events: none;
     }
 
-    @media (max-width: 703px) {
-        body.noscroll {
-            overflow: hidden;
-            touch-action: none;
-        }
+    body.noscroll {
+        overflow: hidden;
+        touch-action: none;
     }
 
     nav {
         padding: var(--space-3);
-        background: var(--bg-alt); /* updated from --bg-secondary */
+        background: var(--bg-alt);
         display: flex;
         gap: var(--space-3);
         height: 100%;
         flex-direction: column;
         align-items: flex-end;
+        justify-content: flex-end;
+    }
+    @media (min-width: 440px) {
+        nav {
+            justify-content: flex-start;
+        }
     }
 
     h4 {
         font-size: 1.4rem;
         margin: 0;
+        transition: inherit;
+        font-weight: 700;
+    }
+    nav a:hover h4 {
+        color: var(--purple-accent);
     }
 
     nav p.desc {
         display: none;
     }
-
     /* Desktop overrides */
-    @media (min-width: 704px) {
+    @media (min-width: 960px) {
         .megamenu {
-            width: 40rem;
+            max-width: calc(var(--layout-width) - var(--layout-padding) * 2);
+            margin: 0 var(--layout-padding);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .megamenu {
+            width: calc(100% - var(--layout-padding) * 2);
             height: auto;
-            margin-top: calc(-1 * var(--1px));
-            right: auto;
+            margin: 0 auto;
+            right: unset;
+        }
+
+        body.noscroll {
+            overflow: auto;
+            touch-action: auto;
         }
 
         nav {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             align-items: stretch;
-            gap: var(--4px);
+            justify-items: start;
+            gap: var(--space-0);
             height: auto;
-            padding: var(--space-1);
-            border-radius: var(--radius-md);
-            border: var(--1px) solid var(--border);
+            padding: var(--space-3);
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            border: var(--px1) solid var(--border);
+            border-top: 0;
             opacity: 1;
-            transform: rotateX(0) scale(1);
-            transform-origin: top right;
-            transition:
-                border-radius var(--cubic-smooth),
-                transform var(--cubic-snappy);
+            transform-origin: top left;
+            will-change: transform;
+            transform: rotateX(0) scale(1) translateZ(0);
+            backface-visibility: hidden;
+            transition: transform var(--cubic-snappy);
         }
 
         .megamenu:not(.open) nav {
-            transform: rotateX(-15deg) scale(0.9);
-        }
-
-        :global(header.top.scrolled nav) {
-            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            transform: rotateX(15deg) scale(0.9);
         }
 
         nav a {
             padding: var(--space-1);
-            will-change: transform;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-alt);
         }
 
         h4 {
             font-size: var(--h4);
-            font-weight: 700;
-        }
-
-        nav a:hover h4 {
-            color: var(--purple-accent);
+            transition: inherit;
         }
 
         nav p.desc {
             display: block;
-            color: var(--text); /* updated from --text-primary */
-            font-size: var(--text-sm); /* updated from --p-sm */
+            color: var(--text);
+            font-size: var(--text-sm);
             line-height: var(--line-height-sub);
-            margin: 0;
-            margin-top: var(--1px); /* updated from --5px */
+            margin: var(--px6) 0 0 0;
+            transition: inherit;
+        }
+
+        nav a:hover {
+            background-color: var(--purple-bg);
+
+            p.desc {
+                color: var(--text-alt);
+            }
         }
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
         .megamenu {
-            transition: opacity 0.001s linear;
-            transform: none;
+            transition: opacity 0.04s linear;
         }
 
-        .megamenu:not(.open) {
-            opacity: 0;
+        button.menu-toggle:active svg,
+        .megamenu:not(.open) nav {
             transform: none;
-        }
-
-        button.menu-toggle:active svg {
-            transform: none;
+            transition: none;
         }
     }
 </style>

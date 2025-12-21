@@ -1,5 +1,5 @@
 ---
-// src/pages/posts/[...slug].astro
+// BLOG's [...slug].astro
 import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
 
@@ -13,8 +13,15 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+// --- reading time calculation ---
+const wordCount = (post.body ?? '').trim().split(/\s+/).length;
+const readingTime = Math.ceil(wordCount / 200);
 ---
 
-<MarkdownPostLayout frontmatter={post.data}>
+<MarkdownPostLayout
+    frontmatter={post.data}
+    backHref="/blog"
+    section="blog"
+    readingTime={readingTime}>
     <Content />
 </MarkdownPostLayout>

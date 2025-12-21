@@ -22,16 +22,32 @@ const {
         <main class={mainClass}>
             {!isPost && pageTitle && <h1>{pageTitle}</h1>}
 
-            <section>
-                <slot />
-            </section>
-            {
-                Astro.slots.sidebar && (
-                    <aside class="sidebar">
-                        <slot name="sidebar" />
-                    </aside>
-                )
-            }
+            <div
+                class="layout-container"
+                class:list={{
+                    'has-upper': Astro.slots['upper-section'],
+                    'has-sidebar': Astro.slots.sidebar,
+                }}>
+                {
+                    Astro.slots['upper-section'] && (
+                        <section class="upper-section">
+                            <slot name="upper-section" />
+                        </section>
+                    )
+                }
+
+                {
+                    Astro.slots.sidebar && (
+                        <aside class="sidebar">
+                            <slot name="sidebar" />
+                        </aside>
+                    )
+                }
+
+                <section class="main-content">
+                    <slot />
+                </section>
+            </div>
         </main>
 
         <Footer />

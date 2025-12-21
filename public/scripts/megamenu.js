@@ -5,51 +5,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!btn || !menu) return;
 
-    // initially inert
+    // Start FULLY hidden and unfocusable
     menu.inert = true;
     menu.setAttribute('aria-hidden', 'true');
+    btn.setAttribute('aria-expanded', 'false');
 
     function openMenu() {
-        // console issue w/ aria-hidden. remove aria-hidden BEFORE focusing
-        menu.setAttribute('aria-hidden', 'false');
+        // Make menu available to AT and keyboard *before* focusing
+        menu.removeAttribute('aria-hidden');
         menu.inert = false;
 
         menu.classList.add('open');
         btn.setAttribute('aria-expanded', 'true');
         body.classList.add('noscroll');
 
-        // focus is now safe
+        // Move focus into the menu now
         const firstLink = menu.querySelector('a');
         if (firstLink) firstLink.focus();
+
+        // ADD pressed class when menu is open
+        btn.classList.add('pressed');
     }
 
-    function closeMenu() {
+    function closeMenu({ returnFocus = false } = {}) {
         menu.classList.remove('open');
         btn.setAttribute('aria-expanded', 'false');
 
-        // only after closing, hide menu
+        // prevents interaction when closed
+        // 'inert' prevents tabbing into the hidden menu (CSS alone is not enough my dude)
         menu.inert = true;
         menu.setAttribute('aria-hidden', 'true');
 
         body.classList.remove('noscroll');
+
+        // REMOVE pressed class when menu is closed
+        btn.classList.remove('pressed');
+
+        if (returnFocus) {
+            btn.focus();
+        }
     }
 
+    // Toggle via button click
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
-        menu.classList.contains('open') ? closeMenu() : openMenu();
+        menu.classList.contains('open') ? closeMenu({ returnFocus: true }) : openMenu();
     });
 
-    document.addEventListener('click', (e) => {
-        if (!menu.classList.contains('open')) return;
-        if (!menu.contains(e.target) && !btn.contains(e.target)) {
-            closeMenu();
+    // Ensure Space / Enter always activate the button
+    btn.addEventListener('keydown', (e) => {
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            btn.click();
         }
     });
 
+    // close when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!menu.classList.contains('open')) return;
+        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+            closeMenu({ returnFocus: true });
+        }
+    });
+
+    // Close on Escape
     document.addEventListener('keyup', (e) => {
         if (e.key === 'Escape' && menu.classList.contains('open')) {
-            closeMenu();
-            btn.focus();
+            closeMenu({ returnFocus: true });
         }
     });
 });

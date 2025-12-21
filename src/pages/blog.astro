@@ -3,24 +3,22 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
 import BlogSidebar from '../components/BlogSidebar.astro';
-import '../assets/styles/blog.css';
+import { blogMeta } from '../assets/data/blog-meta';
+import '../assets/styles/blog-index.css';
 
 const allPosts = (await getCollection('blog')).sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
 
 const tags = [
     'all',
     ...Array.from(new Set(allPosts.map((p) => p.data.tags).flat())).sort((a, b) =>
-        a.localeCompare(b, 'en', { sensitivity: 'base' })
+        a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
-
-const pageTitle = 'Blog';
-const pageDescription = 'More or less coherent, long-form thoughts';
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
+<BaseLayout pageTitle={blogMeta.title} pageDescription={blogMeta.description}>
     <BlogSidebar
         slot="sidebar"
         tags={tags}

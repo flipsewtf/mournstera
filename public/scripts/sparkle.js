@@ -1,4 +1,4 @@
-const flipse = document.querySelector('.flipse');
+const flipse = document.querySelector('.sparkle-wrap');
 const sparkles = flipse.querySelector('.sparkles');
 
 flipse.addEventListener('mouseenter', () => {

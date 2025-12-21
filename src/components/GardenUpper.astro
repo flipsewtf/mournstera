@@ -1,0 +1,51 @@
+---
+// GardenUpper.astro
+interface Props {
+    tags: string[];
+    currentTag: string;
+}
+
+const { tags, currentTag }: Props = Astro.props;
+const basePath = '/garden';
+---
+
+<h1>Garden</h1>
+
+<div class="upper-inner">
+    <nav aria-label="Garden tags">
+        <ul class="garden-tags testing">
+            {
+                tags.map((tag) => (
+                    <li>
+                        <a
+                            href={tag === 'all' ? basePath : `${basePath}/tags/${tag}`}
+                            class={tag === currentTag ? 'active' : null}
+                            aria-current={tag === currentTag ? 'page' : undefined}>
+                            {tag}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+
+    <p class="description">A garden of thoughts, ideas, notes, observations, or brain-dumping.</p>
+    <p class="description">
+        Maybe some text will have potential to grow into proper blog posts at some point—if coherent
+        enough, of course—I have no idea what this will all be but I'm excited.
+    </p>
+
+    <div class="divider"></div>
+</div>
+<style>
+    p.description {
+        max-width: var(--section-width);
+    }
+    .divider {
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--border) 0 4px,
+            transparent 4px 6px
+        );
+    }
+</style>

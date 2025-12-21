@@ -1,10 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-import NowBooks from '../components/icons/NowBooks.svg';
-import NowDice from '../components/icons/NowDice.svg';
-import NowTv from '../components/icons/NowTv.svg';
-import NowVinyl from '../components/icons/NowVinyl.svg';
+import { NowVinyl, NowTv, NowDice, NowBooks } from '../components/icons';
 
 const pageTitle = `Currently`;
 const pageDescription = `Here's what I have been up as of late.`;
@@ -28,10 +25,9 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
         {pageDescription}
     </p>
     <p>
-        I want to preface this by saying that after my TV died on me in 2009 and me not bothering
-        replacing it, I will occasionally binge something every other year (like 2 seasons of
-        Below Deck, Silent Witness or a new sci-fi show), but besides Doctor Who, I don't keep up
-        with a lot of traditional TV formats or film.
+        I will occasionally binge something every other year (like 2 seasons of Below Deck, Silent
+        Witness or a new sci-fi show), but besides Doctor Who, I don't keep up with a lot of
+        traditional TV formats or film.
     </p>
 
     <p class="mono-sm">
@@ -50,8 +46,7 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
         </div>
         <div id="scrobble" class="item-desc">
             <p>
-                You can always find rotation/current obsessions on my Record.club
-                <a
+                You can always find rotation/current obsessions on my Record.club <a
                     href="https://record.club/mournstera"
                     aria-label="See my Record.club profile (opens in new tab)"
                     target="_blank"

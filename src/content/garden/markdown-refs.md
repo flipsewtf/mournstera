@@ -1,11 +1,12 @@
 ---
 title: 'Markdown References'
-pubDate: 2025-12-06
+pubDate: 2025-12-06T15:45:00+01:00
+lastUpdated: 2025-12-18T15:45:00+01:00
 description: 'To remind myself of stuff I will forget 3 minutes after using it.'
 author: 'Flipse'
-# image:
-#     url: '/images/blog/bush.webp'
-#     alt: 'A photo of me.'
+image:
+    url: '/images/blog/desk1.webp'
+    alt: 'Cozy desk workspace.'
 tags: ['references', 'markdown']
 ---
 
@@ -43,7 +44,7 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-![blog placeholder](/images/blog/bush.webp)
+![blog placeholder](/images/blog/desk1.webp)
 
 ## Blockquotes
 
@@ -79,10 +80,6 @@ The blockquote element represents content that is quoted from another source, op
 
 [^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
 
-The World Surfing League[^2] started using better judging systems.
-
-[^2]: this is a 2nd example of footnotes.
-
 ## Tables
 
 ### Syntax
@@ -100,6 +97,18 @@ The World Surfing League[^2] started using better judging systems.
 | _italics_ | **bold** | `code` |
 
 ## Code Blocks
+
+Strikethrough (GFM):
+~~deleted~~
+
+Task Lists (GFM):
+
+- [x] Done
+- [ ] Not done
+
+Automatic Links:
+<https://example.com>
+<email@example.com>
 
 ### Syntax
 
@@ -192,6 +201,24 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 - Dairy
     - Milk
     - Cheese
+
+```markdown
+1. First item
+2. Second item
+    1. Apple
+    2. Orange
+    3. Banana
+3. Third item
+```
+
+#### Output
+
+1. First item
+2. Second item
+    1. Apple
+    2. Orange
+    3. Banana
+3. Third item
 
 ## Other Elements — abbr, sub, sup, kbd, mark
 

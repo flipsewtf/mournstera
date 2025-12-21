@@ -1,37 +1,26 @@
 ---
+// garden.astro
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GardenPost from '../components/GardenPost.astro';
-import GardenSidebar from '../components/GardenSidebar.astro';
-import '../assets/styles/blog.css';
+import GardenUpper from '../components/GardenUpper.astro';
+import { gardenMeta } from '../assets/data/garden-meta';
+import '../assets/styles/garden-index.css';
 
 const allGarden = (await getCollection('garden')).sort(
-    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
 );
 
-// gather unique tags and sort alphabetically (case-insensitive)
 const tags = [
     'all',
     ...Array.from(new Set(allGarden.map((p) => p.data.tags).flat())).sort((a, b) =>
-        a.localeCompare(b, 'en', { sensitivity: 'base' })
+        a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
-
-const pageTitle = 'Garden';
-const pageDescription =
-    'A garden of thoughts, musings, and ideas. Notes and observations - occasionally without rhyme or reason.';
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <GardenSidebar
-        slot="sidebar"
-        tags={tags}
-        currentTag="all"
-        basePath="/garden"
-        className="tag-list garden"
-        pageDescription={pageDescription}
-    />
-
+<BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description} isPost={true}>
+    <GardenUpper slot="upper-section" tags={tags} currentTag="all" />
     <ul class="post-list">
         {
             allGarden.map((post) => (

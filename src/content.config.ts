@@ -18,6 +18,7 @@ const blog = defineCollection({
             })
             .optional(),
         tags: z.array(z.string()),
+        lastUpdated: z.date().optional(),
     }),
 });
 
@@ -36,6 +37,7 @@ const garden = defineCollection({
             })
             .optional(),
         tags: z.array(z.string()),
+        lastUpdated: z.date().optional(),
     }),
 });
 

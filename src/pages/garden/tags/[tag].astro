@@ -1,18 +1,25 @@
 ---
-// garden tag
+// src/pages/garden/tags/[tag].astro
+
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import BlogPost from '../../../components/BlogPost.astro';
-import GardenSidebar from '../../../components/GardenSidebar.astro';
-import '../../../assets/styles/blog.css';
+import GardenPost from '../../../components/GardenPost.astro';
+import GardenUpper from '../../../components/GardenUpper.astro';
+import { gardenMeta } from '../../../assets/data/garden-meta';
+import '../../../assets/styles/garden-index.css';
 
+// Generate static paths for all tags
 export async function getStaticPaths() {
-    const allGarden = await getCollection('garden'); // fetch garden posts here
+    const allGarden = await getCollection('garden');
 
     const uniqueTags = [...new Set(allGarden.map((post) => post.data.tags).flat())];
 
     return uniqueTags.map((tag) => {
-        const filteredPosts = allGarden.filter((post) => post.data.tags.includes(tag));
+        // Filter posts for this tag and sort newest first
+        const filteredPosts = allGarden
+            .filter((post) => post.data.tags.includes(tag))
+            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
         return {
             params: { tag },
             props: { posts: filteredPosts },
@@ -24,31 +31,30 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-// all unique tags for nav (for nav links)
+// all unique tags for navigation, sorted alphabetically
 const allGarden = await getCollection('garden');
 const tags = [
     'all',
     ...Array.from(new Set(allGarden.map((p) => p.data.tags).flat())).sort((a, b) =>
-        a.localeCompare(b, 'en', { sensitivity: 'base' })
+        a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
 
-const pageTitle = 'Garden';
+// Capitalize current tag for display
+const formattedTag = tag && tag !== 'all' ? tag.charAt(0).toUpperCase() + tag.slice(1) : '';
+
+// Dynamic page title
+const pageTitle =
+    !tag || tag === 'all' ? gardenMeta.title : `${gardenMeta.title} (${formattedTag})`;
 ---
 
-<BaseLayout pageTitle={pageTitle}>
-    <GardenSidebar
-        slot="sidebar"
-        tags={tags}
-        currentTag={tag}
-        basePath="/garden"
-        className="tag-list garden"
-    />
+<BaseLayout pageTitle={pageTitle} pageDescription={gardenMeta.description} isPost={true}>
+    <GardenUpper slot="upper-section" tags={tags} currentTag={tag} />
 
     <ul class="post-list">
         {
             posts.map((post) => (
-                <BlogPost
+                <GardenPost
                     url={`/garden/${post.id}/`}
                     title={post.data.title}
                     description={post.data.description}

@@ -1,24 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import BagLink from '../components/icons/BagLink.svg';
-
 import { Image } from 'astro:assets';
-import Desksetup from '../assets/images/desksetup.webp';
+import Desk from '../assets/images/desk1.webp';
+import { BagLink } from '../components/icons';
 
-const pageTitle = `What's in my bag?`;
-const pageDescription = `A list of the gear I currently use for my workspace.`;
+const pageTitle = 'Kit';
+const pageDescription = `A list of the gear I currently use for my cozy workspace.`;
 ---
 
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
     <section>
         <p>
-            {pageDescription} I love a cosy workspace, but I do indeed ball on a budget and the privilege
-            of nice gifts from family members and friends <span role="img" aria-label="heart"
-                >❤️</span
-            >
+            {pageDescription} I do ball on a budget and the privilege of nice gifts from family members
+            and friends. These are things I use every day.
         </p>
-
-        <Image src={Desksetup} alt="My cozy desk space" class="desk" />
+        <Image src={Desk} loading="eager" alt="Cozy desk setup of" class="desk" />
 
         <div class="divider"></div>
 
@@ -29,8 +25,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.omen.com/us/en/desktops/omen-25l.html"
-                    aria-describedby="item-computer-desc"
-                >
+                    aria-describedby="item-computer-desc">
                     <span class="item-sub">HP Omen 25L i5-12/16/2048/3070</span>
                     <BagLink />
                 </a>
@@ -46,15 +41,14 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.ikea.com/gb/en/p/mittzon-desk-walnut-veneer-white-s49528057/"
-                    aria-describedby="item-desk-desc"
-                >
+                    aria-describedby="item-desk-desc">
                     <span class="item-sub">IKEA Mitzon</span>
                     <BagLink />
                 </a>
 
                 <p id="item-desk-desc" class="item-desc">
-                    I had my worries about potentially wobbly legs, but there's no issues. I'm
-                    very happy about how easy my cable management has become.
+                    I had my worries about potentially wobbly legs, but there's no issues. I'm very
+                    happy about how easy my cable management has become.
                 </p>
             </article>
 
@@ -64,8 +58,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.jbl.com/on-ear-headphones/TUNE510BT-.html"
-                    aria-describedby="item-headphones-desc"
-                >
+                    aria-describedby="item-headphones-desc">
                     <span class="item-sub">JBL Tune 510BT</span>
                     <BagLink />
                 </a>
@@ -84,8 +77,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.amazon.com/Sumgsn-Gradient-Mechanical-Keyboard-Switches/dp/B0BYJBRT6L?th=1"
-                    aria-describedby="item-keycaps-desc"
-                >
+                    aria-describedby="item-keycaps-desc">
                     <span class="item-sub">Sumgsn gradient green</span>
                     <BagLink />
                 </a>
@@ -101,8 +93,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
-                    aria-describedby="item-keyboard-desc"
-                >
+                    aria-describedby="item-keyboard-desc">
                     <span class="item-sub">AJAZZ AK820 75%</span>
                     <BagLink />
                 </a>
@@ -119,15 +110,14 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.amazon.co.uk/Lenovo-D32q-20-31-5-FreeSync-Monitor/dp/B085ZXS65Y"
-                    aria-describedby="item-monitor-desc"
-                >
+                    aria-describedby="item-monitor-desc">
                     <span class="item-sub">Lenovo D32q-20</span>
                     <BagLink />
                 </a>
 
                 <p id="item-monitor-desc" class="item-desc">
-                    Look, it was on a 65% sale. The VESA mount placement is silly. I can live
-                    with it.
+                    Look, it was on a 65% sale. The VESA mount placement is silly. I can live with
+                    it.
                 </p>
             </article>
 
@@ -137,8 +127,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.ikea.com/gb/en/p/sigfinn-monitor-stand-fixed-height-bamboo-veneer-20362929/"
-                    aria-describedby="item-stand-desc"
-                >
+                    aria-describedby="item-stand-desc">
                     <span class="item-sub">Ikea Sigfinn</span>
                     <BagLink />
                 </a>
@@ -154,8 +143,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.logitech.com/en-eu/products/mice/lift-vertical-ergonomic-mouse.html"
-                    aria-describedby="item-mouse-desc"
-                >
+                    aria-describedby="item-mouse-desc">
                     <span class="item-sub">Logitech Vertical Ergonomic Lift</span>
                     <BagLink />
                 </a>
@@ -171,8 +159,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.samsung.com/uk/smartphones/galaxy-s25/"
-                    aria-describedby="item-phone-desc"
-                >
+                    aria-describedby="item-phone-desc">
                     <span class="item-sub">Samsung Galaxy S25</span>
                     <BagLink />
                 </a>
@@ -189,8 +176,7 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.samsung.com/uk/tablets/galaxy-tab-s/galaxy-tab-s9-plus-5g-graphite-256gb-sm-x816bzaaeub/"
-                    aria-describedby="item-tablet-desc"
-                >
+                    aria-describedby="item-tablet-desc">
                     <span class="item-sub">Samsung Galaxy Tab S9+</span>
                     <BagLink />
                 </a>
@@ -202,8 +188,8 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                         target="_blank"
                         rel="noopener noreferrer">bullet journal method</a
                     > since 2013 but went "digital" in 2023 with a hybrid tablet format that benefits
-                    my life specifically. It is a vital product of how far I've come with managing
-                    my bipolar disorder. I also use it as a tiny TV in bed. Great tablet.
+                    my life specifically. It is a vital product of how far I've come with managing my
+                    bipolar disorder. I also use it as a tiny TV in bed. Great tablet.
                 </p>
             </article>
 
@@ -213,15 +199,14 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
-                    aria-describedby="item-switches-desc"
-                >
+                    aria-describedby="item-switches-desc">
                     <span class="item-sub">Tactile HP Yellow Switch</span>
                     <BagLink />
                 </a>
 
                 <p id="item-switches-desc" class="item-desc">
-                    I am not a tactile person. I am apparently a linear person, so this is not
-                    for me in the long run.
+                    I am not a tactile person. I am apparently a linear person, so this is not for
+                    me in the long run.
                 </p>
             </article>
 
@@ -231,16 +216,15 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
                 <a
                     target="_blank"
                     href="https://www.ultimateears.com/en-hk/wireless-speakers/wonderboom-4.html"
-                    aria-describedby="item-speaker-desc"
-                >
+                    aria-describedby="item-speaker-desc">
                     <span class="item-sub">Ultimate Ears WONDERBOOM 2</span>
                     <BagLink />
                 </a>
 
                 <p id="item-speaker-desc" class="item-desc">
-                    I got this as a promo gift some time ago, I still do not have any speakers
-                    for my desk setup so this'll do. I'm also a vinyl record lover, so it's not
-                    getting used too much.
+                    I got this as a promo gift some time ago, I still do not have any speakers for
+                    my desk setup so this'll do. I'm also a vinyl record lover, so it's not getting
+                    used too much.
                 </p>
             </article>
         </div>
@@ -265,7 +249,6 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
         display: flex;
         align-items: center;
         gap: var(--space-1);
-        font-weight: 600;
     }
 
     article svg {
@@ -274,12 +257,6 @@ const pageDescription = `A list of the gear I currently use for my workspace.`;
     }
     img.desk {
         border-radius: var(--radius-md);
-        display: block;
-        object-fit: cover;
-        aspect-ratio: 7 / 8;
-        filter: grayscale(1) contrast(0.94);
-    }
-    img.desk:hover {
-        filter: none;
+        margin-top: var(--text-margin-md);
     }
 </style>
