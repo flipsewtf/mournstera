@@ -118,16 +118,14 @@ const pageTitle = `Welcome`;
 
     <style>
         :global(main.homepage) {
-            flex: unset;
-        }
-        :global(.layout-container.has-upper) {
-            /* display: flex;
+            display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            flex: 1; */
+            justify-content: center;
         }
+
         section.hero {
             max-width: var(--section-width);
+            flex: 1;
         }
         h1 {
             font-size: var(--text-md);
@@ -216,7 +214,6 @@ const pageTitle = `Welcome`;
             }
         }
 
-        /* ----- Media Queries */
         @media (prefers-reduced-motion: reduce) {
             .sparkles {
                 display: none;
@@ -224,6 +221,7 @@ const pageTitle = `Welcome`;
         }
 
         section.latest-container {
+            margin-top: auto;
             display: grid;
             grid-template-columns: 1fr;
             align-items: start;
@@ -236,7 +234,6 @@ const pageTitle = `Welcome`;
             background-repeat: repeat-x;
             background-size: auto 1px;
             background-position: top left;
-
             margin-top: var(--space-9);
             padding-top: var(--space-6);
         }
