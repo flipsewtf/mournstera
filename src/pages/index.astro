@@ -8,12 +8,12 @@ const latestPosts = (await getCollection('blog'))
 
     .slice(0, 2);
 
-const pageTitle = `Welcome`;
+const pageTitle = ``;
 ---
 
 <BaseLayout isPost={true} pageTitle={pageTitle} mainClass="homepage">
     <section class="hero" slot="upper-section">
-        <h1>Hello, I'm Flipse</h1>
+        <h1>Hello, my name is Flipse</h1>
 
         <h2>
             I am a <span class="sparkle-wrap">
@@ -125,7 +125,6 @@ const pageTitle = `Welcome`;
 
         section.hero {
             max-width: var(--section-width);
-            flex: 1;
         }
         h1 {
             font-size: var(--text-md);
@@ -272,6 +271,7 @@ const pageTitle = `Welcome`;
         article.latest {
             display: flex;
             flex-direction: column;
+
             a {
                 color: var(--text-alt);
                 display: inline-block;

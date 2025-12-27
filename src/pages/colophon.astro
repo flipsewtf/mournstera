@@ -1,19 +1,93 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ExternalLink from '../components/ExternalLink.astro';
+
 const pageTitle = `Colophon`;
-const pageDescription = `tba!!`;
+const pageDescription = `Behind the scenes of Mournstera: design, build, and sources.`;
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <p>{pageDescription}</p>
+<BaseLayout pageTitle={pageTitle} {pageDescription}>
+    <dl class="definition">
+        <dt>Mournstera</dt>
+        <dd>
+            <span class="pronunciation ipa">/ˈmɔːn.stə.rə/</span>
+            <span class="pronunciation simple">(“morn-ster-uh”)</span>
+            <span class="definition-description">
+                From <i>monstera</i> + <i>mourn</i>. A personal name blending grief and growth.</span
+            >
+        </dd>
+    </dl>
 
-    <p>Monstera + mourn = Mournstera.</p>
+    <div class="divider"></div>
 
-    <p>
-        Sunglass SVG by
-        <a
-            href="https://www.freepik.com/free-vector/sunglasses-glyph-style_255223649.htm#fromView=search&page=1&position=1&uuid=bd9a4c00-cad9-4ec5-b8e9-926ed49d8123&query=Sunglasses+svg"
-            >juicy_fish on Freepik</a
-        >
-    </p>
+    <article class="info">
+        <h3>Policy and build</h3>
+        <p>
+            This site is build with Astro, and served entirely as static files from Cloudflare. I do
+            not track any personal data, there are no cookies, and the only analytics come from
+            Cloudflare's basic traffic metrics.
+        </p>
+    </article>
+
+    <article class="credits">
+        <h3>Credits</h3>
+        <ul class="needed">
+            <li>
+                Lightning SVG by mamewmy: <ExternalLink
+                    href="https://www.freepik.com/author/mamewmy"
+                    label="Freepik"
+                />
+            </li>
+            <li>
+                Sunglass SVG by juicy_fish: <ExternalLink
+                    href="https://www.freepik.com/free-vector/sunglasses-glyph-style_255223649.htm"
+                    label="Freepik"
+                />
+            </li>
+            <li>
+                Moon SVG by SVGRepo: <ExternalLink
+                    href="https://staging.svgrepo.com/svg/188699/moon"
+                    label="svgrepo"
+                />
+            </li>
+        </ul>
+    </article>
 </BaseLayout>
+
+<style>
+    .definition {
+        dt {
+            font-weight: 700;
+            font-size: var(--h4);
+        }
+
+        dt::after {
+            content: ' —';
+            font-weight: normal;
+        }
+
+        dd {
+            margin: var(--space-0) 0 0;
+            line-height: var(--line-height-sub);
+        }
+
+        .pronunciation {
+            display: block;
+            font-family: monospace;
+            font-size: var(--text-sm);
+
+            &.ipa {
+                margin-bottom: var(--px6);
+            }
+
+            &.simple {
+                font-style: italic;
+            }
+        }
+
+        .definition-description {
+            margin-top: var(--text-margin-sm);
+            display: block;
+        }
+    }
+</style>
