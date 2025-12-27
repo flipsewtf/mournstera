@@ -5,7 +5,8 @@ import Footer from '../components/Footer.astro';
 
 const {
     pageTitle = 'Mournstera',
-    pageDescription = 'Personal site.',
+    seoTitle,
+    pageDescription = 'Blog and playground of Flipse.',
     pageImage = '/social-default.png',
     mainClass = '',
     isPost = false, // auto-hide outer h1 if true
@@ -14,7 +15,7 @@ const {
 
 <html lang="en" data-theme="light">
     <head>
-        <BaseHead title={pageTitle} description={pageDescription} image={pageImage} />
+        <BaseHead title={seoTitle ?? pageTitle} description={pageDescription} image={pageImage} />
     </head>
     <body>
         <Header />

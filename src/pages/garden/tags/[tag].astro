@@ -51,7 +51,7 @@ const pageTitle =
 <BaseLayout pageTitle={pageTitle} pageDescription={gardenMeta.description} isPost={true}>
     <GardenUpper slot="upper-section" tags={tags} currentTag={tag} />
 
-    <ul class="post-list">
+    <ul class="garden-list">
         {
             posts.map((post) => (
                 <GardenPost

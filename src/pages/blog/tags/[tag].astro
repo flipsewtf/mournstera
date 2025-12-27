@@ -35,10 +35,16 @@ const tags = [
         a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
-// const pageTitle = '{blogMeta.title} (tag)';
+
+// Capitalize current tag for display
+const formattedTag = tag && tag !== 'all' ? tag.charAt(0).toUpperCase() + tag.slice(1) : '';
+
+const pageTitle = blogMeta.title;
+
+const seoTitle = !tag || tag === 'all' ? blogMeta.title : `${blogMeta.title} (${formattedTag})`;
 ---
 
-<BaseLayout pageTitle={blogMeta.title} pageDescription={blogMeta.description}>
+<BaseLayout pageTitle={pageTitle} seoTitle={seoTitle} pageDescription={blogMeta.description}>
     <BlogSidebar
         slot="sidebar"
         tags={tags}
@@ -47,7 +53,7 @@ const tags = [
         className="tag-list blog"
     />
 
-    <ul class="post-list">
+    <ul class="blog-list">
         {
             posts.map((post) => (
                 <BlogPost

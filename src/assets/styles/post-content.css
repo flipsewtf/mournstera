@@ -1,31 +1,10 @@
-/*  ---------------------- BLOG ENTRIES */
+/*  entries/article content post-content.css */
 
-/* ----- GO BACK-LINK */
-a.go-back {
-    display: inline-flex;
-    margin-bottom: var(--space-5);
-    align-items: center;
-    gap: var(--px2);
-    font-weight: 600;
-
-    svg {
-        stroke-width: 2.25;
-        color: var(--purple-accent);
-        margin-inline: 0 var(--px6);
-        transition: transform var(--cubic-smooth);
-        height: 1.5rem;
-        width: 1.5rem;
-    }
-
-    &:hover svg {
-        transform: translateX(4px);
-    }
-}
 /* ----- ARTICLE TITLE */
-
 article.post {
     line-height: var(--line-height-p);
 }
+
 /* ----- POST TITLE */
 article.post h1 {
     margin-bottom: 0;
@@ -37,90 +16,35 @@ p.entry-desc {
 }
 
 /* ----- POST META */
-.entry-meta-container {
+.entry-meta {
     font-size: var(--text-sm);
     margin-block: var(--space-4) var(--space-7);
     padding-top: var(--space-3);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-0);
     background-image: repeating-linear-gradient(to right, var(--border) 0 4px, transparent 4px 6px);
     background-repeat: repeat-x;
     background-size: auto 1px;
     background-position: top left;
-}
-.entry-meta {
-    display: flex;
-    align-items: center;
-    gap: var(--space-4);
+    font-family: var(--font-mono);
+    letter-spacing: 0;
+    line-height: 1;
 
-    time.posted {
-        font-family: var(--font-mono);
+    .entry-flex {
+        display: flex;
+        align-items: center;
+        gap: var(--px5);
     }
-}
-.updated {
-    margin-top: var(--space-4);
-    display: flex;
-    align-items: center;
-    gap: var(--space-0);
-
-    time {
-        display: inline-block;
+    .reading-time {
+        margin-left: var(--space-3);
     }
     svg {
         width: 1.125rem;
         height: 1.125rem;
         stroke-width: 2;
-    }
-}
-.reading-time {
-    display: flex;
-    gap: var(--px5);
-    align-items: center;
-
-    svg {
-        width: var(--text-md);
-        height: var(--text-md);
-        stroke-width: 2.25;
-    }
-}
-
-/* ----- TAGS */
-article.post ul.tags {
-    padding: 0;
-    margin: var(--space-2) 0;
-    display: flex;
-    gap: var(--px6);
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: var(--text-sm);
-
-    svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        color: var(--peach-accent);
-        stroke-width: 2;
-    }
-
-    a {
-        color: inherit;
-        display: inline-flex;
-        font-style: italic;
-
-        &:hover {
-            color: var(--peach-accent);
-        }
-    }
-}
-
-article.post ul.tags li {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-
-    &::after {
-        content: ',';
-    }
-    &:last-child::after {
-        content: '.';
+        margin-bottom: var(--px2);
     }
 }
 
@@ -128,9 +52,11 @@ article.post ul.tags li {
 img.post-feature {
     aspect-ratio: 5/3;
     object-fit: cover;
+    border: 1px solid var(--border);
 }
 
 /* ----- HEADINGS & PARAGRAPHS */
+
 article.post {
     h3 {
         font-weight: 700;
@@ -231,21 +157,21 @@ article.post ol ol {
     padding-left: var(--space-3);
 }
 
-/* UL markers (top-level and nested unless overridden below) */
+/* ul markers (top-level and nested unless overridden below) */
 article.post ul li::marker {
     color: var(--purple-accent);
     content: '➜ ';
     transition: color var(--cubic-smooth);
 }
 
-/* OL base style */
+/* ol base style */
 article.post ol {
     list-style: decimal;
-}
 
-article.post ol li::marker {
-    color: var(--purple-accent);
-    font-weight: 500;
+    li::marker {
+        color: var(--purple-accent);
+        font-weight: 500;
+    }
 }
 
 /* Explicit nested list styles  */
@@ -253,16 +179,19 @@ article.post ul ul {
     list-style: circle;
     margin: var(--space-0) 0;
 }
-
 article.post ol ol {
     list-style: lower-alpha;
     margin: var(--space-0) 0;
 }
 
 /* ----- CHECKLIST */
-ul.contains-task-list {
+article.post ul.contains-task-list {
     list-style: none;
-    padding-left: var(--space-2);
+    padding-left: 0;
+}
+article.post ul.contains-task-list li::marker {
+    display: none;
+    content: '';
 }
 
 /* ----- FOOTNOTES */

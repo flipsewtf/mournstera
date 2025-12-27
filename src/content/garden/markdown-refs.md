@@ -2,37 +2,43 @@
 title: 'Markdown References'
 pubDate: 2025-12-06T15:45:00+01:00
 lastUpdated: 2025-12-18T15:45:00+01:00
-description: 'To remind myself of stuff I will forget 3 minutes after using it.'
+description: 'A short-term memory aid for a brain that refuses to retain syntax.'
 author: 'Flipse'
-image:
-    url: '/images/blog/desk1.webp'
-    alt: 'Cozy desk workspace.'
+# image:
+#     url: '/images/blog/desk1.webp'
+#     alt: 'Cozy desk workspace.'
 tags: ['references', 'markdown']
 ---
 
-Here is a a bunch of examples of Markdown syntax because I can't ever remember stuff. It is directly copied from [Astro's github](https://github.com/withastro/astro/blob/main/examples/blog/src/content/blog/markdown-style-guide.md).
+This is a collection of Markdown examples I will forget approximately three minutes after using them.
+It is mostly copied from Astro’s official example, with commentary added by someone who knows more than me.
 
 ## Headings
 
-The following HTML `<h1>`—`<h6>` elements represent six levels of section headings. `<h1>` is the highest section level while `<h6>` is the lowest.
+Markdown supports six levels of headings.
+You will only ever need two of them, but here are all six anyway.
 
-# H1
+# H1 — Reserved for regret and page titles
 
-## H2
+## H2 — The one you actually use
 
-### H3
+### H3 — When things get serious
 
-#### H4
+#### H4 — This is probably too much
 
-##### H5
+##### H5 — Why are we here
 
-###### H6
+###### H6 — Please stop
 
-## Paragraph
+## Paragraphs
 
-Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.
+This is a paragraph. It exists to contain thoughts, filler text, and excuses for why this post exists.
 
-Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.
+This text means nothing and exists solely to demonstrate that Markdown paragraphs do not care about your intentions, your feelings, or motivations.
+
+If you leave a blank line, Markdown considers it a new paragraph.
+If you forget the blank line, Markdown silently judges you.  
+if you need a `<br>` make two spacings after.
 
 ## Images
 
@@ -44,18 +50,18 @@ Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sap
 
 ### Output
 
-![blog placeholder](/images/blog/desk1.webp)
+![blog image placeholder](/images/blog/desk1.webp)
+
+If the image doesn’t load, at least the alt text will politely explain what _should_ have been there. For blog/garden posts, please use /public folder for images.
 
 ## Blockquotes
 
 The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a `footer` or `cite` element, and optionally with in-line changes such as annotations and abbreviations.
 
-### Blockquote without attribution
-
 #### Syntax
 
 ```markdown
-> Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
+> This sounds important.
 > **Note** that you can use _Markdown syntax_ within a blockquote.
 ```
 
@@ -64,7 +70,7 @@ The blockquote element represents content that is quoted from another source, op
 > Tiam, ad mint andaepu dandae nostion secatur sequo quae.  
 > **Note** that you can use _Markdown syntax_ within a blockquote.
 
-### Blockquote with attribution
+#### Blockquote with attribution
 
 #### Syntax
 
@@ -75,42 +81,40 @@ The blockquote element represents content that is quoted from another source, op
 
 #### Output
 
-> Don't communicate by sharing memory, share memory by communicating.<br>
+> Don’t communicate by sharing memory, share memory by communicating.<br>
 > — <cite>Rob Pike[^1]</cite>
 
-[^1]: The above quote is excerpted from Rob Pike's [talk](https://www.youtube.com/watch?v=PAAkCSZUG1c) during Gopherfest, November 18, 2015.
+[^1]: Said by someone who definitely remembers Markdown better than I do.
 
 ## Tables
 
-### Syntax
+Tables look impressive and are immediately annoying to maintain.. I will without a doubt not ever need this.
 
-```markdown
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
-```
-
-### Output
-
-| Italics   | Bold     | Code   |
-| --------- | -------- | ------ |
-| _italics_ | **bold** | `code` |
+| Thing  | Looks Useful | Actually Is |
+| ------ | ------------ | ----------- |
+| Tables | Yes          | Sometimes   |
 
 ## Code Blocks
 
+Markdown supports fenced code blocks.
+Yes, you _will_ forget how many backticks you need.
+
 Strikethrough (GFM):
-~~deleted~~
 
-Task Lists (GFM):
+~~This was a bad idea~~
 
-- [x] Done
-- [ ] Not done
+Task lists (GFM):
 
-Automatic Links:
+- [x] Pretend to be organised
+- [ ] Actually be organised
+
+Automatic links:
+
 <https://example.com>
+
 <email@example.com>
 
-### Syntax
+### Syntax Example
 
 we can use 3 backticks ``` in new line and write snippet and close with 3 backticks on new line and to highlight language specific syntax, write one word of language name after first 3 backticks, for eg. html, javascript, css, markdown, typescript, txt, bash
 
@@ -146,17 +150,9 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ## List Types
 
+Lists are simple, right up until they aren’t.
+
 ### Ordered List
-
-#### Syntax
-
-```markdown
-1. First item
-2. Second item
-3. Third item
-```
-
-#### Output
 
 1. First item
 2. Second item
@@ -164,35 +160,11 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 
 ### Unordered List
 
-#### Syntax
+- One thing
+- Another thing
+- Yet another thing
 
-```markdown
-- List item
-- Another item
-- And another item
-```
-
-#### Output
-
-- List item
-- Another item
-- And another item
-
-### Nested list
-
-#### Syntax
-
-```markdown
-- Fruit
-    - Apple
-    - Orange
-    - Banana
-- Dairy
-    - Milk
-    - Cheese
-```
-
-#### Output
+### Nested Lists
 
 - Fruit
     - Apple
@@ -201,17 +173,6 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 - Dairy
     - Milk
     - Cheese
-
-```markdown
-1. First item
-2. Second item
-    1. Apple
-    2. Orange
-    3. Banana
-3. Third item
-```
-
-#### Output
 
 1. First item
 2. Second item
@@ -221,6 +182,8 @@ we can use 3 backticks ``` in new line and write snippet and close with 3 backti
 3. Third item
 
 ## Other Elements — abbr, sub, sup, kbd, mark
+
+These exist, and you will forget about them until the exact moment you need them.
 
 ### Syntax
 

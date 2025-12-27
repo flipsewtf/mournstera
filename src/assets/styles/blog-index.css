@@ -32,13 +32,13 @@ ul.tag-list a.active {
 }
 
 /* ----- POST LIST */
-ul.post-list li:not(:last-of-type) {
+ul.blog-list li:not(:last-of-type) {
     margin-bottom: var(--space-7);
 }
-ul.post-list li {
+ul.blog-list li {
     display: flex;
 }
-ul.post-list li::before {
+ul.blog-list li::before {
     content: '';
     display: block;
     width: var(--px4);
@@ -48,20 +48,20 @@ ul.post-list li::before {
     margin-right: var(--space-5);
     flex: none;
 }
-ul.post-list a {
+ul.blog-list a {
     display: inline-block;
     font-size: var(--h2);
 }
-ul.post-list h2 {
+ul.blog-list h2 {
     display: inline;
     font-size: inherit;
 }
 
-ul.post-list p {
+ul.blog-list p {
     margin: var(--px2) 0 0 0;
     line-height: var(--line-height-sub);
 }
-ul.post-list .date-wrap {
+ul.blog-list .date-wrap {
     display: flex;
     gap: var(--space-0);
     font-family: var(--font-mono);
@@ -69,12 +69,12 @@ ul.post-list .date-wrap {
     margin-top: var(--space-1);
     align-items: center;
 }
-ul.post-list svg {
+ul.blog-list svg {
     width: 1.25rem;
     height: 1.25rem;
     color: var(--peach-accent);
 }
 
-ul.post-list li.blog-list h2 {
+ul.blog-list li.blog-list h2 {
     font-family: var(--font-primary);
 }

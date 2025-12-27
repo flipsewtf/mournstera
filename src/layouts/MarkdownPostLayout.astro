@@ -1,46 +1,26 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import '../assets/styles/post-content.css';
-import { ArrowLeft, DateClock, EntryTag } from '../components/icons';
+import { Sprout, Shovel, DateClock, DateCalendar, DateUpdated } from '../components/icons';
 
 const {
     frontmatter,
     section = 'blog',
-    backHref = '/',
-    backLabel = 'Back',
     readingTime, // use the value passed from [...slug].astro
 } = Astro.props;
 
-const tagBase = section === 'garden' ? '/garden/tags' : '/blog/tags';
+const isGarden = section === 'garden';
+
+const publishedLabel = isGarden ? 'Planted' : 'Posted';
+const updatedLabel = isGarden ? 'nurtured' : 'updated';
+const PublishedIcon = isGarden ? Sprout : DateCalendar;
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description} isPost={true}>
-    <nav aria-label="Post navigation">
-        <a href={backHref} class="go-back">
-            <ArrowLeft />
-            {backLabel}
-        </a>
-    </nav>
-
     <article class={`post ${section}-post`}>
         <h1>{frontmatter.title}</h1>
 
         <p class="entry-desc">{frontmatter.description}</p>
-
-        {
-            frontmatter.tags?.length > 0 && (
-                <ul class="tags" aria-label="Tags for this post">
-                    <EntryTag />
-                    {frontmatter.tags.map((tag: string) => (
-                        <li>
-                            <a href={`${tagBase}/${encodeURIComponent(tag)}`} rel="tag">
-                                {tag}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
 
         {
             frontmatter.image?.url && (
@@ -52,64 +32,53 @@ const tagBase = section === 'garden' ? '/garden/tags' : '/blog/tags';
             )
         }
 
-        <div class="entry-meta-container" role="group" aria-label="Post metadata">
-            <div class="entry-meta">
-                <span class="sr-only">Published on </span>
-                <time
-                    class="posted"
-                    datetime={frontmatter.pubDate.toISOString()}
-                    aria-label={`Published on ${frontmatter.pubDate.toLocaleDateString('en-GB', {
-                        day: 'numeric',
-                        month: 'long',
-                        year: 'numeric',
-                    })}`}>
+        <div class="entry-meta" role="group" aria-label="Post metadata">
+            <time
+                class="posted entry-flex"
+                datetime={frontmatter.pubDate.toISOString()}
+                aria-label={`${publishedLabel} on ${frontmatter.pubDate.toLocaleDateString(
+                    'en-GB',
                     {
-                        frontmatter.pubDate.toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric',
-                        })
-                    }
-                </time>
-                <div
-                    class="reading-time"
-                    aria-label={`Estimated reading time: ${readingTime} minutes`}>
-                    <DateClock />
-                    {readingTime} min read
-                </div>
-            </div>
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                    },
+                )}`}>
+                <PublishedIcon />
+                {publishedLabel}
+                {
+                    frontmatter.pubDate.toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric',
+                    })
+                }
+            </time>
 
             {
                 frontmatter.lastUpdated && (
-                    <div class="updated">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            style="transform: rotateY(180deg);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
-                            <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
-                        </svg>
-                        <em>
-                            <time
-                                datetime={frontmatter.lastUpdated.toISOString()}
-                                aria-label={`Last updated on ${frontmatter.lastUpdated.toLocaleDateString(
-                                    'en-GB',
-                                    { day: 'numeric', month: 'long', year: 'numeric' },
-                                )}`}>
-                                Last updated{' '}
-                                {frontmatter.lastUpdated.toLocaleDateString('en-GB', {
-                                    day: 'numeric',
-                                    month: 'long',
-                                    year: 'numeric',
-                                })}
-                            </time>
-                        </em>
-                    </div>
+                    <time
+                        class="updated entry-flex"
+                        datetime={frontmatter.lastUpdated.toISOString()}
+                        aria-label={`${updatedLabel} on ${frontmatter.lastUpdated.toLocaleDateString(
+                            'en-GB',
+                            { day: 'numeric', month: 'short', year: 'numeric' },
+                        )}`}>
+                        + {updatedLabel}
+                        {frontmatter.lastUpdated.toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                        })}
+                    </time>
                 )
             }
+            <div
+                class="entry-flex reading-time"
+                aria-label={`Estimated reading time: ${readingTime} minutes`}>
+                <DateClock />
+                {readingTime} min read
+            </div>
         </div>
 
         <slot />
