@@ -2,9 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import Desk from '../assets/images/desk1.webp';
-import { BagLink } from '../components/icons';
+import ExternalLink from '../components/ExternalLink.astro';
 
-const pageTitle = 'Kit';
+const pageTitle = 'Cozy Corner';
 const pageDescription = `A list of the gear I currently use for my cozy workspace.`;
 ---
 
@@ -14,7 +14,7 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             {pageDescription} I do ball on a budget and the privilege of nice gifts from family members
             and friends. These are things I use every day.
         </p>
-        <Image src={Desk} loading="eager" alt="Cozy desk setup of" class="desk" />
+        <Image src={Desk} loading="eager" alt="Cozy workspace corner" class="desk" />
 
         <div class="divider"></div>
 
@@ -22,13 +22,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-computer-title">
                 <h4 id="item-computer-title" class="item-title">Computer</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.omen.com/us/en/desktops/omen-25l.html"
-                    aria-describedby="item-computer-desc">
-                    <span class="item-sub">HP Omen 25L i5-12/16/2048/3070</span>
-                    <BagLink />
-                </a>
+                    label="HP Omen 25L i5-12/16/2048/3070"
+                />
 
                 <p id="item-computer-desc" class="item-desc">
                     Having a white PC is real nice. I'm a happy camper.
@@ -38,13 +35,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-desk-title">
                 <h4 id="item-desk-title" class="item-title">Desk</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.ikea.com/gb/en/p/mittzon-desk-walnut-veneer-white-s49528057/"
-                    aria-describedby="item-desk-desc">
-                    <span class="item-sub">IKEA Mitzon</span>
-                    <BagLink />
-                </a>
+                    label="IKEA Mitzon"
+                />
 
                 <p id="item-desk-desc" class="item-desc">
                     I had my worries about potentially wobbly legs, but there's no issues. I'm very
@@ -55,32 +49,25 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-headphones-title">
                 <h4 id="item-headphones-title" class="item-title">Headphones</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.jbl.com/on-ear-headphones/TUNE510BT-.html"
-                    aria-describedby="item-headphones-desc">
-                    <span class="item-sub">JBL Tune 510BT</span>
-                    <BagLink />
-                </a>
+                    label="JBL Tune 510BT"
+                />
 
                 <p id="item-headphones-desc" class="item-desc">
                     I am very particular about my ears (hi autism!) and this was an <i
                         >"I'll buy proper stuff next month but this should do"</i
-                    >
-                    purchase, and it ended up working out.
+                    > purchase, and it ended up working out.
                 </p>
             </article>
 
             <article class="item" aria-labelledby="item-keycaps-title">
                 <h4 id="item-keycaps-title" class="item-title">Keycaps</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.amazon.com/Sumgsn-Gradient-Mechanical-Keyboard-Switches/dp/B0BYJBRT6L?th=1"
-                    aria-describedby="item-keycaps-desc">
-                    <span class="item-sub">Sumgsn gradient green</span>
-                    <BagLink />
-                </a>
+                    label="Sumgsn gradient green"
+                />
 
                 <p id="item-keycaps-desc" class="item-desc">
                     They were pretty. A few years in, they're not displaying any wear at all.
@@ -90,13 +77,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-keyboard-title">
                 <h4 id="item-keyboard-title" class="item-title">Keyboard</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
-                    aria-describedby="item-keyboard-desc">
-                    <span class="item-sub">AJAZZ AK820 75%</span>
-                    <BagLink />
-                </a>
+                    label="AJAZZ AK820 75%"
+                />
 
                 <p id="item-keyboard-desc" class="item-desc">
                     I just needed a cheap mechanical keyboard to play with. A great beginner
@@ -107,13 +91,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-monitor-title">
                 <h4 id="item-monitor-title" class="item-title">Monitor</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.amazon.co.uk/Lenovo-D32q-20-31-5-FreeSync-Monitor/dp/B085ZXS65Y"
-                    aria-describedby="item-monitor-desc">
-                    <span class="item-sub">Lenovo D32q-20</span>
-                    <BagLink />
-                </a>
+                    label="Lenovo D32q-20"
+                />
 
                 <p id="item-monitor-desc" class="item-desc">
                     Look, it was on a 65% sale. The VESA mount placement is silly. I can live with
@@ -124,13 +105,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-stand-title">
                 <h4 id="item-stand-title" class="item-title">Monitor stand</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.ikea.com/gb/en/p/sigfinn-monitor-stand-fixed-height-bamboo-veneer-20362929/"
-                    aria-describedby="item-stand-desc">
-                    <span class="item-sub">Ikea Sigfinn</span>
-                    <BagLink />
-                </a>
+                    label="Ikea Sigfinn"
+                />
 
                 <p id="item-stand-desc" class="item-desc">
                     I am working towards getting a monitor arm, but this'll do.
@@ -140,13 +118,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-mouse-title">
                 <h4 id="item-mouse-title" class="item-title">Mouse</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.logitech.com/en-eu/products/mice/lift-vertical-ergonomic-mouse.html"
-                    aria-describedby="item-mouse-desc">
-                    <span class="item-sub">Logitech Vertical Ergonomic Lift</span>
-                    <BagLink />
-                </a>
+                    label="Logitech Vertical Ergonomic Lift"
+                />
 
                 <p id="item-mouse-desc" class="item-desc">
                     I <em>cannot</em> live without this. Best purchase I've ever made.
@@ -156,13 +131,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-phone-title">
                 <h4 id="item-phone-title" class="item-title">Phone</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.samsung.com/uk/smartphones/galaxy-s25/"
-                    aria-describedby="item-phone-desc">
-                    <span class="item-sub">Samsung Galaxy S25</span>
-                    <BagLink />
-                </a>
+                    label="Samsung Galaxy S25"
+                />
 
                 <p id="item-phone-desc" class="item-desc">
                     I'm not loyal to any android brand - it was 80% off on a Black friday sale.
@@ -173,13 +145,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-tablet-title">
                 <h4 id="item-tablet-title" class="item-title">Tablet</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.samsung.com/uk/tablets/galaxy-tab-s/galaxy-tab-s9-plus-5g-graphite-256gb-sm-x816bzaaeub/"
-                    aria-describedby="item-tablet-desc">
-                    <span class="item-sub">Samsung Galaxy Tab S9+</span>
-                    <BagLink />
-                </a>
+                    label="Samsung Galaxy Tab S9+"
+                />
 
                 <p id="item-tablet-desc" class="item-desc">
                     I have practised the <a
@@ -188,21 +157,17 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
                         target="_blank"
                         rel="noopener noreferrer">bullet journal method</a
                     > since 2013 but went "digital" in 2023 with a hybrid tablet format that benefits
-                    my life specifically. It is a vital product of how far I've come with managing my
-                    bipolar disorder. I also use it as a tiny TV in bed. Great tablet.
+                    my life specifically. I also use it as a tiny TV in bed. Great tablet.
                 </p>
             </article>
 
             <article class="item" aria-labelledby="item-switches-title">
                 <h4 id="item-switches-title" class="item-title">Switches</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.amazon.co.uk/AJAZZ-Mechanical-Keyboard-Full-key-Hot-Swappable/dp/B0CQNRQFW8"
-                    aria-describedby="item-switches-desc">
-                    <span class="item-sub">Tactile HP Yellow Switch</span>
-                    <BagLink />
-                </a>
+                    label="Tactile HP Yellow Switch"
+                />
 
                 <p id="item-switches-desc" class="item-desc">
                     I am not a tactile person. I am apparently a linear person, so this is not for
@@ -213,13 +178,10 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <article class="item" aria-labelledby="item-speaker-title">
                 <h4 id="item-speaker-title" class="item-title">Speaker</h4>
 
-                <a
-                    target="_blank"
+                <ExternalLink
                     href="https://www.ultimateears.com/en-hk/wireless-speakers/wonderboom-4.html"
-                    aria-describedby="item-speaker-desc">
-                    <span class="item-sub">Ultimate Ears WONDERBOOM 2</span>
-                    <BagLink />
-                </a>
+                    label="Ultimate Ears WONDERBOOM 2"
+                />
 
                 <p id="item-speaker-desc" class="item-desc">
                     I got this as a promo gift some time ago, I still do not have any speakers for
@@ -232,7 +194,7 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
 </BaseLayout>
 
 <style>
-    article {
+    article:not(:last-of-type) {
         margin-bottom: var(--space-7);
     }
 
@@ -246,14 +208,13 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
 
     article a {
         font-family: var(--font-mono);
-        display: flex;
-        align-items: center;
-        gap: var(--space-1);
+        line-height: var(--line-height-p);
     }
 
     article svg {
         color: var(--peach-accent);
         vertical-align: middle;
+        vertical-align: text-bottom;
     }
     img.desk {
         border-radius: var(--radius-md);
