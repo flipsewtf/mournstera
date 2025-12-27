@@ -90,11 +90,8 @@
     --text-margin-md: 1.25rem;
     --text-margin-lg: 2.25rem;
 
-    /* --cubic-smooth: 0.16s cubic-bezier(0.25, 0.8, 0.3, 1);
-    --cubic-snappy: 0.25s cubic-bezier(0.4, 0, 0.2, 1); */
-
-    --cubic-smooth: 1s cubic-bezier(0.25, 0.8, 0.3, 1);
-    --cubic-snappy: 1s cubic-bezier(0.4, 0, 0.2, 1);
+    --cubic-smooth: 0.16s cubic-bezier(0.25, 0.8, 0.3, 1);
+    --cubic-snappy: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     --neutral-hue: 283;
     --purple-hue: 288;
