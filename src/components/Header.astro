@@ -1,6 +1,9 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
 import MegaMenu from './MegaMenu.astro';
+
+const current = Astro.url.pathname;
+const isActive = (path: string) => current === path;
 ---
 
 <header class="top">
@@ -20,8 +23,18 @@ import MegaMenu from './MegaMenu.astro';
                 ><span class="sr-only">Go to homepage</span></a
             >
 
+            <a
+                class="left-link desktop"
+                href="/blog/"
+                aria-current={isActive('/blog/') ? 'page' : undefined}>Blog</a
+            >
+            <a
+                class="left-link desktop"
+                href="/garden/"
+                aria-current={isActive('/garden/') ? 'page' : undefined}>Garden</a
+            >
+
             <MegaMenu />
-            <a class="left-link desktop" href="/about/">About</a>
         </div>
         <div
             class="header-section right"

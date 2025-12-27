@@ -11,13 +11,14 @@ const isActive = (path: string) => current === path;
     aria-controls="mega"
     aria-haspopup="menu"
     data-menu-btn>
-    Menu
+    <span class="mobile">Menu</span>
+    <span class="desktop">Explore</span>
+    <Chevron />
 </button>
 
 <div class="megamenu" id="mega" data-megamenu>
     <nav aria-label="Main navigation">
         <a
-            class="mobile"
             href="/about/"
             aria-current={isActive('/about/') ? 'page' : undefined}
             aria-describedby="about-desc">
@@ -26,6 +27,7 @@ const isActive = (path: string) => current === path;
         </a>
 
         <a
+            class="mobile"
             href="/blog/"
             aria-current={isActive('/blog/') ? 'page' : undefined}
             aria-describedby="blog-desc">
@@ -34,6 +36,7 @@ const isActive = (path: string) => current === path;
         </a>
 
         <a
+            class="mobile"
             href="/garden/"
             aria-current={isActive('/garden/') ? 'page' : undefined}
             aria-describedby="garden-desc">
@@ -42,18 +45,18 @@ const isActive = (path: string) => current === path;
         </a>
 
         <a
-            href="/kit/"
-            aria-current={isActive('/kit/') ? 'page' : undefined}
-            aria-describedby="kit-desc">
-            <h4>Kit</h4>
-            <p class="desc" id="kit-desc">A list of the gear I use for my cozy workspace.</p>
+            href="/cozy-corner/"
+            aria-current={isActive('/cozy-corner/') ? 'page' : undefined}
+            aria-describedby="cozycorner-desc">
+            <h4>Cozy Corner</h4>
+            <p class="desc" id="cozycorner-desc">A list of the gear I use for my cozy workspace.</p>
         </a>
         <a
             href="/colophon/"
             aria-current={isActive('/colophon/') ? 'page' : undefined}
-            aria-describedby="kit-colophon">
+            aria-describedby="colophon-desc">
             <h4>Colophon</h4>
-            <p class="desc" id="kit-colophon">Read about build, credits and policy.</p>
+            <p class="desc" id="colophon-desc">Read about build, credits and policy.</p>
         </a>
     </nav>
 </div>
@@ -69,28 +72,30 @@ const isActive = (path: string) => current === path;
 
     button.menu-toggle {
         display: flex;
-        gap: var(--px2);
+        gap: var(--px4);
         align-items: center;
         color: var(--text-alt);
         font-weight: 600;
-        text-decoration: underline;
-        text-decoration-color: transparent;
-        text-underline-offset: var(--underline-offset);
-        text-decoration-thickness: var(--underline-thickness);
         transition:
             color var(--cubic-smooth),
             text-decoration-color var(--cubic-smooth);
+
+        svg {
+            color: var(--text-alt);
+            width: var(--text-sm);
+            height: var(--text-sm);
+            fill: currentColor;
+            margin-top: var(--px1);
+            transition: transform var(--cubic-snappy);
+        }
     }
 
     button.menu-toggle:hover {
         color: var(--purple-accent);
     }
 
-    button.menu-toggle.pressed {
-        text-decoration: underline;
-        text-decoration-color: var(--purple-accent);
-        text-underline-offset: var(--underline-offset);
-        text-decoration-thickness: var(--underline-thickness);
+    button.menu-toggle.pressed svg {
+        transform: rotateZ(-180deg);
     }
 
     /* Mobile-first: base styles */
@@ -168,7 +173,7 @@ const isActive = (path: string) => current === path;
 
         nav {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             align-items: stretch;
             justify-items: start;
             gap: var(--space-0);
@@ -180,13 +185,13 @@ const isActive = (path: string) => current === path;
             opacity: 1;
             transform-origin: top left;
             will-change: transform;
-            transform: rotateX(0) scale(1) translateZ(0);
+            transform: scale(1) rotateX(0deg);
             backface-visibility: hidden;
             transition: transform var(--cubic-snappy);
         }
 
         .megamenu:not(.open) nav {
-            transform: rotateX(15deg) scale(0.9);
+            transform: scale(0.94) rotateX(-15deg);
         }
 
         nav a {
