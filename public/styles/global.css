@@ -82,7 +82,7 @@
     --h3: clamp(1.125rem, 4vw, 1.5rem);
     --h4: clamp(1rem, 3vw, 1.25rem);
 
-    --line-height-p: 1.6;
+    --line-height-p: 1.75;
     --line-height-sub: 1.4;
     --line-height-heading: 1.12;
     --text-margin-sm: 0.5em;
