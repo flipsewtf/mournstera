@@ -1,13 +1,16 @@
 ---
 title: 'Markdown References'
-pubDate: 2025-12-06T15:45:00+01:00
+pubDate: 2026-01-06T19:20:00+01:00
 lastUpdated: 2025-12-18T15:45:00+01:00
 description: 'A short-term memory aid for a brain that refuses to retain syntax.'
 author: 'Flipse'
 # image:
 #     url: '/images/blog/desk1.webp'
 #     alt: 'Cozy desk workspace.'
-tags: ['references', 'markdown']
+kind: references
+tags:
+    - markdown
+    - workflow
 ---
 
 This is a collection of Markdown examples I will forget approximately three minutes after using them.
@@ -18,13 +21,13 @@ It is mostly copied from Astro’s official example, with commentary added by so
 Markdown supports six levels of headings.
 You will only ever need two of them, but here are all six anyway.
 
-# H1 — Reserved for regret and page titles
+# H1 — No only for pages titles
 
 ## H2 — The one you actually use
 
-### H3 — When things get serious
+### H3 — and sometimes When things get serious
 
-#### H4 — This is probably too much
+#### H4 — This is not gonna happen
 
 ##### H5 — Why are we here
 
@@ -45,12 +48,8 @@ if you need a `<br>` make two spacings after.
 ### Syntax
 
 ```markdown
-![Alt text](./full/or/relative/path/of/image)
+![Alt text](/images/blog/image.webp)
 ```
-
-### Output
-
-![blog image placeholder](/images/blog/desk1.webp)
 
 If the image doesn’t load, at least the alt text will politely explain what _should_ have been there. For blog/garden posts, please use /public folder for images.
 

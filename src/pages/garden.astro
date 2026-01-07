@@ -2,8 +2,9 @@
 // garden.astro
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import GardenPost from '../components/GardenPost.astro';
 import GardenUpper from '../components/GardenUpper.astro';
+import GardenSidebar from '../components/GardenSidebar.astro';
+import GardenPost from '../components/GardenPost.astro';
 import { gardenMeta } from '../assets/data/garden-meta';
 import '../assets/styles/garden-index.css';
 
@@ -17,21 +18,32 @@ const tags = [
         a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
+
+const postsByKind = Object.groupBy(allGarden, (post) => post.data.kind);
 ---
 
-<BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description} isPost={true}>
-    <GardenUpper slot="upper-section" tags={tags} currentTag="all" />
+<BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description}>
+    <GardenSidebar slot="sidebar" tags={tags} currentTag="all" />
 
-    <ul class="garden-list">
-        {
-            allGarden.map((post) => (
-                <GardenPost
-                    url={`/garden/${post.id}/`}
-                    title={post.data.title}
-                    description={post.data.description}
-                    pubDate={post.data.pubDate}
-                />
-            ))
-        }
-    </ul>
+    <GardenUpper slot="upper-section" />
+
+    {
+        Object.entries(postsByKind).map(([kind, posts]) => (
+            <section class="garden-kind-group">
+                <h2 class="garden-kind-title">{kind}</h2>
+
+                <ul class="garden-list">
+                    {posts.map((post) => (
+                        <GardenPost
+                            url={`/garden/${post.id}/`}
+                            title={post.data.title}
+                            pubDate={post.data.pubDate}
+                            description={post.data.description}
+                            tags={post.data.tags}
+                        />
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
 </BaseLayout>

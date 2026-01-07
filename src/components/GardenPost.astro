@@ -1,28 +1,49 @@
 ---
-import { Sprout } from '../components/icons';
-const { url, title, description, pubDate } = Astro.props;
+// GardenPost.astro
+import { DateCalendar } from '../components/icons';
+
+interface Props {
+    url: string;
+    title: string;
+    description?: string;
+    pubDate?: Date;
+    tags: string[];
+}
+
+const { url, title, pubDate, tags, description } = Astro.props;
 ---
 
 <li>
     <article class="garden-title">
-        <a href={url}>
-            <h2>{title}</h2>
-        </a>
-        {description && <p class="post-description">{description}</p>}
-        <div class="date-wrap">
-            <Sprout />
+        {
+            pubDate && (
+                <time datetime={pubDate.toISOString()} class="post-date">
+                    <DateCalendar />
+                    {pubDate.toLocaleDateString('en-GB', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                    })}
+                </time>
+            )
+        }
 
-            {
-                pubDate && (
-                    <time datetime={pubDate.toISOString()} class="post-date">
-                        {pubDate.toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'long',
-                            year: 'numeric',
-                        })}
-                    </time>
-                )
-            }
-        </div>
+        <a class="title-link" href={url}><h2>{title}</h2></a>
+
+        {description && <p class="garden-post-description">{description}</p>}
+
+        {
+            tags.length > 0 && (
+                <ul class="post-tags" aria-label="Post tags">
+                    {tags.map((tag) => (
+                        <li>
+                            <a href={`/garden/tags/${tag}`} rel="tag">
+                                #{tag}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
     </article>
 </li>

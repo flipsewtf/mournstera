@@ -1,27 +1,17 @@
 ---
+// \MarkdownPostLayout.astro
 import BaseLayout from './BaseLayout.astro';
-import '../assets/styles/post-content.css';
-import { Sprout, Shovel, DateClock, DateCalendar, DateUpdated } from '../components/icons';
+import '../assets/styles/posts.css';
+import { Sprout, DateClock } from '../components/icons';
 
 const {
     frontmatter,
-    section = 'blog',
     readingTime, // use the value passed from [...slug].astro
 } = Astro.props;
-
-const isGarden = section === 'garden';
-
-const publishedLabel = isGarden ? 'Planted' : 'Posted';
-const updatedLabel = isGarden ? 'nurtured' : 'updated';
-const PublishedIcon = isGarden ? Sprout : DateCalendar;
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description} isPost={true}>
-    <article class={`post ${section}-post`}>
-        <h1>{frontmatter.title}</h1>
-
-        <p class="entry-desc">{frontmatter.description}</p>
-
+    <article class="post">
         {
             frontmatter.image?.url && (
                 <img
@@ -32,20 +22,21 @@ const PublishedIcon = isGarden ? Sprout : DateCalendar;
             )
         }
 
+        <h1>{frontmatter.title}</h1>
+
+        <p class="entry-desc">{frontmatter.description}</p>
+
         <div class="entry-meta" role="group" aria-label="Post metadata">
             <time
                 class="posted entry-flex"
                 datetime={frontmatter.pubDate.toISOString()}
-                aria-label={`${publishedLabel} on ${frontmatter.pubDate.toLocaleDateString(
-                    'en-GB',
-                    {
-                        day: 'numeric',
-                        month: 'short',
-                        year: 'numeric',
-                    },
-                )}`}>
-                <PublishedIcon />
-                {publishedLabel}
+                aria-label={`Planted on ${frontmatter.pubDate.toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                })}`}>
+                <Sprout />
+                Planted
                 {
                     frontmatter.pubDate.toLocaleDateString('en-GB', {
                         day: 'numeric',
@@ -60,11 +51,11 @@ const PublishedIcon = isGarden ? Sprout : DateCalendar;
                     <time
                         class="updated entry-flex"
                         datetime={frontmatter.lastUpdated.toISOString()}
-                        aria-label={`${updatedLabel} on ${frontmatter.lastUpdated.toLocaleDateString(
+                        aria-label={`Nurtured on ${frontmatter.lastUpdated.toLocaleDateString(
                             'en-GB',
                             { day: 'numeric', month: 'short', year: 'numeric' },
                         )}`}>
-                        + {updatedLabel}
+                        + Nurtured
                         {frontmatter.lastUpdated.toLocaleDateString('en-GB', {
                             day: 'numeric',
                             month: 'short',

@@ -1,0 +1,37 @@
+---
+// GardenSidebar.astro
+interface Props {
+    tags: string[];
+    currentTag: string;
+}
+
+const { tags, currentTag }: Props = Astro.props;
+
+const basePath = '/garden';
+---
+
+<div class="sidebar-inner">
+    <h2 id="garden-tags-heading" class="garden-tags-title">Wander my garden</h2>
+
+    <p class="description">
+        I don't know how this will grow with time, but I'm curious to find out.
+    </p>
+
+    <nav aria-labelledby="garden-tags-heading">
+        <ul class="garden-tags" id="garden-tags-list">
+            {
+                tags.map((tag, i) => (
+                    <li>
+                        <a
+                            href={tag === 'all' ? '/garden' : `${basePath}/tags/${tag}`}
+                            class={tag === currentTag ? 'active' : undefined}
+                            aria-current={tag === currentTag ? 'page' : undefined}>
+                            <span class="sr-only">Show </span>
+                            {tag}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</div>

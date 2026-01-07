@@ -1,13 +1,15 @@
 ---
 title: 'Cheatsheet'
-pubDate: 2025-12-17T13:30:00+01:00
-description: 'Notes and reminders.'
+pubDate: 2025-12-20T13:30:00+01:00
+description: 'Notes and reminders on workflow and execution.'
 author: 'Flipse'
 # always /public in blog/garden posts
 # image:
 #     url: '/images/blog/image-file.webp'
 #     alt: 'alt-text'
-tags: ['references']
+kind: references
+tags:
+    - workflow
 ---
 
 Stepping out of the Tumblr sandbox was.. an experience. Here's some stuff to keep me sane.
