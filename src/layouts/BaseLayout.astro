@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 const {
     pageTitle = 'Mournstera',
     seoTitle,
-    pageDescription = 'Blog and playground of Flipse.',
+    pageDescription = 'A personal garden, where web development meets autistic panic and chaos-eating energy.',
     pageImage = '/social-default.png',
     mainClass = '',
     isPost = false, // auto-hide outer h1 if true
@@ -20,15 +20,15 @@ const {
     <body>
         <Header />
 
-        <main class={mainClass}>
+        <main
+            class={mainClass}
+            class:list={{
+                'has-upper': Astro.slots['upper-section'],
+                'has-sidebar': Astro.slots.sidebar,
+            }}>
             {!isPost && pageTitle && <h1>{pageTitle}</h1>}
 
-            <div
-                class="layout-container"
-                class:list={{
-                    'has-upper': Astro.slots['upper-section'],
-                    'has-sidebar': Astro.slots.sidebar,
-                }}>
+            <div class="layout-container">
                 {
                     Astro.slots['upper-section'] && (
                         <section class="upper-section">

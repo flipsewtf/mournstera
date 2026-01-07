@@ -1,38 +1,36 @@
 ---
 // src/pages/garden/tags/[tag].astro
-
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import GardenPost from '../../../components/GardenPost.astro';
 import GardenUpper from '../../../components/GardenUpper.astro';
+import GardenSidebar from '../../../components/GardenSidebar.astro';
+import GardenPost from '../../../components/GardenPost.astro';
 import { gardenMeta } from '../../../assets/data/garden-meta';
 import '../../../assets/styles/garden-index.css';
 
 // Generate static paths for all tags
 export async function getStaticPaths() {
     const allGarden = await getCollection('garden');
+    const uniqueTags = [...new Set(allGarden.map((p) => p.data.tags).flat())];
 
-    const uniqueTags = [...new Set(allGarden.map((post) => post.data.tags).flat())];
-
-    return uniqueTags.map((tag) => {
-        // Filter posts for this tag and sort newest first
-        const filteredPosts = allGarden
-            .filter((post) => post.data.tags.includes(tag))
-            .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
-        return {
-            params: { tag },
-            props: { posts: filteredPosts },
-        };
-    });
+    return uniqueTags.map((tag) => ({
+        params: { tag },
+    }));
 }
 
-// current tag and posts from props
+// Current tag from URL params
 const { tag } = Astro.params;
-const { posts } = Astro.props;
 
-// all unique tags for navigation, sorted alphabetically
+// Get all posts
 const allGarden = await getCollection('garden');
+
+// Filter posts to only include this tag
+const filteredPosts =
+    tag === 'all' ? allGarden : allGarden.filter((post) => post.data.tags.includes(tag));
+
+filteredPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+// All unique tags for the sidebar
 const tags = [
     'all',
     ...Array.from(new Set(allGarden.map((p) => p.data.tags).flat())).sort((a, b) =>
@@ -40,27 +38,38 @@ const tags = [
     ),
 ];
 
-// Capitalize current tag for display
-const formattedTag = tag && tag !== 'all' ? tag.charAt(0).toUpperCase() + tag.slice(1) : '';
+// Capitalize tag for meta title
+const formattedTag = tag !== 'all' ? tag.charAt(0).toUpperCase() + tag.slice(1) : '';
 
-// Dynamic page title
-const pageTitle =
-    !tag || tag === 'all' ? gardenMeta.title : `${gardenMeta.title} (${formattedTag})`;
+// Page title for <title> tag; H1 still comes from gardenMeta.title
+const pageTitle = tag !== 'all' ? `${gardenMeta.title} (${formattedTag})` : gardenMeta.title;
+
+// Group filtered posts by kind
+const postsByKind = Object.groupBy(filteredPosts, (post) => post.data.kind);
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={gardenMeta.description} isPost={true}>
-    <GardenUpper slot="upper-section" tags={tags} currentTag={tag} />
+<BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description}>
+    <GardenSidebar slot="sidebar" tags={tags} currentTag={tag} />
 
-    <ul class="garden-list">
-        {
-            posts.map((post) => (
-                <GardenPost
-                    url={`/garden/${post.id}/`}
-                    title={post.data.title}
-                    description={post.data.description}
-                    pubDate={post.data.pubDate}
-                />
-            ))
-        }
-    </ul>
+    <GardenUpper slot="upper-section" />
+
+    {
+        Object.entries(postsByKind).map(([kind, posts]) => (
+            <section class="garden-kind-group">
+                <h2 class="garden-kind-title">{kind}</h2>
+
+                <ul class="garden-list">
+                    {posts.map((post) => (
+                        <GardenPost
+                            url={`/garden/${post.id}/`}
+                            title={post.data.title}
+                            pubDate={post.data.pubDate}
+                            description={post.data.description}
+                            tags={post.data.tags}
+                        />
+                    ))}
+                </ul>
+            </section>
+        ))
+    }
 </BaseLayout>
