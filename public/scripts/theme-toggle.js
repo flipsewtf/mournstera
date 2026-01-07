@@ -5,7 +5,7 @@
     const root = document.documentElement;
     const storageKey = 'theme';
 
-    // Read user preference if any
+    // read user preference, if any
     const getStoredTheme = () => localStorage.getItem(storageKey);
 
     // Check system preference

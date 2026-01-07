@@ -1,0 +1,176 @@
+---
+// Navigation.astro;
+import { Chevron } from '../components/icons';
+
+const current = Astro.url.pathname;
+const isActive = (path: string) => current === path;
+---
+
+<div class="navigation-wrapper">
+    <button
+        type="button"
+        class="menu-toggle header-text"
+        data-menu-btn
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="main-nav"
+        aria-haspopup="menu">
+        <span class="mobile">Menu</span>
+        <span class="desktop">Explore</span>
+        <Chevron />
+    </button>
+
+    <div id="main-nav" class="menu-container" data-menu-container aria-hidden="true">
+        <nav class="shadow-lg" aria-label="Main navigation">
+            <ul class="links">
+                <li class="mobile-nav">
+                    <a
+                        href="/garden/"
+                        aria-current={isActive('/garden/') ? 'page' : undefined}
+                        data-mobile-only>Garden</a
+                    >
+                </li>
+                <li>
+                    <a href="/about/" aria-current={isActive('/about/') ? 'page' : undefined}
+                        >About</a
+                    >
+                </li>
+                <li>
+                    <a href="/now/" aria-current={isActive('/now/') ? 'page' : undefined}>Now</a>
+                </li>
+                <li>
+                    <a href="/uses/" aria-current={isActive('/uses/') ? 'page' : undefined}>Uses</a>
+                </li>
+                <li>
+                    <a href="/colophon/" aria-current={isActive('/colophon/') ? 'page' : undefined}
+                        >Colophon</a
+                    >
+                </li>
+                <li class="mobile-nav">
+                    <a
+                        href="/rss.xml"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Subscribe via RSS"
+                        data-mobile-only>RSS</a
+                    >
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <style>
+        .navigation-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button.menu-toggle {
+            display: flex;
+            gap: var(--px6);
+            align-items: center;
+            color: var(--text-alt);
+            transition:
+                color var(--cubic-smooth),
+                text-decoration-color var(--cubic-smooth);
+
+            svg {
+                color: var(--text-alt);
+                width: calc(var(--px6) * 2);
+                height: calc(var(--px6) * 2);
+                transition: transform var(--ease-fast);
+                stroke-width: 1.7;
+            }
+        }
+
+        button.menu-toggle.pressed svg {
+            transform: rotateZ(180deg);
+        }
+
+        button.menu-toggle:hover {
+            color: var(--purple-accent);
+        }
+        .menu-container {
+            inset: 0;
+            top: 100%;
+            z-index: 1;
+            position: absolute;
+            opacity: 1;
+            transition: opacity var(--ease-fast);
+        }
+
+        .menu-container:not(.open) {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        nav {
+            font-weight: 600;
+            position: relative;
+            min-width: 10rem;
+            padding: var(--space-3);
+            max-width: 100%;
+            border-radius: var(--radius-xl);
+
+            ul.links {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-0);
+
+                li {
+                    display: inline-flex;
+                }
+
+                a {
+                    width: 100%;
+                    padding: var(--space-0);
+                    color: var(--text-alt);
+                    text-decoration: none;
+
+                    &:hover {
+                        color: var(--peach-accent);
+                    }
+                }
+            }
+        }
+
+        nav a[aria-current='page'] {
+            color: var(--text);
+        }
+
+        ul.links li.mobile-nav {
+            display: inline-flex;
+        }
+
+        /* Desktop */
+
+        @media (min-width: 48rem) {
+            .navigation-wrapper {
+                position: relative;
+            }
+            ul.links li.mobile-nav {
+                display: none;
+            }
+
+            .menu-container {
+                top: calc(100% + var(--space-3));
+                min-width: max-content;
+                font-size: var(--text-sm);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .menu-container {
+                transition: opacity 0;
+            }
+
+            button.menu-toggle:active svg,
+            .menu-container:not(.open) nav {
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+
+    <script src="/scripts/nav.js" defer></script>
+</div>

@@ -5,14 +5,6 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
 <footer>
     <div class="footer-inner">
         <div class="footer-icons">
-            <a
-                class="rss"
-                href="/rss.xml"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe via RSS">
-                <Rss />
-            </a>
             <nav class="social" aria-label="Social links">
                 <a
                     rel="me"
@@ -22,7 +14,7 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
                     aria-label="Follow on Bluesky">
                     <Bluesky />
                 </a>
-                <a
+                <!-- <a
                     rel="me"
                     class="insta"
                     href="https://www.instagram.com/flipse.me/"
@@ -30,7 +22,7 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
                     rel="noopener noreferrer"
                     aria-label="Follow on Instagram">
                     <Instagram />
-                </a>
+                </a> -->
                 <a
                     rel="me"
                     href="https://github.com/flipsewtf"
@@ -43,7 +35,7 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
         </div>
 
         <div class="made-info">
-            <span role="img" aria-label="love heart">♡</span> Made in Denmark.
+            2026 <span role="img" aria-label="love heart">♡</span> Made in Denmark.
         </div>
     </div>
 </footer>
@@ -58,17 +50,18 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
 
     footer {
         width: 100%;
-        background-color: var(--bg-alt);
+        padding: 0 var(--layout-padding);
     }
 
     .footer-inner {
-        padding: var(--space-5) var(--layout-padding) var(--space-9) var(--layout-padding);
+        border-top: var(--px1) solid var(--border);
+        padding: var(--space-5) 0 var(--space-9) 0;
         display: flex;
         gap: var(--space-4);
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
-        max-width: var(--layout-width);
+        max-width: calc(var(--layout-width) - var(--layout-padding) * 2);
         margin: 0 auto;
     }
 
@@ -99,27 +92,6 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
     nav.social a.insta svg {
         width: 1.625rem;
         height: 1.655rem;
-    }
-
-    a.rss {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-0);
-        border-radius: var(--radius-sm);
-        color: var(--text);
-        padding: var(--px6);
-        width: 2rem;
-        height: 2rem;
-    }
-    a.rss:hover {
-        background-color: var(--purple-accent);
-        color: var(--bg);
-    }
-    a.rss svg {
-        stroke-width: 2.75;
-        width: 100%;
-        height: 100%;
     }
 
     .made-info {
