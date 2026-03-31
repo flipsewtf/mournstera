@@ -1,197 +1,82 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+//index.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import '@/assets/styles/garden.css';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+const MAX_POSTS = 5;
+const posts: CollectionEntry<'garden'>[] = await getCollection('garden');
+
+const latestPosts = posts
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, MAX_POSTS);
 const pageTitle = ``;
 ---
 
 <BaseLayout isPost={true} pageTitle={pageTitle} mainClass="homepage">
-    <section class="hero">
-        <h1>Hello, my name is Flipse</h1>
-
-        <h2>
-            I am a <span class="sparkle-wrap">
-                tinkerer
-                <span class="sparkles" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                        <defs>
-                            <linearGradient
-                                id="sparkleGradient-1"
-                                x1="0%"
-                                y1="0%"
-                                x2="100%"
-                                y2="100%">
-                                <stop offset="0%" stop-color="#ffe986"></stop>
-                                <stop offset="100%" stop-color="#ef7808"></stop>
-                            </linearGradient>
-                        </defs>
-
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient-1)"></path>
-                    </svg>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                        <defs>
-                            <linearGradient
-                                id="sparkleGradient-2"
-                                x1="0%"
-                                y1="0%"
-                                x2="100%"
-                                y2="100%">
-                                <stop offset="0%" stop-color="#ffe986"></stop>
-                                <stop offset="100%" stop-color="#ef7808"></stop>
-                            </linearGradient>
-                        </defs>
-
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient-2)"></path>
-                    </svg>
-
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
-                        <defs>
-                            <linearGradient
-                                id="sparkleGradient-3"
-                                x1="0%"
-                                y1="0%"
-                                x2="100%"
-                                y2="100%">
-                                <stop offset="0%" stop-color="#ffe986"></stop>
-                                <stop offset="100%" stop-color="#ef7808"></stop>
-                            </linearGradient>
-                        </defs>
-
-                        <path
-                            d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"
-                            fill="url(#sparkleGradient-3)"></path>
-                    </svg>
-                </span>
-            </span>.
-        </h2>
-
+    <div class="hero flow" slot="upper-section">
+        <h1>mournstera</h1>
         <p>
-            I worked on <a
-                href="https://mournstera.tumblr.com/"
-                target="_blank"
-                rel="noopener noreferrer">Tumblr themes</a
-            > for 15 years, but it was time to set sail elsewhere. I started my first blog in 2000 and
-            now return to the old ship, with better code, of course.
-        </p>
+            Hi, I'm Flipse <svg
+                role="img"
+                aria-label="metal-hand sign"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                ><path d="M11 11.5v-1a1.5 1.5 0 0 1 3 0v1.5"></path><path
+                    d="M17 12v-6.5a1.5 1.5 0 0 1 3 0v10.5a6 6 0 0 1 -6 6h-2h.208a6 6 0 0 1 -5.012 -2.7a69.74 69.74 0 0 1 -.196 -.3c-.312 -.479 -1.407 -2.388 -3.286 -5.728a1.5 1.5 0 0 1 .536 -2.022a1.867 1.867 0 0 1 2.28 .28l1.47 1.47"
+                ></path><path d="M14 10.5a1.5 1.5 0 0 1 3 0v1.5"></path><path
+                    d="M8 13v-8.5a1.5 1.5 0 0 1 3 0v7.5"></path></svg
+            >
 
-        <p>I'm not entirely sure what I'm doing or what this will be, and that's exciting.</p>
+            I have generally been making Tumblr themes for 16 years, but it was time to set sail
+            elsewhere as well. I started my first blog in 2000 and have now returned to the old
+            ship. I am very much not a trust-the-process type of person, but I guess this is kind of
+            that.
+        </p>
+    </div>
+    <hr />
+    <section class="latest-posts">
+        <h2>Latest words</h2>
+        <ul class="garden-list">
+            {
+                latestPosts.map((post) => (
+                    <li class="garden-title">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                            {new Intl.DateTimeFormat('en-GB', {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                            }).format(post.data.pubDate)}
+                        </time>
+                        <a href={`/garden/${post.id}`}>{post.data.title}</a>
+                    </li>
+                ))
+            }
+        </ul>
     </section>
 
     <style>
-        :global(main.homepage) {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        h1 {
+            text-transform: none;
+            font-weight: 400;
+            font-size: clamp(3.75rem, 8vw, 6rem);
         }
 
-        section.hero {
-            max-width: var(--section-width);
+        .hero {
+            max-width: var(--layout--section);
 
-            h1 {
-                font-size: var(--text-md);
-                font-family: var(--font-primary);
-                text-transform: uppercase;
-                letter-spacing: 0.05em;
-                font-weight: 700;
-                color: var(--text);
-            }
-            h2 {
-                font-size: var(--h1);
-                margin: var(--space-0) 0 var(--text-margin-md) 0;
+            svg {
+                vertical-align: text-bottom;
             }
         }
-
-        p a {
-            font-weight: 500;
-            text-decoration-color: var(--purple-acent);
+        hr {
+            margin-block: 0 var(--space-5);
         }
-        p a:hover {
-            text-decoration-color: var(--peach-border);
+        h2 {
+            margin-bottom: var(--space-4);
         }
-
-        /*  --- sparkle */
-        .sparkle-wrap {
-            position: relative;
-            display: inline-block;
-            line-height: 1;
-        }
-
-        .sparkles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none; /* hey don't block text */
-        }
-
-        .sparkles svg {
-            position: absolute;
-            width: 2rem;
-            height: 2rem;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            top: calc(var(--y) * 1%);
-            left: calc(var(--x) * 1%);
-        }
-
-        .sparkle-wrap svg path {
-            stroke: transparent;
-            stroke-width: 0;
-        }
-
-        .sparkles svg:nth-of-type(1) {
-            --x: 15;
-            --y: 0;
-            --s: 1.15;
-        }
-
-        .sparkles svg:nth-of-type(2) {
-            --x: 45;
-            --y: 80;
-            --s: 1;
-        }
-
-        .sparkles svg:nth-of-type(3) {
-            --x: 90;
-            --y: 30;
-            --s: 0.75;
-        }
-
-        .sparkle-boop svg:nth-of-type(1) {
-            animation: sparkle 0.95s 0s both;
-        }
-        .sparkle-boop svg:nth-of-type(2) {
-            animation: sparkle 0.95s 0.15s both;
-        }
-        .sparkle-boop svg:nth-of-type(3) {
-            animation: sparkle 0.95s 0.3s both;
-        }
-
-        @keyframes sparkle {
-            0% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(var(--s, 1));
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .sparkles {
-                display: none;
-            }
+        time {
+            color: var(--text);
         }
     </style>
-
-    <script src="/scripts/sparkle.js" defer></script>
 </BaseLayout>

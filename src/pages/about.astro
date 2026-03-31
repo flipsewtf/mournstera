@@ -1,14 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-const pageTitle = 'About Flipse';
-const pageDescription = `A litle about me and what I do.`;
+//about.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
+const pageTitle = 'About';
+import ExternalLink from '@/components/ExternalLink.astro';
 
-const birthDate = new Date('1988-03-04'); // replace with my birthday (YYYY-MM-DD)
+const birthDate = new Date('1988-03-04');
 const today = new Date();
 
 let age = today.getFullYear() - birthDate.getFullYear();
 
-// adjust if birthday hasn’t happened yet this year
 const hasHadBirthdayThisYear =
     today.getMonth() > birthDate.getMonth() ||
     (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
@@ -18,16 +18,26 @@ if (!hasHadBirthdayThisYear) {
 }
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <article>
-        <p><i>I will make a more exciting about me page at some point!</i></p>
+<BaseLayout pageTitle={pageTitle}>
+    <div slot="upper-section">
+        <p>
+            <em
+                >I realise this is not an interesting way of getting to know me. I will make
+                something.. better.</em
+            >
+        </p>
 
+        <hr />
+    </div>
+    <div class="portrait" slot="sidebar">
+        <img class="bio-light" src="/assets/images/bio.gif" alt="" />
+    </div>
+
+    <article class="flow">
         <p>
             My name is Flipse and my pronouns are she/her. I'm a {age}-year-old Danish, bi,
-            autistic, and cis woman. My special subject is music, but also making lists with data,
-            so I thoroughly enjoyed discovering <a href="https://record.club/mournstera/"
-                >Record.Club</a
-            >.
+            autistic, and cis woman. My special subject is music and data, so I thoroughly enjoyed
+            discovering <a class="page-link" href="https://record.club/mournstera/">Record.Club</a>.
         </p>
 
         <p>
@@ -36,43 +46,79 @@ if (!hasHadBirthdayThisYear) {
             an early disability retiree (2022), navigating all of this in a meaningful way.
         </p>
 
-        <p>I love concerts, watermelon, Doctor Who, and TTRPGs.</p>
+        <p>I love concerts, watermelon, Doctor Who, and D&D.</p>
 
-        <h4>Early Web Days</h4>
+        <h2>Early Web Days</h2>
         <p>
-            Like many others, I clicked on “view source” on a website somewhere around 1999, and
-            later found b2/cafelog and <em>online diaries</em>. At Christmas, my parents got their
-            12-year-old her own domain and web host—a totally normal gift for a kid who made her own
-            database of licence plates (began that one in 1993, was informed it was in fact illegal
-            to keep a record lol), and films she had watched (IMDb wasn’t great back then).
+            Like many others, I clicked "view source" on a website somewhere around 1999, and later
+            found b2/cafelog and <em>online diaries</em>. That Christmas, my parents got their
+            12-year-old her own domain and web host.. Y'know, a totally normal gift for a kid who
+            made her own database of licence plates (started that one in 1993, was informed it was
+            in fact illegal to keep a records as such in 1998), and films she had watched (IMDb
+            wasn’t great at the time). I experienced LiveJournal through Lord of the Rings Fandom..
         </p>
 
-        <h4>Tumblr</h4>
+        <h2>Tumblr</h2>
         <p>
-            I found Tumblr in 2009, and began releasing my own Tumblr themes around 2012 while
-            attempting to wrangle their <em>interesting</em> choices of code. I carefully built my audience
-            (18k followers) and a lot of happy users and friends over the years.
+            ..and Doctor who through Tumblr. I found Tumblr in 2009, and began releasing my own
+            Tumblr themes around 2012 while attempting to wrangle their <em>interesting</em> choices of
+            code. I carefully built my audience (18k followers) and a lot of happy users and friends over
+            the years.
         </p>
 
         <p>
-            In late 2025, I decided that Tumblr was neither my circus nor my monkeys anymore.
-            Primarily, the reasons for quitting were influenced by <a
+            In late 2025, I decided that Tumblr was neither my circus nor my monkeys anymore. The
+            reasons for stepping back were primarily influenced by the behaviour of <ExternalLink
                 href="https://techcrunch.com/2024/02/22/tumblr-ceo-publicly-spars-with-trans-user-over-account-ban-revealing-private-account-names-in-the-process/"
-                aria-label="Read more on Tumblr CEO moderation and trans accounts stalking"
-                target="_blank"
-                rel="noopener noreferrer">the behaviour of Matt</a
-            > and <a
+                label="Matt"
+            /> (that one is an on-going issue) and <ExternalLink
                 href="https://changes.tumblr.com/post/797397804182044672/"
-                aria-label="Read more about how Tumblr is rolling out ads blog sites with custom themes as well"
-                target="_blank"
-                rel="noopener noreferrer">this enshittification</a
-            > of its users.
+                label="this enshittification"
+            />
+
+            of its users. I am currently just watching the ship burn and sink, while maintaining my
+            codes over there, and build my online community elsewhere in the meantime.
         </p>
 
-        <h4>Current Adventures</h4>
         <p>
-            I'm untangling years of—let’s be real for a second here—<em>questionable</em> JavaScript
-            habits courtesy of Tumblr. I discovered Astro, and the rest is now history, I guess.
+            If you want to have a sad laugh, read the comments on Tumblr's own posts on
+            <ExternalLink href="https://changes.tumblr.com" label="changes.tumblr.com" />. I promise
+            it's worth it.
         </p>
     </article>
 </BaseLayout>
+
+<style>
+    .portrait {
+        margin-inline: auto;
+        width: fit-content;
+    }
+
+    .portrait img {
+        shape-rendering: geometricPrecision;
+        border-radius: var(--radius--lg);
+        border: var(--px2) solid var(--text-alt);
+        object-fit: none;
+    }
+
+    :global([data-theme='light']) .portrait img {
+        mix-blend-mode: darken;
+    }
+
+    :global([data-theme='dark']) .portrait img {
+        filter: brightness(0.82);
+    }
+
+    /* DESKTOP */
+    @media (min-width: 48rem) {
+        .portrait {
+            margin-inline: none;
+            width: auto;
+        }
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 9/16;
+        }
+    }
+</style>

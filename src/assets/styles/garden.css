@@ -1,0 +1,109 @@
+/* garden.css */
+@media (min-width: 48rem) {
+    main.has-sidebar .layout-container {
+        flex-direction: row-reverse;
+    }
+}
+/* ------------- GARDEN POST KIND */
+.garden-heading {
+    color: var(--text-alt);
+    font-size: var(--h3);
+    font-weight: 700;
+    display: flex;
+    gap: var(--space-2);
+    text-transform: capitalize;
+
+    svg {
+        color: var(--accent);
+    }
+}
+section.garden-kind-group .garden-heading {
+    margin-block: var(--space-7) var(--space-4);
+}
+section.main-content > section.garden-kind-group:first-child h3.garden-heading {
+    margin-block-start: 0;
+}
+
+ul.garden-list {
+    display: flex;
+    gap: var(--space-3);
+    flex-direction: column;
+}
+
+/* GardenPost.astro */
+ul.garden-list li {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    gap: var(--px8);
+    flex-direction: column;
+
+    time {
+        font-size: var(--text--sm);
+        color: var(--text-alt);
+        font-family: var(--font--mono);
+        font-weight: 450;
+    }
+
+    a {
+        color: var(--text);
+        text-decoration-color: var(--text-alt);
+        font-size: clamp(1rem, 3vw, 1.125rem);
+    }
+    a:hover {
+        color: var(--accent-hover);
+        text-decoration-color: var(--accent);
+    }
+}
+
+@media (min-width: 35rem) {
+    ul.garden-list {
+        gap: var(--space-2);
+    }
+    ul.garden-list li {
+        flex-direction: row;
+        align-items: flex-end;
+        gap: var(--space-3);
+    }
+}
+
+/*  ------------- SIDEBAR (tags) */
+
+h2.garden-tags-title {
+    color: var(--text);
+    font-size: var(--text-md);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+ul.garden-tags {
+    margin-top: var(--space-4);
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+
+    li {
+        display: inline-flex;
+    }
+
+    a {
+        font-weight: 500;
+        padding-block: var(--px8);
+        padding-inline: var(--space-1);
+        color: var(--text);
+        background-color: var(--bg-alt);
+        border: var(--px1) solid var(--border);
+        text-decoration: none;
+        border-radius: var(--radius--sm);
+
+        &:hover {
+            border-color: var(--accent-border);
+            color: var(--accent);
+            background-color: var(--accent-bg);
+        }
+    }
+    a.active {
+        border-color: var(--accent-border);
+        color: var(--text);
+        background-color: var(--accent-bg);
+    }
+}

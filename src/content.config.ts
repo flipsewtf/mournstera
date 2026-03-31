@@ -1,3 +1,4 @@
+//content.config.ts
 // Import the glob loader
 import { glob } from 'astro/loaders';
 import { z, defineCollection } from 'astro:content';
@@ -16,7 +17,7 @@ const garden = defineCollection({
             })
             .optional(),
         tags: z.array(z.string()),
-        kind: z.enum(['braindumping', 'notes', 'references', 'seedlings', 'essays']),
+        kind: z.enum(['musings', 'notes', 'seedlings']),
         lastUpdated: z.date().optional(),
     }),
 });

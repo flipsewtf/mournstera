@@ -1,5 +1,6 @@
 ---
 // GardenSidebar.astro
+import { TagsIcon } from '@lucide/astro';
 interface Props {
     tags: string[];
     currentTag: string;
@@ -11,11 +12,7 @@ const basePath = '/garden';
 ---
 
 <div class="sidebar-inner">
-    <h2 id="garden-tags-heading" class="garden-tags-title">Wander my garden</h2>
-
-    <p class="description">
-        I don't know how this will grow with time, but I'm curious to find out.
-    </p>
+    <h3 class="garden-heading"><TagsIcon /> Tags</h3>
 
     <nav aria-labelledby="garden-tags-heading">
         <ul class="garden-tags" id="garden-tags-list">

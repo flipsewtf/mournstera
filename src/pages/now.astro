@@ -1,17 +1,14 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Disc3Icon, LibraryBigIcon, TvMinimalIcon, DicesIcon } from '@lucide/astro';
+import ExternalLink from '@/components/ExternalLink.astro';
 
-import { NowVinyl, NowTv, NowDice, NowBooks } from '../components/icons';
+const pageTitle = `Now`;
 
-const pageTitle = `Currently`;
-const pageDescription = `Here's what I have been up as of late.`;
-
-const lastUpdated = '2026-01-07'; // YYYY-MM-DD
+const lastUpdated = '2026-03-31'; // YYYY-MM-DD
 const critroleEp = '63';
-const LearningRightnow = 'two';
-const playingRightnow = `I picked up Harvest Town over the holidays but I lost focus. I'm currently not playing anything.`;
+const playingRightnow = `Heartopia. Available on both mobile and PC.`;
 
-// Convert once to a readable string
 const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
     day: 'numeric',
     month: 'long',
@@ -19,138 +16,104 @@ const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
 });
 ---
 
-<BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <p>
-        {pageDescription}
-    </p>
-    <p>
-        I will occasionally binge something every other year (like 2 seasons of Below Deck or a new
-        sci-fi show), but besides Doctor Who, I don't keep up with a lot of traditional TV formats
-        or film.
-    </p>
+<BaseLayout pageTitle={pageTitle}>
+    <div slot="upper-section" class="flow">
+        <ul class="update-tab">
+            <li aria-labelledby="label-listening">
+                <div id="label-listening" class="item-title" data-tooltip="Listening to">
+                    <Disc3Icon />
+                </div>
+                <div class="item-desc flow">
+                    <p>
+                        Current rotation/obsessions on my <ExternalLink
+                            href="https://record.club/mournstera"
+                            label="Record.club"
+                        /> profile.
+                    </p>
+                    <p></p>
+                </div>
+            </li>
 
-    <p class="upd">
-        Last updated:
-        <time datetime={lastUpdated} aria-label={`Last updated on ${lastUpdatedReadable}`}>
-            {lastUpdatedReadable}
-        </time>
-    </p>
+            <li aria-labelledby="label-reading">
+                <div id="label-reading" class="item-title" data-tooltip="Reading">
+                    <LibraryBigIcon />
+                </div>
+                <div class="item-desc flow">
+                    <p>I am re-reading Seveneves by Neal Stephenson for the 5th time.</p>
+                </div>
+            </li>
 
-    <div class="divider acc2"></div>
+            <li aria-labelledby="label-watching">
+                <div id="label-watching" class="item-title" data-tooltip="Watching">
+                    <TvMinimalIcon />
+                </div>
+                <div class="item-desc flow">
+                    <p>
+                        I am on episode {critroleEp} of
 
-    <article class="item" aria-labelledby="listening-title">
-        <div class="item-title">
-            <NowVinyl />
-            <h3 id="listening-title">Listening</h3>
-        </div>
-        <div id="scrobble" class="item-desc">
-            <p>
-                You can always find rotation/current obsessions on my Record.club <a
-                    href="https://record.club/mournstera"
-                    aria-label="See my Record.club profile (opens in new tab)"
-                    target="_blank"
-                    rel="noopener noreferrer">profile</a
-                >. Here's my latest scrobbled song via ListenBrainz:
-            </p>
-            <p>
-                <a
-                    class="track"
-                    href="https://listenbrainz.org/user/flipse"
-                    aria-label="See my latest scrobbled songs on my ListenBrainz profile (opens in new tab)"
-                    target="_blank"
-                    rel="noopener noreferrer"></a>
-            </p>
-        </div>
-    </article>
+                        <a
+                            href="https://critrole.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Go to Critical Role's website">Critical Role</a
+                        >'s Campaign 3. (I'm <i>also</i> attempting to keep up with Campaign 4.) and I'm
+                        rewatching Campaign 2 (currently ep 58).
+                    </p>
+                </div>
+            </li>
 
-    <article class="item" aria-labelledby="learning-title">
-        <div class="item-title">
-            <NowBooks />
-            <h3 id="learning-title">Learning</h3>
-        </div>
-        <div class="item-desc">
-            <p>
-                I've got {LearningRightnow} lectures left of MIT OpenCourseWare's
-                <a
-                    href="https://ocw.mit.edu/courses/8-04-quantum-physics-i-spring-2016/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="MIT OpenCourseWare Library">Quantum Physics I</a
-                >.
-            </p>
-        </div>
-    </article>
+            <li aria-labelledby="label-playing">
+                <div id="label-playing" class="item-title" data-tooltip="Playing">
+                    <DicesIcon />
+                </div>
+                <div class="item-desc flow">
+                    <p>
+                        {playingRightnow}
+                    </p>
+                </div>
+            </li>
+        </ul>
+        <p class="upd">
+            Last updated:
+            <time datetime={lastUpdated} aria-label={`Last updated on ${lastUpdatedReadable}`}>
+                {lastUpdatedReadable}
+            </time>
+        </p>
+        <hr />
+    </div>
 
-    <article class="item" aria-labelledby="watching-title">
-        <div class="item-title">
-            <NowTv />
-            <h3 id="watching-title">Watching</h3>
-        </div>
-        <div class="item-desc">
-            <p>
-                I am on episode {critroleEp} of
-                <a
-                    href="https://critrole.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Go to Critical Role's website">Critical Role</a
-                >'s Campaign 3. (I'm <i>also</i> attempting to keep up with Campaign 4.)
-            </p>
+    <article>maybe i'll do some log stuff here??? who knows.</article>
 
-            <p>
-                Finished season one of <em>The Mighty Nein</em> animated show! Fuck, it was so much fun
-                to see the characters from their D&D game come alive... and then I decided to rewatch
-                the first arc of C2. Oops.
-            </p>
-        </div>
-    </article>
-
-    <article class="item" aria-labelledby="playing-title">
-        <div class="item-title">
-            <NowDice />
-            <h3 id="playing-title">Playing</h3>
-        </div>
-        <div class="item-desc">
-            <p>
-                {playingRightnow}
-            </p>
-        </div>
-    </article>
-</BaseLayout>
-<style>
-    .upd {
-        font-family: var(--font-mono);
-        font-weight: 500;
-        font-size: var(--text-sm);
-    }
-    .item:not(:last-of-type) {
-        margin-bottom: var(--space-8);
-    }
-
-    .item-title {
-        display: flex;
-        align-items: center;
-        gap: var(--space-2);
-    }
-
-    .item-desc p:first-child {
-        margin-top: var(--text-margin-sm);
-    }
-
-    h3 {
-        margin: 0;
-    }
-
-    svg {
-        flex-shrink: 0;
-
-        width: 1.5rem;
-        height: 1.5rem;
-    }
-    @media (min-width: 430px) {
-        .item-desc {
-            margin-left: calc(var(--space-2) + 1.5rem);
+    <style>
+        hr {
+            margin-block-end: 0;
         }
-    }
-</style>
-<script src="/scripts/scrobble.js" defer></script>
+        .upd {
+            font-family: var(--font--mono);
+            font-weight: 500;
+            font-size: var(--text--sm);
+        }
+        ul.update-tab {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+            gap: var(--space-4) var(--space-5);
+        }
+
+        ul.update-tab li {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+        }
+        .item-title {
+            width: var(--space-6);
+            height: var(--space-6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: none;
+            border: var(--px2) solid var(--border);
+            border-radius: var(--radius--lg);
+            background-color: var(--bg-alt);
+        }
+    </style>
+</BaseLayout>

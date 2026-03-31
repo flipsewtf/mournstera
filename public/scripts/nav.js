@@ -2,8 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.querySelector('[data-menu-btn]'); // main menu button
     const menu = document.querySelector('[data-menu-container]'); // container overlay
     const body = document.body;
-    // We no longer have extra close buttons, so toggleButtons can just include the main button if needed
-    const toggleButtons = [btn]; // kept for possible future expansion
+
     let releaseFocusTrap = null; // store function to release focus trap
 
     if (!btn || !menu) return;

@@ -1,5 +1,8 @@
 ---
 // BaseHead.astro
+import '@/assets/styles/fonts.css';
+import '@/assets/styles/global.css';
+
 export interface Props {
     title: string;
     description?: string;
@@ -13,9 +16,8 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/social-default.pn
 
 <script is:inline>
     // 2nd level spell to make the theme appear correctly before the page screams at you.
-
     // Initial paint spell: no flashes, respects stored or system preference
-    const stored = localStorage.getItem('theme');
+    const stored = localStorage.getItem('monstera-theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const theme = stored || (prefersDark ? 'dark' : 'light');
     document.documentElement.setAttribute('data-theme', theme);
@@ -36,7 +38,7 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/social-default.pn
 <link rel="alternate" type="application/rss+xml" title="Mournstera RSS Feed" href="/rss.xml" />
 
 <title>Mournstera{title ? ` | ${title}` : ''}</title>
-<meta name="title" content={title} />
+
 {description && <meta name="description" content={description} />}
 
 <meta property="og:type" content="website" />
@@ -44,5 +46,3 @@ const ogImage = image ? new URL(image, Astro.site) : new URL('/social-default.pn
 <meta property="og:title" content={title} />
 {description && <meta property="og:description" content={description} />}
 <meta property="og:image" content={ogImage} />
-
-<link rel="stylesheet" href="/styles/global.css" />

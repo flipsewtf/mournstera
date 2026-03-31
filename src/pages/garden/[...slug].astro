@@ -1,7 +1,7 @@
 ---
 // GARDEN's [...slug].astro
 import { getCollection, render } from 'astro:content';
-import MarkdownPostLayout from '../../layouts/MarkdownPostLayout.astro';
+import MarkdownPostLayout from '@/layouts/MarkdownPostLayout.astro';
 
 export async function getStaticPaths() {
     const posts = await getCollection('garden');
@@ -12,7 +12,8 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const hasToC = headings.some((h) => h.depth === 2);
 // --- reading time calculation ---
 const wordCount = (post.body ?? '').trim().split(/\s+/).length;
 const readingTime = Math.ceil(wordCount / 200);
@@ -23,6 +24,7 @@ const readingTime = Math.ceil(wordCount / 200);
     backHref="/garden"
     section="garden"
     readingTime={readingTime}
->
+    headings={headings}
+    hasToC={hasToC}>
     <Content />
 </MarkdownPostLayout>

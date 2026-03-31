@@ -1,109 +1,69 @@
 ---
 // colophon.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ExternalLink from '../components/ExternalLink.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ExternalLink from '@/components/ExternalLink.astro';
 
 const pageTitle = `Colophon`;
-const pageDescription = `Behind the scenes of Mournstera: design, build, and sources.`;
 ---
 
-<BaseLayout pageTitle={pageTitle} {pageDescription}>
-    <article class="about">
-        <dl class="definition">
+<BaseLayout isPost={false} pageTitle={pageTitle}>
+    <article class="flow" slot="sidebar">
+        <dl class="definition flow">
             <dt>Mournstera</dt>
-            <dd>
+            <dd class="flow">
                 <span class="pronunciation ipa">/ˈmɔːn.stə.rə/</span>
                 <span class="pronunciation simple">(“morn-ster-uh”)</span>
                 <span class="definition-description">
-                    From <i>monstera</i> + <i>mourn</i>. A personal name blending grief and growth.</span
+                    From <i>monstera</i> + <i>mourn</i>. Blending grief and growth.</span
                 >
             </dd>
         </dl>
+    </article>
 
-        <div class="divider"></div>
+    <article class="flow page">
+        <h2>Design & Build</h2>
 
-        <h3>About</h3>
         <p>
-            This is very much a personal project, archiving and going back to owning my own content.
-            It's me learning with tranparency - around my workflow, projects and explorations.
+            This is very much a personal project, archiving and going back to owning my content. I'm
+            leaning into learning with transparency around my explorations.
+        </p>
+        <p>
+            This site is built with Astro, served as static files via Cloudflare, with the source
+            hosted on GitHub. Set in Ed Old, Inter, and Roboto MonoV. Icons courtesy of the Lucide
+            icon library. Monstera SVG sourced from The Noun Project.
         </p>
     </article>
 
-    <article class="info">
-        <h3>Design</h3>
+    <article class="flow page">
+        <h2>Policy</h2>
         <p>
-            I use the <i>Inter</i> font for text and <i>Fira Mono</i> for monospace. My love for Inter
-            has never faded, but I will eventually be bolder and find something more fun. Icons are mostly
-            from Lucide Icons, while footer links use Tabler Icons.
-        </p>
-    </article>
-
-    <article class="info">
-        <h3>Build</h3>
-        <p>
-            This site is built with Astro and served entirely as static files from Cloudflare. I use
-            Git for version control, and everything is hosted on GitHub. Fonts, icons, and other
-            assets are used under their respective licenses, and specific credits are listed in the
-            credits section below.
-        </p>
-    </article>
-
-    <article class="info">
-        <h3>Policy</h3>
-        <p>
-            I do not track any personal data, there are no cookies, and the only analytics come from
-            Cloudflare's basic traffic metrics. Mournstera.me will aim for AA accessibility
-            standards, however this site went live in January 2026 and is of course a work in
-            progress — I'll continue improving as I learn. Feel free to drop me a line!
+            No personal data, no cookies. The only analytics are Cloudflare's basic traffic metrics,
+            and honestly I couldn't care less about those. Mournstera.wtf went live in April 2026
+            and is very much a work in progress. Feel free to drop me a line!
         </p>
     </article>
 
     <div class="divider"></div>
 
-    <article class="credits">
-        <h3>Credits</h3>
+    <article class="flow page">
+        <h2>Credits</h2>
 
         <p>
-            The idea of treating this site as a digital garden is inspired by
-            <ExternalLink href="https://maggieappleton.com/" label="Maggie Appleton" />’s work on
-            knowledge gardening and personal websites.
+            <em>I plan to make a bookmark list for inspo and helpful guidance.</em>
         </p>
 
-        <h4>Assets</h4>
-        <ul class="needed">
-            <li>
-                Monstera SVG by Rikeu Rosyana: <ExternalLink
-                    href="https://thenounproject.com/browse/icons/term/monstera/"
-                    label="Noun Project"
-                />
+        <p>
+            The idea of treating this site like an open journal and digital garden is inspired by
+            <ExternalLink href="https://maggieappleton.com/" label="Maggie Appleton" /> work on knowledge
+            gardening and personal websites.
+        </p>
 
-                (CC BY 3.0)
-            </li>
-            <li>
-                Sunglass SVG by juicy_fish: <ExternalLink
-                    href="https://www.freepik.com/free-vector/sunglasses-glyph-style_255223649.htm"
-                    label="Freepik"
-                />
-            </li>
-            <li>
-                Moon SVG by SVGRepo: <ExternalLink
-                    href="https://staging.svgrepo.com/svg/188699/moon"
-                    label="SVGRepo"
-                />
-            </li>
-            <li>
-                Inter typeface by Rasmus Andersson: <ExternalLink
-                    href="https://github.com/rsms/inter"
-                    label="GitHub"
-                />
-            </li>
-            <li>
-                Fira Mono typeface by Mozilla: <ExternalLink
-                    href="https://github.com/bBoxType/FiraSans/tree/master/Fira_Mono_3_2"
-                    label="GitHub"
-                />
-            </li>
-        </ul>
+        <p>
+            <ExternalLink
+                href="https://piccalil.li/blog/my-favourite-3-lines-of-css/"
+                label="piccalil.li"
+            /> saved my flow margin-ass.
+        </p>
     </article>
 </BaseLayout>
 
@@ -113,28 +73,24 @@ const pageDescription = `Behind the scenes of Mournstera: design, build, and sou
     }
     .definition {
         dt {
-            font-weight: 700;
-            font-size: var(--h4);
-        }
-
-        dt::after {
-            content: ' —';
-            font-weight: normal;
+            font-size: var(--h2);
+            color: var(--text-alt);
+            font-family: var(--font--display);
+            font-weight: 400;
+            font-style: italic;
+            text-transform: lowercase;
         }
 
         dd {
-            margin: var(--space-0) 0 0;
-            line-height: var(--line-height-sub);
+            border-left: var(--px1) solid var(--accent-border);
+            padding-left: var(--space-2);
         }
 
         .pronunciation {
             display: block;
-            font-family: monospace;
-            font-size: var(--text-sm);
-
-            &.ipa {
-                margin-bottom: var(--px6);
-            }
+            font-family: var(--font--mono);
+            font-size: var(--text--sm);
+            color: var(--text);
 
             &.simple {
                 font-style: italic;
@@ -142,7 +98,6 @@ const pageDescription = `Behind the scenes of Mournstera: design, build, and sou
         }
 
         .definition-description {
-            margin-top: var(--text-margin-sm);
             display: block;
         }
     }

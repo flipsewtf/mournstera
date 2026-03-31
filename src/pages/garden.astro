@@ -1,12 +1,12 @@
 ---
 // garden.astro
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import GardenUpper from '../components/GardenUpper.astro';
-import GardenSidebar from '../components/GardenSidebar.astro';
-import GardenPost from '../components/GardenPost.astro';
-import { gardenMeta } from '../assets/data/garden-meta';
-import '../assets/styles/garden-index.css';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GardenSidebar from '@/components/GardenSidebar.astro';
+import GardenPost from '@/components/GardenPost.astro';
+import { gardenMeta } from '@/assets/data/garden-meta';
+import '@/assets/styles/garden.css';
+import { SproutIcon, ShovelIcon, BrainIcon } from '@lucide/astro';
 
 const allGarden = (await getCollection('garden')).sort(
     (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
@@ -20,30 +20,40 @@ const tags = [
 ];
 
 const postsByKind = Object.groupBy(allGarden, (post) => post.data.kind);
+
+const kindIcons = {
+    musings: BrainIcon,
+    notes: ShovelIcon,
+    seedlings: SproutIcon,
+};
 ---
 
 <BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description}>
     <GardenSidebar slot="sidebar" tags={tags} currentTag="all" />
 
-    <GardenUpper slot="upper-section" />
-
     {
-        Object.entries(postsByKind).map(([kind, posts]) => (
-            <section class="garden-kind-group">
-                <h2 class="garden-kind-title">{kind}</h2>
+        Object.entries(postsByKind).map(([kind, posts]) => {
+            const Icon = kindIcons[kind as keyof typeof kindIcons];
 
-                <ul class="garden-list">
-                    {posts.map((post) => (
-                        <GardenPost
-                            url={`/garden/${post.id}/`}
-                            title={post.data.title}
-                            pubDate={post.data.pubDate}
-                            description={post.data.description}
-                            tags={post.data.tags}
-                        />
-                    ))}
-                </ul>
-            </section>
-        ))
+            return (
+                <section class="garden-kind-group">
+                    <h3 class="garden-heading">
+                        {Icon && <Icon />}
+                        {kind}
+                    </h3>
+
+                    <ul class="garden-list">
+                        {posts.map((post) => (
+                            <GardenPost
+                                url={`/garden/${post.id}/`}
+                                title={post.data.title}
+                                pubDate={post.data.pubDate}
+                                tags={post.data.tags}
+                            />
+                        ))}
+                    </ul>
+                </section>
+            );
+        })
     }
 </BaseLayout>

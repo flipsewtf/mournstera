@@ -1,36 +1,50 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+// BaseLayout.astro
+import BaseHead from '@/components/BaseHead.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { siteDescription } from '@/assets/data/site-desc';
 
 const {
     pageTitle = 'Mournstera',
     seoTitle,
-    pageDescription = 'A personal garden, where web development meets autistic panic and chaos-eating energy.',
+    pageDescription = siteDescription,
     pageImage = '/social-default.png',
     mainClass = '',
-    isPost = false, // auto-hide outer h1 if true
+    isPost = false,
+    hasSidebar: hasSidebarProp,
 } = Astro.props;
+
+const hasUpper = Astro.slots.has('upper-section');
+
+const hasSidebar =
+    hasSidebarProp !== undefined ? hasSidebarProp : Astro.slots.has('sidebar');
 ---
 
-<html lang="en" data-theme="light">
+<html lang="en">
     <head>
-        <BaseHead title={seoTitle ?? pageTitle} description={pageDescription} image={pageImage} />
+        <BaseHead
+            title={seoTitle ?? pageTitle}
+            description={pageDescription}
+            image={pageImage}
+        />
     </head>
     <body>
         <Header />
 
         <main
-            class={mainClass}
-            class:list={{
-                'has-upper': Astro.slots['upper-section'],
-                'has-sidebar': Astro.slots.sidebar,
-            }}>
+            class:list={[
+                mainClass,
+                {
+                    'has-upper': hasUpper,
+                    'has-sidebar': hasSidebar,
+                },
+            ]}>
             {!isPost && pageTitle && <h1>{pageTitle}</h1>}
 
             <div class="layout-container">
                 {
-                    Astro.slots['upper-section'] && (
+                    hasUpper && (
                         <section class="upper-section">
                             <slot name="upper-section" />
                         </section>
@@ -38,7 +52,7 @@ const {
                 }
 
                 {
-                    Astro.slots.sidebar && (
+                    hasSidebar && (
                         <aside class="sidebar">
                             <slot name="sidebar" />
                         </aside>

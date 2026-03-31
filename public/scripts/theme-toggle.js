@@ -1,50 +1,54 @@
 // @ts-nocheck
 (() => {
-    const btn = document.querySelector('.theme-toggle');
-    if (!btn) return;
+    const buttons = document.querySelectorAll('.theme-toggle');
+    if (!buttons.length) return;
+
     const root = document.documentElement;
-    const storageKey = 'theme';
+    const storageKey = 'monstera-theme';
 
-    // read user preference, if any
     const getStoredTheme = () => localStorage.getItem(storageKey);
-
-    // Check system preference
     const getSystemTheme = () =>
         window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 
-    // Apply theme and update button
+    const getTooltipText = (theme) => (theme === 'dark' ? 'Enable light mode' : 'Enable dark mode');
+
     const applyTheme = (theme) => {
         root.classList.add('no-transition');
-
         root.setAttribute('data-theme', theme);
-        btn.setAttribute('aria-pressed', theme === 'dark');
-        btn.setAttribute('aria-label', theme === 'dark' ? 'Enable light mode' : 'Enable dark mode');
 
-        void root.offsetWidth; // force reflow
-        root.classList.remove('no-transition');
+        buttons.forEach((btn) => {
+            btn.ariaPressed = String(theme === 'dark');
+            btn.setAttribute('aria-label', getTooltipText(theme));
+            btn.setAttribute('data-tooltip', getTooltipText(theme));
+        });
+
+        // Wait long enough for the paint to settle, then re-enable transitions
+        setTimeout(() => {
+            root.classList.remove('no-transition');
+        }, 50); // 50ms is imperceptible to humans but reliable
     };
 
-    // Save user preference
     const setUserTheme = (theme) => localStorage.setItem(storageKey, theme);
 
-    // Determine initial theme
-    const initialTheme = getStoredTheme() || getSystemTheme();
-    applyTheme(initialTheme);
+    // Initial theme: stored OR system
+    applyTheme(getStoredTheme() || getSystemTheme());
 
-    // Click handler: toggle theme
-    btn.addEventListener('click', () => {
-        const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        applyTheme(next);
-        setUserTheme(next); // lock in user preference
+    // Button click: toggle and store
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            const next = current === 'dark' ? 'light' : 'dark';
+            applyTheme(next);
+            setUserTheme(next);
+        });
     });
 
-    // Listen to system changes only if no user preference
+    // **Always** listen to system changes, override even if user clicked
     const mql = window.matchMedia('(prefers-color-scheme: dark)');
     mql.addEventListener('change', (e) => {
-        if (!getStoredTheme()) {
-            const systemTheme = e.matches ? 'dark' : 'light';
-            applyTheme(systemTheme);
-        }
+        const systemTheme = e.matches ? 'dark' : 'light';
+        applyTheme(systemTheme);
+        // optional: overwrite storage so it reflects system
+        localStorage.setItem(storageKey, systemTheme);
     });
 })();

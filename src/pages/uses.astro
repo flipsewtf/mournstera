@@ -1,24 +1,26 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import Desk from '../assets/images/desk_a.webp';
-import ExternalLink from '../components/ExternalLink.astro';
+import Desk from '@/assets/images/desksetup02.webp';
+import ExternalLink from '@/components/ExternalLink.astro';
 
 const pageTitle = 'Uses';
 const pageDescription = `A list of the gear I currently use for my cozy workspace.`;
 ---
 
 <BaseLayout pageTitle={pageTitle} pageDescription={pageDescription}>
-    <p>
-        {pageDescription} I do ball on a budget and the privilege of nice gifts from family members and
-        friends. These are things I use every day.
-    </p>
-    <Image src={Desk} loading="eager" alt="Cozy workspace corner" class="desk" />
+    <article class="flow">
+        <p>
+            {pageDescription} I do ball on a budget and the privilege of nice gifts from family
+            members and friends. These are things I use every day.
+        </p>
+        <Image src={Desk} loading="eager" alt="Cozy workspace corner" class="desk" />
+    </article>
 
-    <div class="divider"></div>
+    <hr class="divider" />
 
     <div class="item-list">
-        <article class="item" aria-labelledby="item-computer-title">
+        <article class="item flow" aria-labelledby="item-computer-title">
             <h4 id="item-computer-title" class="item-title">Computer</h4>
 
             <ExternalLink
@@ -31,7 +33,7 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-desk-title">
+        <article class="item flow" aria-labelledby="item-desk-title">
             <h4 id="item-desk-title" class="item-title">Desk</h4>
 
             <ExternalLink
@@ -40,12 +42,12 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             />
 
             <p id="item-desk-desc" class="item-desc">
-                I had my worries about potentially wobbly legs, but there's no issues. I'm very
-                happy about how easy my cable management has become.
+                I had my worries about potentially wobbly legs, but there's no issues. I'm
+                very happy about how easy my cable management has become.
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-headphones-title">
+        <!-- <article class="item flow" aria-labelledby="item-headphones-title">
             <h4 id="item-headphones-title" class="item-title">Headphones</h4>
 
             <ExternalLink
@@ -58,9 +60,9 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
                     >"I'll buy proper stuff next month but this should do"</i
                 > purchase, and it ended up working out.
             </p>
-        </article>
+        </article> -->
 
-        <article class="item" aria-labelledby="item-keycaps-title">
+        <article class="item flow" aria-labelledby="item-keycaps-title">
             <h4 id="item-keycaps-title" class="item-title">Keycaps</h4>
 
             <ExternalLink
@@ -73,7 +75,7 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-keyboard-title">
+        <article class="item flow" aria-labelledby="item-keyboard-title">
             <h4 id="item-keyboard-title" class="item-title">Keyboard</h4>
 
             <ExternalLink
@@ -82,12 +84,12 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             />
 
             <p id="item-keyboard-desc" class="item-desc">
-                I just needed a cheap mechanical keyboard to play with. A great beginner purchase,
-                but I Will be investing in something better at some point.
+                I just needed a cheap mechanical keyboard to play with. A great beginner
+                purchase, but I Will be investing in something better at some point.
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-monitor-title">
+        <!-- <article class="item flow" aria-labelledby="item-monitor-title">
             <h4 id="item-monitor-title" class="item-title">Monitor</h4>
 
             <ExternalLink
@@ -98,9 +100,9 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <p id="item-monitor-desc" class="item-desc">
                 Look, it was on a 65% sale. The VESA mount placement is silly. I can live with it.
             </p>
-        </article>
+        </article> -->
 
-        <article class="item" aria-labelledby="item-stand-title">
+        <!-- <article class="item flow" aria-labelledby="item-stand-title">
             <h4 id="item-stand-title" class="item-title">Monitor stand</h4>
 
             <ExternalLink
@@ -111,9 +113,9 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             <p id="item-stand-desc" class="item-desc">
                 I am working towards getting a monitor arm, but this'll do.
             </p>
-        </article>
+        </article> -->
 
-        <article class="item" aria-labelledby="item-mouse-title">
+        <article class="item flow" aria-labelledby="item-mouse-title">
             <h4 id="item-mouse-title" class="item-title">Mouse</h4>
 
             <ExternalLink
@@ -126,7 +128,7 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-phone-title">
+        <article class="item flow" aria-labelledby="item-phone-title">
             <h4 id="item-phone-title" class="item-title">Phone</h4>
 
             <ExternalLink
@@ -135,12 +137,12 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             />
 
             <p id="item-phone-desc" class="item-desc">
-                I'm not loyal to any android brand - it was 80% off on a Black friday sale. Because
-                of my hypermobile fingers, I don't do big phones anyways.
+                I'm not loyal to any android brand - it was 80% off on a Black friday
+                sale. Because of my hypermobile fingers, I don't do big phones anyways.
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-tablet-title">
+        <article class="item flow" aria-labelledby="item-tablet-title">
             <h4 id="item-tablet-title" class="item-title">Tablet</h4>
 
             <ExternalLink
@@ -154,12 +156,12 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
                     aria-label="See Bulletjournal.com's FAQ and video (opens in new tab)"
                     target="_blank"
                     rel="noopener noreferrer">bullet journal method</a
-                > since 2013 but went "digital" in 2023 with a hybrid tablet format that benefits my
-                life specifically. I also use it as a tiny TV in bed. Great tablet.
+                > since 2013 but went "digital" in 2023 with a hybrid tablet format that benefits
+                my life specifically. I also use it as a tiny TV in bed. Great tablet.
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-switches-title">
+        <article class="item flow" aria-labelledby="item-switches-title">
             <h4 id="item-switches-title" class="item-title">Switches</h4>
 
             <ExternalLink
@@ -168,12 +170,12 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             />
 
             <p id="item-switches-desc" class="item-desc">
-                I am not a tactile person. I am apparently a linear person, so this is not for me in
-                the long run.
+                I am not a tactile person. I am apparently a linear person, so this is not
+                for me in the long run.
             </p>
         </article>
 
-        <article class="item" aria-labelledby="item-speaker-title">
+        <article class="item flow" aria-labelledby="item-speaker-title">
             <h4 id="item-speaker-title" class="item-title">Speaker</h4>
 
             <ExternalLink
@@ -182,9 +184,9 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
             />
 
             <p id="item-speaker-desc" class="item-desc">
-                I got this as a promo gift some time ago, I still do not have any speakers for my
-                desk setup so this'll do. I'm also a vinyl record lover, so it's not getting used
-                too much.
+                I got this as a promo gift some time ago, I still do not have any speakers
+                for my desk setup so this'll do. I'm also a vinyl record lover, so it's
+                not getting used too much.
             </p>
         </article>
     </div>
@@ -195,26 +197,20 @@ const pageDescription = `A list of the gear I currently use for my cozy workspac
         margin-bottom: var(--space-7);
     }
 
-    article h4 {
-        margin-top: 0;
-    }
-
-    article p {
-        margin: var(--space-0) 0 0 0;
-    }
-
     article a {
         font-family: var(--font-mono);
         line-height: var(--line-height-p);
     }
 
     article svg {
-        color: var(--peach-accent);
+        color: var(--accent);
         vertical-align: middle;
         vertical-align: text-bottom;
     }
     img.desk {
-        border-radius: var(--radius-md);
-        margin-top: var(--text-margin-md);
+        border-radius: var(--radius--md);
+    }
+    :global(.external-link) {
+        display: block;
     }
 </style>

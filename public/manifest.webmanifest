@@ -1,7 +1,7 @@
 {
-    "name": "Mournstera.me",
+    "name": "Mournstera.wtf",
     "short_name": "Mournstera",
-    "description": "A personal garden, where web development meets autistic panic and chaos-eating energy.",
+    "description": "A personal website of Flipse. Eating chaos one derailing train at a time. Choo-choo, respectfully.",
     "icons": [
         {
             "src": "/favicon-192.png",
@@ -18,6 +18,6 @@
     ],
     "start_url": "/",
     "display": "browser",
-    "background_color": "#ffffff",
-    "theme_color": "#222222"
+    "background_color": "#fbfbfa",
+    "theme_color": "#dbba66"
 }

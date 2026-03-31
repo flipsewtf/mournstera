@@ -1,14 +1,21 @@
 ---
 // src/pages/404.astro
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SwordIcon } from '@lucide/astro';
 ---
 
 <BaseLayout pageTitle="404">
     <p>
-        Sorry, the big bugs in my garden panicked and slayed this page, or it didn't exist to begin
-        with. There's nothing here.
+        Sorry, the bugbear totally came and attacked the entire party, including this page <SwordIcon
+        />
     </p>
-    <p>
-        <a href="/garden/">Return to the garden</a>
-    </p>
+    <p>Or, it didn't exist to begin with. There's nothing here.</p>
 </BaseLayout>
+
+<style>
+    svg {
+        vertical-align: middle;
+        width: 1em;
+        height: 1em;
+    }
+</style>

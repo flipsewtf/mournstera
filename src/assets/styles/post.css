@@ -1,0 +1,235 @@
+/* post.css */
+
+:root {
+    --layout--sidebar: 16rem;
+}
+/* ----- POST TITLE */
+h1#post-title {
+    text-align: center;
+}
+
+/* ----- POST DESC */
+p.entry-desc {
+    font-style: italic;
+    max-width: var(--layout--section);
+    margin-inline: auto;
+    text-align: center;
+}
+
+/* ----- POST META */
+.entry-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: center;
+    justify-content: center;
+}
+
+.entry-meta svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--accent);
+}
+
+.entry-meta time,
+.entry-meta .reading {
+    display: flex;
+    align-items: center;
+    gap: var(--px4);
+}
+time.updated {
+    border: var(--px1) solid var(--accent-border);
+    background-color: var(--accent-bg);
+    color: var(--accent);
+    border-radius: var(--radius--full);
+    padding: var(--px6) var(--px8);
+    font-size: var(--text--sm);
+    font-weight: 500;
+}
+/* ----- FEATURED PHOTO */
+img.post-feature {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: var(--px1) solid var(--border);
+    width: 100%;
+    border-radius: var(--radius--lg);
+}
+/* ----- DIVIDER */
+
+/* ----- BODY */
+article.post {
+    max-width: var(--layout--section);
+    margin-inline: auto;
+}
+
+article.post :where(* + *) {
+    margin-block-start: var(--flow-space, 1em);
+}
+
+article.post hr {
+    margin-block: inherit;
+}
+
+/* ----- IMAGES */
+article.post img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius--lg);
+    margin-block: calc(var(--flow-space) * 2);
+}
+
+/* ----- BLOCKQUOTE */
+article.post blockquote {
+    border-left: var(--px5) solid var(--accent-border);
+    padding: var(--space-5);
+    color: var(--text-alt);
+    font-style: italic;
+    background-color: var(--accent-bg);
+    border-radius: 0 var(--radius--md) var(--radius--md) 0;
+    overflow: hidden;
+}
+
+/* ----- CODE BLOCKS & INLINE CODE */
+article.post pre {
+    max-width: 100%;
+    background-color: var(--bg-alt);
+    color: var(--text-alt);
+    padding: var(--space-2);
+    overflow-x: auto;
+    border-radius: var(--radius--md);
+    border: var(--px1) solid var(--border);
+}
+
+article.post code {
+    background-color: var(--bg-alt);
+    color: var(--text-alt);
+    padding: var(--px4) var(--px8);
+    font-size: var(--text--sm);
+    border: var(--px1) solid var(--border);
+    border-radius: var(--radius--sx);
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+article.post pre code,
+article.post table code {
+    white-space: pre-wrap;
+    overflow-x: auto;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+}
+
+/* ----- LISTS */
+article.post ul,
+article.post ol {
+    padding-left: var(--space-5);
+}
+
+article.post ul li,
+article.post ol li {
+    padding-left: var(--space-2);
+    margin-block: calc(var(--flow-space) / 2);
+}
+
+article.post ul li:hover::marker,
+article.post ol li:hover::marker {
+    color: var(--text-alt);
+}
+
+article.post ul li::marker {
+    color: var(--accent);
+    content: '➜ ';
+    transition: color var(--transition--smooth);
+}
+
+article.post ol {
+    list-style: decimal;
+}
+
+article.post ol li::marker {
+    color: var(--accent);
+    font-weight: 500;
+}
+
+/* ----- CHECKLIST */
+article.post ul.contains-task-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+article.post ul.contains-task-list li::marker {
+    display: none;
+    content: '';
+}
+
+/* ----- FOOTNOTES */
+section.footnotes::before {
+    content: '';
+    display: block;
+    height: 1px;
+    margin-block: var(--space-8) var(--space-5);
+    background-size: auto 100%;
+    background-image: repeating-linear-gradient(to right, var(--border) 0 4px, transparent 4px 6px);
+}
+
+sup a[data-footnote-ref] {
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 0.2em;
+}
+
+a.data-footnote-backref {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* ----- TABLES */
+article.post table {
+    width: 100%;
+    max-width: 100%;
+    display: block;
+    overflow-x: auto;
+    border-collapse: collapse;
+    font-size: var(--text--sm);
+}
+
+article.post thead {
+    background-color: var(--bg-alt);
+    color: var(--text-alt);
+}
+
+article.post th,
+article.post td {
+    border: var(--px1) solid var(--border);
+    padding: var(--space-1);
+    text-align: left;
+}
+
+/* ----- OTHER ELEMENTS */
+article.post abbr[title] {
+    cursor: help;
+    text-decoration: underline dotted;
+}
+
+article.post sup,
+article.post sub {
+    font-size: var(--text--xs);
+}
+
+article.post mark {
+    background-color: var(--inverse-bg);
+    padding: var(--px2) var(--px4);
+    color: var(--inverse-text);
+}
+
+article.post kbd {
+    background-color: var(--bg-alt);
+    border-radius: var(--radius--sm);
+    padding: var(--px1) var(--px5);
+    font-family: var(--font-mono);
+    border: var(--px1) solid var(--border);
+}

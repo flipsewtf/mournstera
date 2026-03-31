@@ -11,9 +11,10 @@
         "format:write": "prettier --write ."
     },
     "dependencies": {
-        "@astrojs/rss": "^4.0.13",
-        "@astrojs/sitemap": "^3.6.0",
-        "astro": "^5.15.4"
+        "@astrojs/rss": "^4.0.14",
+        "@astrojs/sitemap": "^3.6.1",
+        "@lucide/astro": "^1.0.0-rc.1",
+        "astro": "^5.16.9"
     },
     "devDependencies": {
         "prettier": "^3.6.2",

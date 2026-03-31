@@ -1,61 +1,66 @@
 ---
-// \MarkdownPostLayout.astro
-import BaseLayout from './BaseLayout.astro';
-import '../assets/styles/posts.css';
-import { Sprout, DateClock } from '../components/icons';
+// MarkdownPostLayout.astro
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import '@/assets/styles/post.css';
+import { Clock2Icon, ShovelIcon, RefreshCcwIcon } from '@lucide/astro';
 
 const {
+    // use the value passed from [...slug].astro
     frontmatter,
-    readingTime, // use the value passed from [...slug].astro
+    readingTime,
+    headings,
+    hasToC,
 } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title} pageDescription={frontmatter.description} isPost={true}>
-    <article class="post">
-        {
-            frontmatter.image?.url && (
-                <img
-                    class="post-feature"
-                    src={frontmatter.image.url}
-                    alt={frontmatter.image.alt ?? ''}
-                />
-            )
-        }
+<BaseLayout
+    mainClass="is-post"
+    pageTitle={frontmatter.title}
+    pageDescription={frontmatter.description}
+    isPost={true}
+    hasSidebar={hasToC}>
+    {hasToC && <TableOfContents slot="sidebar" headings={headings} />}
 
-        <h1>{frontmatter.title}</h1>
+    <div class="flow" slot="upper-section">
+        <h1 id="post-title">{frontmatter.title}</h1>
 
         <p class="entry-desc">{frontmatter.description}</p>
 
         <div class="entry-meta" role="group" aria-label="Post metadata">
             <time
-                class="posted entry-flex"
+                class="posted"
                 datetime={frontmatter.pubDate.toISOString()}
-                aria-label={`Planted on ${frontmatter.pubDate.toLocaleDateString('en-GB', {
+                aria-label={`${frontmatter.pubDate.toLocaleDateString('en-GB', {
                     day: 'numeric',
-                    month: 'short',
+                    month: 'long',
                     year: 'numeric',
-                })}`}>
-                <Sprout />
-                Planted
+                })}`}
+                ><ShovelIcon />
                 {
                     frontmatter.pubDate.toLocaleDateString('en-GB', {
                         day: 'numeric',
-                        month: 'short',
+                        month: 'long',
                         year: 'numeric',
                     })
                 }
             </time>
 
+            <div class="reading" aria-label={`Estimated reading time: ${readingTime} minutes`}>
+                <Clock2Icon />
+                {readingTime} min read
+            </div>
+
             {
                 frontmatter.lastUpdated && (
                     <time
-                        class="updated entry-flex"
+                        class="updated"
                         datetime={frontmatter.lastUpdated.toISOString()}
-                        aria-label={`Nurtured on ${frontmatter.lastUpdated.toLocaleDateString(
+                        aria-label={`Updated: ${frontmatter.lastUpdated.toLocaleDateString(
                             'en-GB',
-                            { day: 'numeric', month: 'short', year: 'numeric' },
+                            { day: 'numeric', month: 'long', year: 'numeric' },
                         )}`}>
-                        + Nurtured
+                        <RefreshCcwIcon />
                         {frontmatter.lastUpdated.toLocaleDateString('en-GB', {
                             day: 'numeric',
                             month: 'short',
@@ -64,14 +69,22 @@ const {
                     </time>
                 )
             }
-            <div
-                class="entry-flex reading-time"
-                aria-label={`Estimated reading time: ${readingTime} minutes`}>
-                <DateClock />
-                {readingTime} min read
-            </div>
         </div>
 
+        {
+            frontmatter.image?.url ? (
+                <img
+                    class="post-feature"
+                    src={frontmatter.image.url}
+                    alt={frontmatter.image.alt ?? ''}
+                />
+            ) : (
+                <hr />
+            )
+        }
+    </div>
+
+    <article class="post" aria-labelledby="post-title">
         <slot />
     </article>
 </BaseLayout>

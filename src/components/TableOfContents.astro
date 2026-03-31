@@ -1,0 +1,99 @@
+---
+interface Heading {
+    depth: number;
+    slug: string;
+    text: string;
+}
+
+const { headings } = Astro.props as { headings: Heading[] };
+
+const filtered = headings.filter((h: Heading) => h.depth === 2);
+---
+
+{
+    filtered.length > 0 && (
+        <nav class="toc" aria-label="Table of contents">
+            <p class="toc-title">Table of contents</p>
+            <ol>
+                {filtered.map((heading) => (
+                    <li class={`toc-item depth-${heading.depth}`}>
+                        <a href={`#${heading.slug}`}>{heading.text}</a>
+                    </li>
+                ))}
+            </ol>
+        </nav>
+    )
+}
+
+<script>
+    const links = document.querySelectorAll('.toc a');
+    const headings = document.querySelectorAll('article.post h2, article.post h3');
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    links.forEach((link) => link.removeAttribute('aria-current'));
+                    const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+                    if (active) active.setAttribute('aria-current', 'true');
+                }
+            });
+        },
+        { rootMargin: '0px 0px -80% 0px' },
+    );
+
+    headings.forEach((h) => observer.observe(h));
+</script>
+
+<style>
+    nav.toc {
+        position: sticky;
+        top: calc(var(--layout--header) + var(--space-1));
+        overflow: hidden;
+    }
+
+    p.toc-title {
+        font-weight: 600;
+        padding: var(--space-2) var(--space-3);
+        background-color: var(--bg-alt);
+        color: var(--text-alt);
+        border: var(--px1) solid var(--border);
+        border-radius: var(--radius--md) var(--radius--md) 0 0;
+    }
+
+    ol {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+        background-color: var(--bg-alt);
+        font-size: var(--text--sm);
+        border: var(--px1) solid var(--border);
+        border-top: 0;
+        border-radius: 0 0 var(--radius--xl) var(--radius--xl);
+        padding: var(--space-3);
+    }
+
+    .toc a {
+        color: var(--text-alt);
+        text-decoration: none;
+        transition:
+            padding var(--transition--smooth),
+            color var(--transition--smooth),
+            background-color var(--transition--smooth),
+            text-decoration-color var(--transition--smooth);
+    }
+
+    .toc a:hover {
+        color: var(--accent);
+    }
+
+    @media (min-width: 48rem) {
+        .toc a[aria-current='true'] {
+            padding-left: var(--space-1);
+            color: var(--accent);
+        }
+        ol {
+            gap: var(--space-2);
+        }
+    }
+</style>

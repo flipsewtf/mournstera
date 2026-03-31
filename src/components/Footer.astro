@@ -1,41 +1,83 @@
 ---
-import { Bluesky, Instagram, Github, Rss } from '../components/icons';
+import { MusicIcon } from '@lucide/astro';
 ---
 
 <footer>
     <div class="footer-inner">
-        <div class="footer-icons">
-            <nav class="social" aria-label="Social links">
-                <a
-                    rel="me"
-                    href="https://bsky.app/profile/mournstera.me"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow on Bluesky">
-                    <Bluesky />
-                </a>
-                <!-- <a
-                    rel="me"
-                    class="insta"
-                    href="https://www.instagram.com/flipse.me/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow on Instagram">
-                    <Instagram />
-                </a> -->
-                <a
-                    rel="me"
-                    href="https://github.com/flipsewtf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow on GitHub">
-                    <Github />
-                </a>
-            </nav>
-        </div>
+        <nav class="footer-links" aria-label="Footer">
+            <h2 class="sr-only">Social</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://bsky.app/profile/mournstera.wtf"
+                        target="_blank"
+                        rel="me noopener noreferrer">
+                        Bluesky
+                    </a>
+                </li>
 
-        <div class="made-info">
-            2026 <span role="img" aria-label="love heart">♡</span> Made in Denmark.
+                <li>
+                    <a
+                        href="https://www.instagram.com/mournstera"
+                        target="_blank"
+                        rel="me noopener noreferrer">
+                        Instagram
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="https://mournstera.tumblr.com/"
+                        target="_blank"
+                        rel="me noopener noreferrer">
+                        Tumblr
+                    </a>
+                </li>
+
+                <li>
+                    <a href="https://mastodon.social/" target="_blank" rel="me noopener noreferrer">
+                        Mastodon
+                    </a>
+                </li>
+            </ul>
+
+            <h2 class="sr-only">Site</h2>
+            <ul>
+                <li><a href="/colophon/">Colophon</a></li>
+
+                <li>
+                    <a
+                        href="https://github.com/flipsewtf"
+                        target="_blank"
+                        rel="me noopener noreferrer">
+                        GitHub
+                    </a>
+                </li>
+
+                <li><a href="/webrings/">Webrings</a></li>
+
+                <li>
+                    <a
+                        class="rss desktop"
+                        href="/rss.xml"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Subscribe via RSS">
+                        RSS
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="listened">
+            <a
+                class="track"
+                href="https://listenbrainz.org/user/flipse"
+                aria-label="See my latest scrobbled songs on my ListenBrainz profile (opens in new tab)"
+                target="_blank"
+                rel="noopener noreferrer">Loading last played track…</a
+            >
+            <MusicIcon />
         </div>
     </div>
 </footer>
@@ -45,65 +87,108 @@ import { Bluesky, Instagram, Github, Rss } from '../components/icons';
         color: var(--text);
     }
     a:hover {
-        color: var(--peach-accent);
+        color: var(--accent-hover);
+        text-decoration-color: var(--accent);
     }
 
     footer {
+        background-color: var(--bg-warm);
         width: 100%;
-        padding: 0 var(--layout-padding);
+        padding-block: var(--space-9);
+        display: block;
+
+        background-size: 100% var(--px1);
+        background-repeat: no-repeat;
+        background-position: top;
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--border) 0 4px,
+            transparent 4px 6px
+        );
     }
 
     .footer-inner {
-        border-top: var(--px1) solid var(--border);
-        padding: var(--space-5) 0 var(--space-9) 0;
         display: flex;
         gap: var(--space-4);
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
-        max-width: calc(var(--layout-width) - var(--layout-padding) * 2);
-        margin: 0 auto;
+        width: 100%;
+        max-width: var(--layout--width);
+        margin-inline: auto;
+        padding-inline: var(--layout--padding);
     }
 
-    .footer-icons {
+    nav.footer-links {
         display: flex;
-        gap: var(--space-4);
-        justify-content: flex-start;
-        align-items: center;
-        flex-wrap: wrap;
+        justify-items: start;
+        gap: 0 var(--space-3);
     }
 
-    nav.social {
+    nav.footer-links ul {
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+        justify-items: start;
+        gap: var(--space-1);
+        flex-direction: column;
     }
-
-    nav.social a {
-        padding: var(--px6);
+    nav.footer-links a {
         display: inline-flex;
         align-items: center;
         justify-content: center;
     }
 
-    nav.social a.insta {
-        padding: var(--px5);
-    }
-    nav.social a.insta svg {
-        width: 1.625rem;
-        height: 1.655rem;
-    }
-
-    .made-info {
-        font-size: var(--text-sm);
-        font-weight: 500;
+    .listened {
         display: flex;
-        gap: var(--px4);
+        justify-content: flex-end;
         align-items: center;
+        gap: var(--px8);
+        font-size: var(--text--xs);
 
-        span {
-            display: inline-flex;
-            font-weight: 800;
+        svg {
+            width: 1.125rem;
+            height: 1.125rem;
+            color: var(--accent);
         }
     }
+    a.track {
+        line-height: var(--line-height--heading);
+        text-align: right;
+        font-family: var(--font--mono);
+        max-width: 23rem;
+        font-size: var(--text--xs);
+        color: var(--text-alt);
+        white-space: pre;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    @keyframes bop {
+        from,
+        to {
+            transform: scale(1, 1);
+        }
+        25% {
+            transform: scale(0.9, 1.1);
+        }
+        50% {
+            transform: scale(1.1, 0.9);
+        }
+        75% {
+            transform: scale(0.95, 1.05);
+        }
+    }
+    @keyframes bop {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-1.5px);
+        }
+    }
+
+    .listened :global(svg) {
+        animation: bop 0.8s ease-in-out infinite;
+        animation: bop 1.3s var(--transition--snappy) infinite;
+    }
 </style>
+<script src="/scripts/scrobble.js" defer></script>

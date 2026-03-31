@@ -1,5 +1,6 @@
+// src/assets/data/garden-meta.ts
+
 export const gardenMeta = {
     title: 'Garden',
-    description:
-        'My garden of thoughts, ideas, notes, observations—sometimes just braindumping. Occasional panic.',
+    description: 'A collection of notes, musings, and seedlings.. And panic.',
 };

@@ -1,75 +1,99 @@
 ---
 // src/pages/garden/tags/[tag].astro
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
-import GardenUpper from '../../../components/GardenUpper.astro';
-import GardenSidebar from '../../../components/GardenSidebar.astro';
-import GardenPost from '../../../components/GardenPost.astro';
-import { gardenMeta } from '../../../assets/data/garden-meta';
-import '../../../assets/styles/garden-index.css';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import GardenSidebar from '@/components/GardenSidebar.astro';
+import GardenPost from '@/components/GardenPost.astro';
+import { gardenMeta } from '@/assets/data/garden-meta';
+import '@/assets/styles/garden.css';
+
+import { SproutIcon, ShovelIcon, BrainIcon, ChevronRightIcon } from '@lucide/astro';
 
 // Generate static paths for all tags
 export async function getStaticPaths() {
     const allGarden = await getCollection('garden');
-    const uniqueTags = [...new Set(allGarden.map((p) => p.data.tags).flat())];
-
-    return uniqueTags.map((tag) => ({
-        params: { tag },
-    }));
+    const uniqueTags = [...new Set(allGarden.flatMap((p) => p.data.tags))];
+    return uniqueTags.map((tag) => ({ params: { tag } }));
 }
 
-// Current tag from URL params
 const { tag } = Astro.params;
-
-// Get all posts
 const allGarden = await getCollection('garden');
 
-// Filter posts to only include this tag
+// Filter posts for this tag
 const filteredPosts =
     tag === 'all' ? allGarden : allGarden.filter((post) => post.data.tags.includes(tag));
-
 filteredPosts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
-// All unique tags for the sidebar
+// Sidebar tags
 const tags = [
     'all',
-    ...Array.from(new Set(allGarden.map((p) => p.data.tags).flat())).sort((a, b) =>
+    ...Array.from(new Set(allGarden.flatMap((p) => p.data.tags))).sort((a, b) =>
         a.localeCompare(b, 'en', { sensitivity: 'base' }),
     ),
 ];
 
-// Capitalize tag for meta title
-const formattedTag = tag !== 'all' ? tag.charAt(0).toUpperCase() + tag.slice(1) : '';
+// Tag display for meta and sidebar
+const formattedTag = tag !== 'all' ? tag : '';
 
-// Page title for <title> tag; H1 still comes from gardenMeta.title
-const pageTitle = tag !== 'all' ? `${gardenMeta.title} (${formattedTag})` : gardenMeta.title;
-
-// Group filtered posts by kind
+// Group posts by kind
 const postsByKind = Object.groupBy(filteredPosts, (post) => post.data.kind);
+
+const kindIcons = {
+    musings: BrainIcon,
+    notes: ShovelIcon,
+    seedlings: SproutIcon,
+};
 ---
 
-<BaseLayout pageTitle={gardenMeta.title} pageDescription={gardenMeta.description}>
+<BaseLayout
+    pageTitle={gardenMeta.title}
+    seoTitle={tag !== 'all' ? `${gardenMeta.title}: #${formattedTag}` : undefined}
+    pageDescription={gardenMeta.description}>
     <GardenSidebar slot="sidebar" tags={tags} currentTag={tag} />
 
-    <GardenUpper slot="upper-section" />
+    {
+        tag !== 'all' && (
+            <p>
+                Tags <ChevronRightIcon class="current-tag" />{' '}
+                <span class="current-tag-p">#{formattedTag}</span>
+            </p>
+        )
+    }
 
     {
-        Object.entries(postsByKind).map(([kind, posts]) => (
-            <section class="garden-kind-group">
-                <h2 class="garden-kind-title">{kind}</h2>
+        Object.entries(postsByKind).map(([kind, posts]) => {
+            const Icon = kindIcons[kind as keyof typeof kindIcons]; // ← ADD THIS
 
-                <ul class="garden-list">
-                    {posts.map((post) => (
-                        <GardenPost
-                            url={`/garden/${post.id}/`}
-                            title={post.data.title}
-                            pubDate={post.data.pubDate}
-                            description={post.data.description}
-                            tags={post.data.tags}
-                        />
-                    ))}
-                </ul>
-            </section>
-        ))
+            return (
+                <section class="garden-kind-group">
+                    <h3 class="garden-heading">
+                        {Icon && <Icon />}
+                        {kind}
+                    </h3>
+                    <ul class="garden-list">
+                        {posts.map((post) => (
+                            <GardenPost
+                                url={`/garden/${post.id}/`}
+                                title={post.data.title}
+                                pubDate={post.data.pubDate}
+                                tags={post.data.tags}
+                            />
+                        ))}
+                    </ul>
+                </section>
+            );
+        })
     }
 </BaseLayout>
+
+<style>
+    .current-tag-p {
+        font-size: var(--text--sm);
+        font-family: var(--font--mono);
+    }
+    svg.current-tag {
+        vertical-align: middle;
+        width: 1em;
+        height: 1em;
+    }
+</style>
