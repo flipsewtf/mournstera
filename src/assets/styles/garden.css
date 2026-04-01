@@ -103,7 +103,7 @@ ul.garden-tags {
     }
     a.active {
         border-color: var(--accent-border);
-        color: var(--text);
+        color: var(--text-alt);
         background-color: var(--accent-bg);
     }
 }

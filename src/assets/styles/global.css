@@ -82,15 +82,15 @@
 
 html[data-theme='light'] {
     color-scheme: light;
-    --text: oklch(51% 0.0016 var(--hue-neutral));
+    --text: oklch(50% 0.0016 var(--hue-neutral));
     --text-alt: oklch(31% 0.002 var(--hue-neutral));
     --bg: oklch(98.8% 0.0016 var(--hue-neutral));
     --bg-trans: oklch(98.8% 0.0016 var(--hue-neutral) / 0.7);
     --bg-alt: oklch(97% 0.0034 var(--hue-neutral));
     --bg-warm: oklch(97% 0.006 var(--hue-neutral));
     --border: oklch(90.7% 0.003 var(--hue-neutral));
-    --accent: oklch(74% 0.09 var(--hue-accent));
-    --accent-hover: oklch(80% 0.11 var(--hue-accent));
+    --accent: oklch(0.56 0.09 var(--hue-accent));
+    --accent-hover: oklch(74% 0.1 var(--hue-accent));
     --accent-bg: oklch(90% 0.05 var(--hue-accent) / 0.5);
     --accent-border: oklch(80% 0.12 var(--hue-accent));
     --inverse-text: oklch(9% 0.01 var(--hue-accent));
@@ -238,6 +238,11 @@ a:hover {
     text-underline-offset: var(--underline--offset);
     text-decoration-thickness: var(--underline--thickness);
 }
+/* PAGE-SPECIFIC LINKS */
+.page-link {
+    font-weight: 500;
+    text-decoration-color: var(--accent-hover);
+}
 
 /* =========================================
    TYPOGRAPHY
@@ -281,12 +286,6 @@ h6 {
 
 p {
     line-height: var(--line-height--p);
-}
-
-/* PAGE-SPECIFIC LINKS */
-.page-link {
-    font-weight: 500;
-    text-decoration-color: var(--accent);
 }
 
 /* =========================================
