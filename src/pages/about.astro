@@ -2,7 +2,7 @@
 //about.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
 const pageTitle = 'About';
-import ExternalLink from '@/components/ExternalLink.astro';
+import ExternalLink from '@/components/base/ExternalLink.astro';
 
 const birthDate = new Date('1988-03-04');
 const today = new Date();
@@ -25,6 +25,9 @@ if (!hasHadBirthdayThisYear) {
                 >I realise this is not an interesting way of getting to know me. I will make
                 something.. better.</em
             >
+        </p>
+        <p>
+            You can also check out my <a class="page-link" href="/uses">What I use</a> page until then.
         </p>
 
         <hr />
