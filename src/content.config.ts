@@ -5,7 +5,7 @@ import { z, defineCollection } from 'astro:content';
 
 // GARDEN COLLECTION
 const garden = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.md', base: './src/content/garden' }),
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/garden' }),
     schema: z.object({
         title: z.string(),
         pubDate: z.date(),
@@ -22,4 +22,11 @@ const garden = defineCollection({
     }),
 });
 
-export const collections = { garden };
+const log = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/log' }),
+    schema: z.object({
+        pubDate: z.date(),
+    }),
+});
+
+export const collections = { garden, log };

@@ -1,0 +1,11 @@
+---
+import { Music4Icon } from '@lucide/astro';
+---
+
+<div class="log-status" aria-label="Currently listening to">
+    <Music4Icon class="log-icon" />
+    <div class="log-status-content">
+        <slot />
+    </div>
+</div>
+<hr class="log-line" />

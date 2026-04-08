@@ -1,119 +1,35 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { Disc3Icon, LibraryBigIcon, TvMinimalIcon, DicesIcon } from '@lucide/astro';
-import ExternalLink from '@/components/ExternalLink.astro';
+import { getCollection, render } from 'astro:content';
+import '@/assets/styles/log.css';
+import { FeatherIcon } from '@lucide/astro';
 
 const pageTitle = `Now`;
 
-const lastUpdated = '2026-03-31'; // YYYY-MM-DD
-const critroleEp = '63';
-const playingRightnow = `Heartopia. Available on both mobile and PC.`;
-
-const lastUpdatedReadable = new Date(lastUpdated).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-});
+const entries = await getCollection('log');
+const sortedEntries = entries.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <div slot="upper-section" class="flow">
-        <ul class="update-tab">
-            <li aria-labelledby="label-listening">
-                <div id="label-listening" class="item-title" data-tooltip="Listening to">
-                    <Disc3Icon />
-                </div>
-                <div class="item-desc flow">
-                    <p>
-                        Current rotation/obsessions on my <ExternalLink
-                            href="https://record.club/mournstera"
-                            label="Record.club"
-                        /> profile.
-                    </p>
-                    <p></p>
-                </div>
-            </li>
+    <section class="log">
+        {
+            sortedEntries.map(async (entry) => {
+                const { Content } = await render(entry);
+                return (
+                    <article class="log-entry flow">
+                        <time datetime={entry.data.pubDate.toISOString()}>
+                            <FeatherIcon class="log-icon" />
+                            {entry.data.pubDate.toLocaleDateString('en-GB', {
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric',
+                            })}
+                        </time>
 
-            <li aria-labelledby="label-reading">
-                <div id="label-reading" class="item-title" data-tooltip="Reading">
-                    <LibraryBigIcon />
-                </div>
-                <div class="item-desc flow">
-                    <p>I am re-reading Seveneves by Neal Stephenson for the 5th time.</p>
-                </div>
-            </li>
-
-            <li aria-labelledby="label-watching">
-                <div id="label-watching" class="item-title" data-tooltip="Watching">
-                    <TvMinimalIcon />
-                </div>
-                <div class="item-desc flow">
-                    <p>
-                        I am on episode {critroleEp} of
-
-                        <a
-                            href="https://critrole.com/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Go to Critical Role's website">Critical Role</a
-                        >'s Campaign 3. (I'm <i>also</i> attempting to keep up with Campaign 4.) and I'm
-                        rewatching Campaign 2 (currently ep 58).
-                    </p>
-                </div>
-            </li>
-
-            <li aria-labelledby="label-playing">
-                <div id="label-playing" class="item-title" data-tooltip="Playing">
-                    <DicesIcon />
-                </div>
-                <div class="item-desc flow">
-                    <p>
-                        {playingRightnow}
-                    </p>
-                </div>
-            </li>
-        </ul>
-        <p class="upd">
-            Last updated:
-            <time datetime={lastUpdated} aria-label={`Last updated on ${lastUpdatedReadable}`}>
-                {lastUpdatedReadable}
-            </time>
-        </p>
-        <hr />
-    </div>
-
-    <article>maybe i'll do some log stuff here??? who knows.</article>
-
-    <style>
-        hr {
-            margin-block-end: 0;
+                        <Content />
+                    </article>
+                );
+            })
         }
-        .upd {
-            font-family: var(--font--mono);
-            font-weight: 500;
-            font-size: var(--text--sm);
-        }
-        ul.update-tab {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
-            gap: var(--space-4) var(--space-5);
-        }
-
-        ul.update-tab li {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-3);
-        }
-        .item-title {
-            width: var(--space-6);
-            height: var(--space-6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: none;
-            border: var(--px2) solid var(--border);
-            border-radius: var(--radius--lg);
-            background-color: var(--bg-alt);
-        }
-    </style>
+    </section>
 </BaseLayout>
