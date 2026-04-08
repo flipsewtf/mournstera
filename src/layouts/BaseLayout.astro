@@ -1,8 +1,8 @@
 ---
 // BaseLayout.astro
-import BaseHead from '@/components/BaseHead.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
+import BaseHead from '@/components/base/BaseHead.astro';
+import Header from '@/components/base/Header.astro';
+import Footer from '@/components/base/Footer.astro';
 import { siteDescription } from '@/assets/data/site-desc';
 
 const {
@@ -17,17 +17,12 @@ const {
 
 const hasUpper = Astro.slots.has('upper-section');
 
-const hasSidebar =
-    hasSidebarProp !== undefined ? hasSidebarProp : Astro.slots.has('sidebar');
+const hasSidebar = hasSidebarProp !== undefined ? hasSidebarProp : Astro.slots.has('sidebar');
 ---
 
 <html lang="en">
     <head>
-        <BaseHead
-            title={seoTitle ?? pageTitle}
-            description={pageDescription}
-            image={pageImage}
-        />
+        <BaseHead title={seoTitle ?? pageTitle} description={pageDescription} image={pageImage} />
     </head>
     <body>
         <Header />

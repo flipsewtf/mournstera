@@ -1,7 +1,7 @@
 ---
 //Header.astro
-import ThemeToggle from './ThemeToggle.astro';
-import Navigation from './Navigation.astro';
+import ThemeToggle from '@/components/base/ThemeToggle.astro';
+import Navigation from '@/components/base/Navigation.astro';
 
 const current = Astro.url.pathname;
 const isActive = (path: string) => current === path;

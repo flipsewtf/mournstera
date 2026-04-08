@@ -1,7 +1,8 @@
 ---
 // MarkdownPostLayout.astro
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import TableOfContents from '@/components/TableOfContents.astro';
+import TableOfContents from '@/components/garden/TableOfContents.astro';
+import Lightbox from '@/components/base/Lightbox.astro';
 import '@/assets/styles/post.css';
 import { Clock2Icon, ShovelIcon, RefreshCcwIcon } from '@lucide/astro';
 
@@ -74,7 +75,7 @@ const {
         {
             frontmatter.image?.url ? (
                 <img
-                    class="post-feature"
+                    class="post-feature lbox"
                     src={frontmatter.image.url}
                     alt={frontmatter.image.alt ?? ''}
                 />
@@ -86,5 +87,6 @@ const {
 
     <article class="post" aria-labelledby="post-title">
         <slot />
+        <Lightbox />
     </article>
 </BaseLayout>

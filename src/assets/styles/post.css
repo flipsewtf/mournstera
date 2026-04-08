@@ -61,9 +61,12 @@ article.post {
     max-width: var(--layout--section);
     margin-inline: auto;
 }
-
-article.post :where(* + *) {
-    margin-block-start: var(--flow-space, 1em);
+article.post :where(* + *):not(dialog, dialog *) {
+    margin-block-start: var(--flow-space);
+}
+article.post ul ul,
+article.post ol ol {
+    margin-block: var(--flow-space);
 }
 
 article.post hr {
@@ -127,17 +130,23 @@ article.post table code {
 article.post ul,
 article.post ol {
     padding-left: var(--space-5);
-}
 
-article.post ul li,
-article.post ol li {
-    padding-left: var(--space-2);
-    margin-block: calc(var(--flow-space) / 2);
-}
+    ul,
+    ol {
+        padding-left: var(--space-3);
+    }
 
-article.post ul li:hover::marker,
-article.post ol li:hover::marker {
-    color: var(--text-alt);
+    li {
+        padding-left: var(--space-2);
+
+        &:hover::marker {
+            color: var(--text-alt);
+        }
+
+        li {
+            padding-left: var(--space-1);
+        }
+    }
 }
 
 article.post ul li::marker {
@@ -148,11 +157,11 @@ article.post ul li::marker {
 
 article.post ol {
     list-style: decimal;
-}
 
-article.post ol li::marker {
-    color: var(--accent);
-    font-weight: 500;
+    li::marker {
+        color: var(--accent);
+        font-weight: 500;
+    }
 }
 
 /* ----- CHECKLIST */
@@ -213,6 +222,7 @@ article.post td {
 article.post abbr[title] {
     cursor: help;
     text-decoration: underline dotted;
+    text-decoration-color: var(--accent);
 }
 
 article.post sup,

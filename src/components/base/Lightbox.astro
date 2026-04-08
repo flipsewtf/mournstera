@@ -1,0 +1,91 @@
+---
+// Lightbox.astro
+import { XIcon } from '@lucide/astro';
+---
+
+<dialog id="lightbox" aria-label="Image lightbox" aria-modal="true">
+    <button id="lightbox-close" aria-label="Close lightbox" autofocus><XIcon /></button>
+    <figure>
+        <img id="lightbox-img" src="" alt="" />
+        <figcaption id="lightbox-caption"></figcaption>
+    </figure>
+</dialog>
+
+<script>
+    const dialog = document.getElementById('lightbox') as HTMLDialogElement;
+    const img = document.getElementById('lightbox-img') as HTMLImageElement;
+    const caption = document.getElementById('lightbox-caption') as HTMLElement;
+    const closeBtn = document.getElementById('lightbox-close') as HTMLButtonElement;
+
+    // Open on click
+    document.querySelectorAll('.post img, img.lbox').forEach((postImg) => {
+        const el = postImg as HTMLImageElement;
+        el.style.cursor = 'zoom-in';
+
+        el.addEventListener('click', () => {
+            const src = el.getAttribute('src');
+            const alt = el.getAttribute('alt') ?? '';
+            if (!src) return;
+
+            img.src = src;
+            img.alt = alt;
+            caption.textContent = alt;
+            dialog.showModal();
+        });
+    });
+
+    // Close on button
+    closeBtn.addEventListener('click', () => dialog.close());
+
+    // Close on backdrop click
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+    });
+</script>
+
+<style>
+    dialog {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius--xl);
+        padding: var(--space-2);
+        max-width: 92vw;
+        max-height: 92vh;
+        margin: auto;
+    }
+
+    dialog::backdrop {
+        background-color: var(--bg-trans);
+        backdrop-filter: blur(12px);
+    }
+
+    dialog img {
+        max-width: 100%;
+        max-height: 80vh;
+        display: block;
+        border-radius: var(--radius--lg);
+    }
+
+    figcaption {
+        color: var(--text-alt);
+        font-size: var(--text--sm);
+        margin-block: var(--space-3) var(--space-1);
+        text-align: center;
+    }
+
+    #lightbox-close {
+        position: absolute;
+        top: var(--space-2);
+        right: var(--space-2);
+        background-color: var(--text-alt);
+        color: var(--bg);
+        cursor: pointer;
+        border-radius: var(--radius--md);
+        padding: var(--space-1);
+        display: inline-flex;
+    }
+
+    #lightbox-close:hover {
+        background: var(--accent);
+    }
+</style>
