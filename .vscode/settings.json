@@ -3,5 +3,7 @@
     "[astro]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "cSpell.ignoreWords": ["lucide", "stims"],
+    "cSpell.words": ["ˈmɔːn", "Alzare", "inspo", "José", "lbox", "Mittzon", "Pillowfort"]
 }
